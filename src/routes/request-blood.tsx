@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Droplet, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { submitBloodRequest, type BloodRequestInput } from "@/lib/api/blood-request.functions";
+import { submitBloodRequest, type BloodRequestInput } from "@/lib/blood-request";
 
 type FormState = BloodRequestInput;
 
@@ -48,7 +48,7 @@ function RequestBloodPage() {
     setSubmitting(true);
     setResult(null);
     try {
-      const data = await submitBloodRequest({ data: form });
+      const data = await submitBloodRequest(form);
       if (data.ok) {
         setResult({ ok: true, msg: "Request saved to Google Sheet.", id: data.request_id });
         setForm(initial);

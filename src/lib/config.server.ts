@@ -19,11 +19,5 @@ import process from "node:process";
 export function getServerConfig() {
   return {
     nodeEnv: process.env.NODE_ENV,
-    appsScriptUrl: process.env.APPS_SCRIPT_URL,
   };
-}
-
-/** Google Apps Script web-app URL that appends rows to the blood intake sheet. */
-export function getAppsScriptUrl(): string | undefined {
-  return process.env.APPS_SCRIPT_URL?.trim() || undefined;
 }
