@@ -434,9 +434,12 @@ export function DirectCommSection() {
                   </div>
                 ))}
               </div>
-              <button className="w-full mt-4 text-xs text-white/60 hover:text-white py-2">
+              <Link
+                to="/ai-engine"
+                className="w-full mt-4 text-xs text-white/60 hover:text-white py-2 block text-center"
+              >
                 View full availability map →
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -835,9 +838,12 @@ export function ImpactSection() {
               Live across 18 Indian states. Coordinating with hospitals, NGOs, labs, and government
               agencies to ensure no patient waits.
             </p>
-            <button className="mt-6 glass-red rounded-xl px-5 py-3 flex items-center gap-2 text-sm font-medium">
+            <Link
+              to="/command-center"
+              className="mt-6 glass-red rounded-xl px-5 py-3 inline-flex items-center gap-2 text-sm font-medium"
+            >
               See impact map <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-4">
             {stats.map((s, i) => (

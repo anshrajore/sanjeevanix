@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SubPage } from "@/components/SubPage";
-import { CommandCenterPreview } from "@/components/sections";
+import { CommandCenterDashboard } from "@/components/CommandCenterDashboard";
 
 export const Route = createFileRoute("/command-center")({
   head: () => ({ meta: [{ title: "Command Center · Sanjeevani X" }] }),
@@ -12,9 +12,9 @@ export const Route = createFileRoute("/command-center")({
           Mission control for <span className="text-gradient-red">lives</span>
         </>
       }
-      subtitle="Every active request. Every AI call. Every coordination event — live."
+      subtitle="Live map of patients, donors, and hospitals — every active request in real time."
     >
-      <CommandCenterPreview />
+      <CommandCenterDashboard />
     </SubPage>
   ),
 });

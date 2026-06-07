@@ -1,10 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Droplet, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { LocationPicker } from "@/components/LocationPicker";
 import { submitBloodRequest, type BloodRequestInput } from "@/lib/blood-request";
+import { CITIES } from "@/lib/donor-matching";
+import { getCityCenter, type GeoPoint } from "@/lib/geo";
 
 type FormState = BloodRequestInput;
 
@@ -12,7 +15,7 @@ const initial: FormState = {
   patient_name: "",
   blood_group: "O+",
   units_needed: "1",
-  city: "",
+  city: "Mumbai",
   hospital: "",
   urgency: "High",
   status: "Open",
@@ -40,6 +43,7 @@ export const Route = createFileRoute("/request-blood")({
 
 function RequestBloodPage() {
   const [form, setForm] = useState<FormState>(initial);
+  const [location, setLocation] = useState<GeoPoint>(getCityCenter("Mumbai"));
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; msg: string; id?: string } | null>(null);
 
@@ -51,14 +55,19 @@ function RequestBloodPage() {
     setSubmitting(true);
     setResult(null);
     try {
-      const data = await submitBloodRequest(form);
+      const data = await submitBloodRequest({
+        ...form,
+        latitude: location.lat,
+        longitude: location.lng,
+      });
       if (data.ok) {
         setResult({
           ok: true,
-          msg: "Request submitted to Sanjeevani Command.",
+          msg: "Request saved — visible on Command Center map.",
           id: data.request_id,
         });
         setForm(initial);
+        setLocation(getCityCenter("Mumbai"));
       } else {
         setResult({ ok: false, msg: data.error });
       }
@@ -177,13 +186,29 @@ function RequestBloodPage() {
               <label htmlFor="city" className={label}>
                 City
               </label>
-              <input
+              <select
                 id="city"
                 required
                 className={field}
                 value={form.city}
-                onChange={(e) => update("city", e.target.value)}
-                placeholder="Mumbai"
+                onChange={(e) => {
+                  update("city", e.target.value);
+                  setLocation(getCityCenter(e.target.value));
+                }}
+              >
+                {CITIES.map((c) => (
+                  <option key={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className={label}>Patient location on map</label>
+              <LocationPicker
+                city={form.city}
+                point={location}
+                onCityChange={(city) => update("city", city)}
+                onPointChange={setLocation}
               />
             </div>
             <div>
@@ -359,6 +384,14 @@ function RequestBloodPage() {
                     <div className="text-white/50 mt-0.5 font-mono text-xs">
                       Request ID: {result.id}
                     </div>
+                  )}
+                  {result.ok && (
+                    <Link
+                      to="/command-center"
+                      className="inline-block mt-2 text-xs text-[#FF8A9A] hover:text-white"
+                    >
+                      View on Command Center map →
+                    </Link>
                   )}
                 </div>
               </motion.div>

@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -7,19 +7,25 @@ import {
   Globe,
   Loader2,
   MapPin,
+  Navigation,
   Phone,
   Radio,
   Search,
   User,
 } from "lucide-react";
+import { DonorMap, type MapDonorPin } from "@/components/DonorMap";
+import { LocationPicker } from "@/components/LocationPicker";
 import { SubPage } from "@/components/SubPage";
 import { VapiTalkButton } from "@/components/VapiTalkButton";
+import { useVapi } from "@/hooks/use-vapi";
 import {
   BLOOD_GROUPS,
-  CITIES,
+  HOSPITALS,
   LANGUAGES,
+  RADIUS_OPTIONS_KM,
   URGENCIES,
   advanceOutreachStatus,
+  defaultMatchOrigin,
   runDonorMatch,
   type BloodGroup,
   type DonorLanguage,
@@ -28,6 +34,12 @@ import {
   type OutreachStatus,
   type Urgency,
 } from "@/lib/donor-matching";
+import {
+  getActivePatientRequests,
+  subscribePatientRequests,
+  toMapPatientPins,
+} from "@/lib/patient-requests";
+import type { GeoPoint } from "@/lib/geo";
 
 export const Route = createFileRoute("/ai-engine")({
   head: () => ({ meta: [{ title: "AI Matching Engine · Sanjeevani X" }] }),
@@ -51,18 +63,33 @@ const STATUS_STYLE: Record<OutreachStatus, string> = {
 };
 
 function AIEnginePage() {
-  const [params, setParams] = useState<MatchRequest>({
+  const { startCall } = useVapi();
+  const [origin, setOrigin] = useState<GeoPoint>(defaultMatchOrigin("Mumbai"));
+  const [params, setParams] = useState<Omit<MatchRequest, "origin">>({
     bloodGroup: "O+",
     city: "Mumbai",
     language: "Any",
     minTrustScore: 70,
     minAvailability: 70,
+    maxFatigue: 35,
+    minDaysSinceDonation: 56,
+    maxRadiusKm: 25,
+    autoExpandRadius: true,
     urgency: "High",
   });
+  const [showHospitals, setShowHospitals] = useState(true);
+  const [showPatients, setShowPatients] = useState(true);
   const [matching, setMatching] = useState(false);
   const [result, setResult] = useState<ReturnType<typeof runDonorMatch> | null>(null);
   const [donors, setDonors] = useState<DonorMatch[]>([]);
   const [trackingLog, setTrackingLog] = useState<string[]>([]);
+  const [patientPins, setPatientPins] = useState(toMapPatientPins(getActivePatientRequests()));
+
+  useEffect(
+    () =>
+      subscribePatientRequests(() => setPatientPins(toMapPatientPins(getActivePatientRequests()))),
+    [],
+  );
 
   const statusCounts = useMemo(() => {
     return donors.reduce(
@@ -77,19 +104,50 @@ function AIEnginePage() {
     );
   }, [donors]);
 
+  const mapDonors: MapDonorPin[] = useMemo(
+    () =>
+      donors.map((d) => ({
+        id: d.donor_id,
+        name: d.donor_name,
+        bloodGroup: d.blood_group,
+        lat: d.latitude,
+        lng: d.longitude,
+        distanceKm: d.distanceKm,
+        status: d.outreachStatus,
+        matchScore: d.matchScore,
+      })),
+    [donors],
+  );
+
+  const hospitals = showHospitals
+    ? HOSPITALS.filter((h) => h.city === params.city).map((h) => ({
+        id: h.hospital_id,
+        name: h.name,
+        lat: h.lat,
+        lng: h.lng,
+        city: h.city,
+        stock: h[params.bloodGroup],
+      }))
+    : [];
+
   const handleMatch = async () => {
     setMatching(true);
     setTrackingLog([]);
-    await new Promise((r) => setTimeout(r, 600));
-    const match = runDonorMatch(params);
+    await new Promise((r) => setTimeout(r, 500));
+    const match = runDonorMatch({ ...params, origin });
     setResult(match);
     setDonors(match.donors);
-    setTrackingLog([
-      `Scanned ${match.stats.totalScanned} donors from Sanjeevani network`,
-      `${match.stats.compatible} compatible donors for ${params.bloodGroup}`,
-      `${match.stats.inCity} donors in ${params.city} · avg ${match.stats.avgDistance} km away`,
-      `Top match: ${match.donors[0]?.donor_name ?? "none"} (score ${match.donors[0]?.matchScore ?? 0})`,
-    ]);
+    const logs = [
+      `Scanned ${match.stats.totalScanned} donors from network`,
+      `${match.stats.compatible} blood-compatible · ${match.stats.inRadius} within ${match.radiusUsedKm} km`,
+    ];
+    if (match.expanded) logs.push(`Auto-expanded search radius to ${match.radiusUsedKm} km`);
+    if (match.donors[0]) {
+      logs.push(
+        `Nearest: ${match.donors[0].donor_name} — ${match.donors[0].distanceKm} km · ETA ${match.donors[0].etaMinutes} min`,
+      );
+    }
+    setTrackingLog(logs);
     setMatching(false);
   };
 
@@ -111,8 +169,9 @@ function AIEnginePage() {
     if (donor) {
       setTrackingLog((log) => [
         ...log,
-        `Voice outreach → ${donor.donor_name} · ${donor.language} · +${donor.phone}`,
+        `VAPI outreach → ${donor.donor_name} (${donor.language}) · +${donor.phone}`,
       ]);
+      void startCall();
     }
   };
 
@@ -122,7 +181,7 @@ function AIEnginePage() {
     );
     const donor = donors.find((d) => d.donor_id === id);
     if (donor) {
-      setTrackingLog((log) => [...log, `${donor.donor_name} declined — next nearest donor queued`]);
+      setTrackingLog((log) => [...log, `${donor.donor_name} declined — queuing next nearest`]);
     }
   };
 
@@ -134,13 +193,20 @@ function AIEnginePage() {
           The <span className="text-gradient-red">Matching</span> Engine
         </>
       }
-      subtitle="Search 500 live donors — ranked by nearest city, trust score, availability, and acceptance prediction."
+      subtitle="GPS-ranked donor search across 500 donors — live map, hospital stock, and patient pins."
     >
       <div className="grid lg:grid-cols-3 gap-6">
-        <div className="glass rounded-2xl p-6 space-y-4 lg:col-span-1">
+        <div className="glass rounded-2xl p-6 space-y-4 lg:col-span-1 max-h-[90vh] overflow-y-auto">
           <h3 className="font-display text-xl font-semibold flex items-center gap-2">
             <Search className="w-4 h-4 text-[#FF4D6D]" /> Search parameters
           </h3>
+
+          <LocationPicker
+            city={params.city}
+            point={origin}
+            onCityChange={(city) => setParams((p) => ({ ...p, city }))}
+            onPointChange={setOrigin}
+          />
 
           <div>
             <label
@@ -159,22 +225,6 @@ function AIEnginePage() {
             >
               {BLOOD_GROUPS.map((g) => (
                 <option key={g}>{g}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="match_city" className="text-xs uppercase tracking-wider text-white/40">
-              Your city (nearest first)
-            </label>
-            <select
-              id="match_city"
-              className="mt-1 w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5"
-              value={params.city}
-              onChange={(e) => setParams((p) => ({ ...p, city: e.target.value }))}
-            >
-              {CITIES.map((c) => (
-                <option key={c}>{c}</option>
               ))}
             </select>
           </div>
@@ -220,11 +270,40 @@ function AIEnginePage() {
           </div>
 
           <div>
-            <label htmlFor="match_trust" className="text-xs uppercase tracking-wider text-white/40">
-              Min trust score ({params.minTrustScore})
+            <label
+              htmlFor="match_radius"
+              className="text-xs uppercase tracking-wider text-white/40"
+            >
+              Search radius
+            </label>
+            <select
+              id="match_radius"
+              className="mt-1 w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5"
+              value={params.maxRadiusKm}
+              onChange={(e) => setParams((p) => ({ ...p, maxRadiusKm: Number(e.target.value) }))}
+            >
+              {RADIUS_OPTIONS_KM.map((r) => (
+                <option key={r} value={r}>
+                  {r} km
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <label className="flex items-center gap-2 text-sm text-white/60">
+            <input
+              type="checkbox"
+              checked={params.autoExpandRadius}
+              onChange={(e) => setParams((p) => ({ ...p, autoExpandRadius: e.target.checked }))}
+            />
+            Auto-expand radius if no matches
+          </label>
+
+          <div>
+            <label className="text-xs uppercase tracking-wider text-white/40">
+              Min trust ({params.minTrustScore})
             </label>
             <input
-              id="match_trust"
               type="range"
               min={50}
               max={99}
@@ -235,14 +314,10 @@ function AIEnginePage() {
           </div>
 
           <div>
-            <label
-              htmlFor="match_availability"
-              className="text-xs uppercase tracking-wider text-white/40"
-            >
+            <label className="text-xs uppercase tracking-wider text-white/40">
               Min availability ({params.minAvailability})
             </label>
             <input
-              id="match_availability"
               type="range"
               min={50}
               max={99}
@@ -252,6 +327,56 @@ function AIEnginePage() {
                 setParams((p) => ({ ...p, minAvailability: Number(e.target.value) }))
               }
             />
+          </div>
+
+          <div>
+            <label className="text-xs uppercase tracking-wider text-white/40">
+              Max fatigue ({params.maxFatigue})
+            </label>
+            <input
+              type="range"
+              min={10}
+              max={50}
+              className="mt-2 w-full accent-[#FF4D6D]"
+              value={params.maxFatigue}
+              onChange={(e) => setParams((p) => ({ ...p, maxFatigue: Number(e.target.value) }))}
+            />
+          </div>
+
+          <div>
+            <label className="text-xs uppercase tracking-wider text-white/40">
+              Min days since donation ({params.minDaysSinceDonation})
+            </label>
+            <input
+              type="range"
+              min={0}
+              max={120}
+              step={7}
+              className="mt-2 w-full accent-[#FF4D6D]"
+              value={params.minDaysSinceDonation}
+              onChange={(e) =>
+                setParams((p) => ({ ...p, minDaysSinceDonation: Number(e.target.value) }))
+              }
+            />
+          </div>
+
+          <div className="flex gap-3 text-xs">
+            <label className="flex items-center gap-2 text-white/60">
+              <input
+                type="checkbox"
+                checked={showHospitals}
+                onChange={(e) => setShowHospitals(e.target.checked)}
+              />
+              Hospitals
+            </label>
+            <label className="flex items-center gap-2 text-white/60">
+              <input
+                type="checkbox"
+                checked={showPatients}
+                onChange={(e) => setShowPatients(e.target.checked)}
+              />
+              Patients
+            </label>
           </div>
 
           <button
@@ -265,7 +390,9 @@ function AIEnginePage() {
                 <Loader2 className="w-4 h-4 animate-spin" /> Finding nearest donors…
               </>
             ) : (
-              "Find Nearest Donors"
+              <>
+                <Navigation className="w-4 h-4" /> Find Nearest Donors
+              </>
             )}
           </button>
 
@@ -274,18 +401,36 @@ function AIEnginePage() {
             inactiveLabel="Talk to AI for live help"
             activeLabel="End AI call"
           />
+
+          <Link
+            to="/command-center"
+            className="block text-center text-xs text-white/40 hover:text-white"
+          >
+            Open Command Center →
+          </Link>
         </div>
 
         <div className="lg:col-span-2 space-y-6">
+          <DonorMap
+            center={origin}
+            origin={origin}
+            zoom={11}
+            donors={mapDonors}
+            patients={showPatients ? patientPins.filter((p) => p.lat && p.lng) : []}
+            hospitals={hospitals}
+            height="360px"
+            onDonorClick={contactDonor}
+          />
+
           {result && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
               {[
                 { l: "In DB", v: result.stats.totalScanned },
                 { l: "Compatible", v: result.stats.compatible },
-                { l: "In city", v: result.stats.inCity },
+                { l: "In radius", v: result.stats.inRadius },
                 { l: "Avg trust", v: `${result.stats.avgTrust}%` },
-                { l: "Avg avail.", v: `${result.stats.avgAvailability}%` },
                 { l: "Avg dist.", v: `${result.stats.avgDistance} km` },
+                { l: "Radius", v: `${result.radiusUsedKm} km${result.expanded ? " ↑" : ""}` },
               ].map((s) => (
                 <div key={s.l} className="glass rounded-xl p-3 text-center">
                   <div className="font-display text-xl font-bold text-gradient-red">{s.v}</div>
@@ -307,11 +452,11 @@ function AIEnginePage() {
 
             {!donors.length ? (
               <p className="text-white/50 text-sm">
-                Set your city and blood group, then search to see the nearest compatible donors from
-                the 500-donor network.
+                Set your location and blood group, then search. Results are sorted by GPS distance
+                from your pin.
               </p>
             ) : (
-              <div className="space-y-2 max-h-[520px] overflow-y-auto pr-1">
+              <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
                 {donors.map((d, index) => (
                   <motion.div
                     key={d.donor_id}
@@ -334,19 +479,19 @@ function AIEnginePage() {
                         <span className="font-medium text-white/70">{d.blood_group}</span>
                         <span className="flex items-center gap-1">
                           <MapPin className="w-3 h-3" />
-                          {d.distanceKm} km · {d.city}
+                          {d.distanceKm} km · {d.area}, {d.city}
                         </span>
+                        <span>ETA {d.etaMinutes} min</span>
                         <span>Trust {d.trust_score}%</span>
                         <span>Avail {d.availability_score}%</span>
-                        <span>Accept {d.acceptance_prediction}%</span>
                         <span className="flex items-center gap-1">
                           <Globe className="w-3 h-3" />
                           {d.language}
                         </span>
                       </div>
                       <div className="text-[10px] text-white/35 mt-0.5">
-                        Response {d.response_rate}% · Reliability {d.donation_reliability}% ·
-                        Fatigue {d.fatigue_score} · Last donated {d.daysSinceDonation}d ago
+                        Accept {d.acceptance_prediction}% · Response {d.response_rate}% · Fatigue{" "}
+                        {d.fatigue_score} · Pin {d.pincode}
                       </div>
                     </div>
                     <span

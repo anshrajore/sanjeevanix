@@ -13,7 +13,12 @@
     "acceptance_prediction": "81",
     "response_rate": "79",
     "donation_reliability": "74",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "19.055354",
+    "longitude": "72.896614",
+    "area": "North",
+    "pincode": "400001",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D002",
@@ -29,7 +34,12 @@
     "acceptance_prediction": "77",
     "response_rate": "78",
     "donation_reliability": "77",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "19.079148",
+    "longitude": "72.841838",
+    "area": "South",
+    "pincode": "400002",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D003",
@@ -45,7 +55,12 @@
     "acceptance_prediction": "86",
     "response_rate": "82",
     "donation_reliability": "95",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.102771",
+    "longitude": "72.912619",
+    "area": "East",
+    "pincode": "400003",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D004",
@@ -61,7 +76,12 @@
     "acceptance_prediction": "79",
     "response_rate": "86",
     "donation_reliability": "73",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.024795",
+    "longitude": "72.868642",
+    "area": "West",
+    "pincode": "400004",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D005",
@@ -77,7 +97,12 @@
     "acceptance_prediction": "89",
     "response_rate": "94",
     "donation_reliability": "87",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.126626",
+    "longitude": "72.845497",
+    "area": "Metro",
+    "pincode": "400005",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D006",
@@ -93,7 +118,12 @@
     "acceptance_prediction": "76",
     "response_rate": "69",
     "donation_reliability": "71",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "19.058345",
+    "longitude": "72.943368",
+    "area": "Central",
+    "pincode": "400006",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D007",
@@ -109,7 +139,12 @@
     "acceptance_prediction": "85",
     "response_rate": "88",
     "donation_reliability": "75",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "19.040973",
+    "longitude": "72.810253",
+    "area": "North",
+    "pincode": "400007",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D008",
@@ -125,7 +160,12 @@
     "acceptance_prediction": "84",
     "response_rate": "80",
     "donation_reliability": "75",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.154902",
+    "longitude": "72.906518",
+    "area": "South",
+    "pincode": "400008",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D009",
@@ -141,7 +181,12 @@
     "acceptance_prediction": "85",
     "response_rate": "68",
     "donation_reliability": "77",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "18.990959",
+    "longitude": "72.912800",
+    "area": "East",
+    "pincode": "400009",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D010",
@@ -157,7 +202,12 @@
     "acceptance_prediction": "91",
     "response_rate": "85",
     "donation_reliability": "76",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "19.118388",
+    "longitude": "72.787128",
+    "area": "West",
+    "pincode": "400010",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D011",
@@ -173,7 +223,12 @@
     "acceptance_prediction": "89",
     "response_rate": "99",
     "donation_reliability": "78",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "19.108318",
+    "longitude": "72.980751",
+    "area": "Metro",
+    "pincode": "400011",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D012",
@@ -189,7 +244,12 @@
     "acceptance_prediction": "92",
     "response_rate": "96",
     "donation_reliability": "72",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "19.058696",
+    "longitude": "72.867671",
+    "area": "Central",
+    "pincode": "400012",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D013",
@@ -205,7 +265,12 @@
     "acceptance_prediction": "85",
     "response_rate": "89",
     "donation_reliability": "89",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "19.103347",
+    "longitude": "72.871689",
+    "area": "North",
+    "pincode": "400013",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D014",
@@ -221,7 +286,12 @@
     "acceptance_prediction": "88",
     "response_rate": "82",
     "donation_reliability": "94",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.055294",
+    "longitude": "72.907149",
+    "area": "South",
+    "pincode": "400014",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D015",
@@ -237,7 +307,12 @@
     "acceptance_prediction": "88",
     "response_rate": "81",
     "donation_reliability": "86",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "19.070348",
+    "longitude": "72.834064",
+    "area": "East",
+    "pincode": "400015",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D016",
@@ -253,7 +328,12 @@
     "acceptance_prediction": "80",
     "response_rate": "88",
     "donation_reliability": "94",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.115760",
+    "longitude": "72.911214",
+    "area": "West",
+    "pincode": "400016",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D017",
@@ -269,7 +349,12 @@
     "acceptance_prediction": "84",
     "response_rate": "88",
     "donation_reliability": "98",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "19.016051",
+    "longitude": "72.880175",
+    "area": "Metro",
+    "pincode": "400017",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D018",
@@ -285,7 +370,12 @@
     "acceptance_prediction": "90",
     "response_rate": "96",
     "donation_reliability": "96",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.124204",
+    "longitude": "72.829738",
+    "area": "Central",
+    "pincode": "400018",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D019",
@@ -301,7 +391,12 @@
     "acceptance_prediction": "91",
     "response_rate": "92",
     "donation_reliability": "76",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.072484",
+    "longitude": "72.953619",
+    "area": "North",
+    "pincode": "400019",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D020",
@@ -317,7 +412,12 @@
     "acceptance_prediction": "87",
     "response_rate": "98",
     "donation_reliability": "84",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "19.022186",
+    "longitude": "72.813202",
+    "area": "South",
+    "pincode": "400020",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D021",
@@ -333,7 +433,12 @@
     "acceptance_prediction": "77",
     "response_rate": "79",
     "donation_reliability": "70",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "19.167177",
+    "longitude": "72.889976",
+    "area": "East",
+    "pincode": "400021",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D022",
@@ -349,7 +454,12 @@
     "acceptance_prediction": "85",
     "response_rate": "80",
     "donation_reliability": "78",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "18.993909",
+    "longitude": "72.934806",
+    "area": "West",
+    "pincode": "400022",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D023",
@@ -365,7 +475,12 @@
     "acceptance_prediction": "85",
     "response_rate": "95",
     "donation_reliability": "95",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "19.099714",
+    "longitude": "72.772336",
+    "area": "Metro",
+    "pincode": "400023",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D024",
@@ -381,7 +496,12 @@
     "acceptance_prediction": "79",
     "response_rate": "68",
     "donation_reliability": "91",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "19.085942",
+    "longitude": "72.895054",
+    "area": "Central",
+    "pincode": "400024",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D025",
@@ -397,7 +517,12 @@
     "acceptance_prediction": "85",
     "response_rate": "99",
     "donation_reliability": "84",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "19.049325",
+    "longitude": "72.869187",
+    "area": "North",
+    "pincode": "400025",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D026",
@@ -413,7 +538,12 @@
     "acceptance_prediction": "84",
     "response_rate": "71",
     "donation_reliability": "71",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.108682",
+    "longitude": "72.862604",
+    "area": "South",
+    "pincode": "400026",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D027",
@@ -429,7 +559,12 @@
     "acceptance_prediction": "82",
     "response_rate": "78",
     "donation_reliability": "97",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "19.059009",
+    "longitude": "72.918287",
+    "area": "East",
+    "pincode": "400027",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D028",
@@ -445,7 +580,12 @@
     "acceptance_prediction": "87",
     "response_rate": "92",
     "donation_reliability": "92",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "19.058406",
+    "longitude": "72.828767",
+    "area": "West",
+    "pincode": "400028",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D029",
@@ -461,7 +601,12 @@
     "acceptance_prediction": "76",
     "response_rate": "68",
     "donation_reliability": "88",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.129108",
+    "longitude": "72.905620",
+    "area": "Metro",
+    "pincode": "400029",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D030",
@@ -477,7 +622,12 @@
     "acceptance_prediction": "92",
     "response_rate": "97",
     "donation_reliability": "99",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "19.010244",
+    "longitude": "72.895024",
+    "area": "Central",
+    "pincode": "400030",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D031",
@@ -493,7 +643,12 @@
     "acceptance_prediction": "83",
     "response_rate": "69",
     "donation_reliability": "91",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "19.117112",
+    "longitude": "72.813780",
+    "area": "North",
+    "pincode": "400031",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D032",
@@ -509,7 +664,12 @@
     "acceptance_prediction": "82",
     "response_rate": "70",
     "donation_reliability": "83",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "19.090217",
+    "longitude": "72.960488",
+    "area": "South",
+    "pincode": "400032",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D033",
@@ -525,7 +685,12 @@
     "acceptance_prediction": "78",
     "response_rate": "81",
     "donation_reliability": "82",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "19.003270",
+    "longitude": "72.821358",
+    "area": "East",
+    "pincode": "400033",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D034",
@@ -541,7 +706,12 @@
     "acceptance_prediction": "72",
     "response_rate": "69",
     "donation_reliability": "87",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "19.175660",
+    "longitude": "72.869457",
+    "area": "West",
+    "pincode": "400034",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D035",
@@ -557,7 +727,12 @@
     "acceptance_prediction": "81",
     "response_rate": "75",
     "donation_reliability": "84",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.002648",
+    "longitude": "72.956968",
+    "area": "Metro",
+    "pincode": "400035",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D036",
@@ -573,7 +748,12 @@
     "acceptance_prediction": "75",
     "response_rate": "71",
     "donation_reliability": "98",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "19.076101",
+    "longitude": "72.857700",
+    "area": "Central",
+    "pincode": "400036",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D037",
@@ -589,7 +769,12 @@
     "acceptance_prediction": "83",
     "response_rate": "78",
     "donation_reliability": "92",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "19.094810",
+    "longitude": "72.898441",
+    "area": "North",
+    "pincode": "400037",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D038",
@@ -605,7 +790,12 @@
     "acceptance_prediction": "81",
     "response_rate": "92",
     "donation_reliability": "96",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "19.040154",
+    "longitude": "72.874372",
+    "area": "South",
+    "pincode": "400038",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D039",
@@ -621,7 +811,12 @@
     "acceptance_prediction": "86",
     "response_rate": "92",
     "donation_reliability": "87",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "19.111053",
+    "longitude": "72.851105",
+    "area": "East",
+    "pincode": "400039",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D040",
@@ -637,7 +832,12 @@
     "acceptance_prediction": "80",
     "response_rate": "74",
     "donation_reliability": "83",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "19.066684",
+    "longitude": "72.928859",
+    "area": "West",
+    "pincode": "400040",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D041",
@@ -653,7 +853,12 @@
     "acceptance_prediction": "84",
     "response_rate": "71",
     "donation_reliability": "81",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "19.044052",
+    "longitude": "72.826913",
+    "area": "Metro",
+    "pincode": "400041",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D042",
@@ -669,7 +874,12 @@
     "acceptance_prediction": "91",
     "response_rate": "91",
     "donation_reliability": "70",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.141579",
+    "longitude": "72.895685",
+    "area": "Central",
+    "pincode": "400042",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D043",
@@ -685,7 +895,12 @@
     "acceptance_prediction": "77",
     "response_rate": "67",
     "donation_reliability": "97",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "19.008378",
+    "longitude": "72.912388",
+    "area": "North",
+    "pincode": "400043",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D044",
@@ -701,7 +916,12 @@
     "acceptance_prediction": "75",
     "response_rate": "77",
     "donation_reliability": "82",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "19.105214",
+    "longitude": "72.798944",
+    "area": "South",
+    "pincode": "400044",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D045",
@@ -717,7 +937,12 @@
     "acceptance_prediction": "78",
     "response_rate": "66",
     "donation_reliability": "73",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "19.110672",
+    "longitude": "72.962916",
+    "area": "East",
+    "pincode": "400045",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D046",
@@ -733,7 +958,12 @@
     "acceptance_prediction": "84",
     "response_rate": "85",
     "donation_reliability": "83",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "18.985643",
+    "longitude": "72.834857",
+    "area": "West",
+    "pincode": "400046",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D047",
@@ -749,7 +979,12 @@
     "acceptance_prediction": "91",
     "response_rate": "92",
     "donation_reliability": "70",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.179212",
+    "longitude": "72.845900",
+    "area": "Metro",
+    "pincode": "400047",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D048",
@@ -765,7 +1000,12 @@
     "acceptance_prediction": "89",
     "response_rate": "85",
     "donation_reliability": "91",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "19.065884",
+    "longitude": "72.894953",
+    "area": "Central",
+    "pincode": "400048",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D049",
@@ -781,7 +1021,12 @@
     "acceptance_prediction": "85",
     "response_rate": "83",
     "donation_reliability": "87",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "19.070127",
+    "longitude": "72.850323",
+    "area": "North",
+    "pincode": "400049",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D050",
@@ -797,7 +1042,12 @@
     "acceptance_prediction": "87",
     "response_rate": "90",
     "donation_reliability": "87",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.105345",
+    "longitude": "72.898554",
+    "area": "South",
+    "pincode": "400050",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D051",
@@ -813,7 +1063,12 @@
     "acceptance_prediction": "89",
     "response_rate": "93",
     "donation_reliability": "84",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "19.032337",
+    "longitude": "72.883132",
+    "area": "East",
+    "pincode": "400051",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D052",
@@ -829,7 +1084,12 @@
     "acceptance_prediction": "90",
     "response_rate": "86",
     "donation_reliability": "72",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "19.109713",
+    "longitude": "72.838109",
+    "area": "West",
+    "pincode": "400052",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D053",
@@ -845,7 +1105,12 @@
     "acceptance_prediction": "88",
     "response_rate": "95",
     "donation_reliability": "89",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.078174",
+    "longitude": "72.937661",
+    "area": "Metro",
+    "pincode": "400053",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D054",
@@ -861,7 +1126,12 @@
     "acceptance_prediction": "85",
     "response_rate": "90",
     "donation_reliability": "77",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.028281",
+    "longitude": "72.829256",
+    "area": "Central",
+    "pincode": "400054",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D055",
@@ -877,7 +1147,12 @@
     "acceptance_prediction": "76",
     "response_rate": "68",
     "donation_reliability": "87",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "19.151900",
+    "longitude": "72.881598",
+    "area": "North",
+    "pincode": "400055",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D056",
@@ -893,7 +1168,12 @@
     "acceptance_prediction": "94",
     "response_rate": "93",
     "donation_reliability": "89",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "19.011232",
+    "longitude": "72.931189",
+    "area": "South",
+    "pincode": "400056",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D057",
@@ -909,7 +1189,12 @@
     "acceptance_prediction": "81",
     "response_rate": "81",
     "donation_reliability": "94",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "19.088734",
+    "longitude": "72.786586",
+    "area": "East",
+    "pincode": "400057",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D058",
@@ -925,7 +1210,12 @@
     "acceptance_prediction": "78",
     "response_rate": "83",
     "donation_reliability": "77",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.132692",
+    "longitude": "72.960077",
+    "area": "West",
+    "pincode": "400058",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D059",
@@ -941,7 +1231,12 @@
     "acceptance_prediction": "78",
     "response_rate": "74",
     "donation_reliability": "92",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "18.970756",
+    "longitude": "72.853457",
+    "area": "Metro",
+    "pincode": "400059",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D060",
@@ -957,7 +1252,12 @@
     "acceptance_prediction": "76",
     "response_rate": "78",
     "donation_reliability": "96",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.093404",
+    "longitude": "72.867845",
+    "area": "Central",
+    "pincode": "400060",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D061",
@@ -973,7 +1273,12 @@
     "acceptance_prediction": "82",
     "response_rate": "87",
     "donation_reliability": "79",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.067353",
+    "longitude": "72.904331",
+    "area": "North",
+    "pincode": "400061",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D062",
@@ -989,7 +1294,12 @@
     "acceptance_prediction": "81",
     "response_rate": "82",
     "donation_reliability": "83",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "19.061069",
+    "longitude": "72.844942",
+    "area": "South",
+    "pincode": "400062",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D063",
@@ -1005,7 +1315,12 @@
     "acceptance_prediction": "95",
     "response_rate": "99",
     "donation_reliability": "70",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "19.116501",
+    "longitude": "72.894895",
+    "area": "East",
+    "pincode": "400063",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D064",
@@ -1021,7 +1336,12 @@
     "acceptance_prediction": "81",
     "response_rate": "94",
     "donation_reliability": "75",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "19.026979",
+    "longitude": "72.895048",
+    "area": "West",
+    "pincode": "400064",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D065",
@@ -1037,7 +1357,12 @@
     "acceptance_prediction": "92",
     "response_rate": "89",
     "donation_reliability": "78",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "19.104187",
+    "longitude": "72.824733",
+    "area": "Metro",
+    "pincode": "400065",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D066",
@@ -1053,7 +1378,12 @@
     "acceptance_prediction": "81",
     "response_rate": "87",
     "donation_reliability": "77",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.092994",
+    "longitude": "72.943542",
+    "area": "Central",
+    "pincode": "400066",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D067",
@@ -1069,7 +1399,12 @@
     "acceptance_prediction": "80",
     "response_rate": "74",
     "donation_reliability": "77",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "19.012287",
+    "longitude": "72.836267",
+    "area": "North",
+    "pincode": "400067",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D068",
@@ -1085,7 +1420,12 @@
     "acceptance_prediction": "91",
     "response_rate": "88",
     "donation_reliability": "75",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "19.158859",
+    "longitude": "72.863900",
+    "area": "South",
+    "pincode": "400068",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D069",
@@ -1101,7 +1441,12 @@
     "acceptance_prediction": "91",
     "response_rate": "84",
     "donation_reliability": "88",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.019293",
+    "longitude": "72.950146",
+    "area": "East",
+    "pincode": "400069",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D070",
@@ -1117,7 +1462,12 @@
     "acceptance_prediction": "81",
     "response_rate": "84",
     "donation_reliability": "97",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "19.068258",
+    "longitude": "72.778000",
+    "area": "West",
+    "pincode": "400070",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D071",
@@ -1133,7 +1483,12 @@
     "acceptance_prediction": "89",
     "response_rate": "88",
     "donation_reliability": "72",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.154899",
+    "longitude": "72.951450",
+    "area": "Metro",
+    "pincode": "400071",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D072",
@@ -1149,7 +1504,12 @@
     "acceptance_prediction": "88",
     "response_rate": "94",
     "donation_reliability": "92",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "19.056001",
+    "longitude": "72.877499",
+    "area": "Central",
+    "pincode": "400072",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D073",
@@ -1165,7 +1525,12 @@
     "acceptance_prediction": "92",
     "response_rate": "95",
     "donation_reliability": "84",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "19.096836",
+    "longitude": "72.858995",
+    "area": "North",
+    "pincode": "400073",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D074",
@@ -1181,7 +1546,12 @@
     "acceptance_prediction": "86",
     "response_rate": "94",
     "donation_reliability": "88",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.072492",
+    "longitude": "72.913529",
+    "area": "South",
+    "pincode": "400074",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D075",
@@ -1197,7 +1567,12 @@
     "acceptance_prediction": "81",
     "response_rate": "87",
     "donation_reliability": "95",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.049582",
+    "longitude": "72.842514",
+    "area": "East",
+    "pincode": "400075",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D076",
@@ -1213,7 +1588,12 @@
     "acceptance_prediction": "77",
     "response_rate": "70",
     "donation_reliability": "77",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "19.127111",
+    "longitude": "72.887273",
+    "area": "West",
+    "pincode": "400076",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D077",
@@ -1229,7 +1609,12 @@
     "acceptance_prediction": "76",
     "response_rate": "66",
     "donation_reliability": "72",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "19.025053",
+    "longitude": "72.909392",
+    "area": "Metro",
+    "pincode": "400077",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D078",
@@ -1245,7 +1630,12 @@
     "acceptance_prediction": "88",
     "response_rate": "95",
     "donation_reliability": "87",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "19.094314",
+    "longitude": "72.812213",
+    "area": "Central",
+    "pincode": "400078",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D079",
@@ -1261,7 +1651,12 @@
     "acceptance_prediction": "80",
     "response_rate": "84",
     "donation_reliability": "78",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "19.110347",
+    "longitude": "72.945496",
+    "area": "North",
+    "pincode": "400079",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D080",
@@ -1277,7 +1672,12 @@
     "acceptance_prediction": "79",
     "response_rate": "78",
     "donation_reliability": "93",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "18.997392",
+    "longitude": "72.848090",
+    "area": "South",
+    "pincode": "400080",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D081",
@@ -1293,7 +1693,12 @@
     "acceptance_prediction": "78",
     "response_rate": "79",
     "donation_reliability": "81",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "18.605790",
+    "longitude": "73.822457",
+    "area": "East",
+    "pincode": "400081",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D082",
@@ -1309,7 +1714,12 @@
     "acceptance_prediction": "76",
     "response_rate": "83",
     "donation_reliability": "92",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "18.477103",
+    "longitude": "73.946841",
+    "area": "West",
+    "pincode": "400082",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D083",
@@ -1325,7 +1735,12 @@
     "acceptance_prediction": "86",
     "response_rate": "93",
     "donation_reliability": "80",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "18.489120",
+    "longitude": "73.753329",
+    "area": "Metro",
+    "pincode": "400083",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D084",
@@ -1341,7 +1756,12 @@
     "acceptance_prediction": "71",
     "response_rate": "68",
     "donation_reliability": "74",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "18.537602",
+    "longitude": "73.866902",
+    "area": "Central",
+    "pincode": "400084",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D085",
@@ -1357,7 +1777,12 @@
     "acceptance_prediction": "84",
     "response_rate": "79",
     "donation_reliability": "94",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "18.492994",
+    "longitude": "73.862435",
+    "area": "North",
+    "pincode": "400085",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D086",
@@ -1373,7 +1798,12 @@
     "acceptance_prediction": "81",
     "response_rate": "68",
     "donation_reliability": "89",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "18.541401",
+    "longitude": "73.827461",
+    "area": "South",
+    "pincode": "400086",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D087",
@@ -1389,7 +1819,12 @@
     "acceptance_prediction": "79",
     "response_rate": "80",
     "donation_reliability": "75",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "18.525613",
+    "longitude": "73.900390",
+    "area": "East",
+    "pincode": "400087",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D088",
@@ -1405,7 +1840,12 @@
     "acceptance_prediction": "74",
     "response_rate": "67",
     "donation_reliability": "77",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "18.480979",
+    "longitude": "73.822788",
+    "area": "West",
+    "pincode": "400088",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D089",
@@ -1421,7 +1861,12 @@
     "acceptance_prediction": "82",
     "response_rate": "77",
     "donation_reliability": "83",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "18.580371",
+    "longitude": "73.854828",
+    "area": "Metro",
+    "pincode": "400089",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D090",
@@ -1437,7 +1882,12 @@
     "acceptance_prediction": "74",
     "response_rate": "75",
     "donation_reliability": "95",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "18.471716",
+    "longitude": "73.904175",
+    "area": "Central",
+    "pincode": "400090",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D091",
@@ -1453,7 +1903,12 @@
     "acceptance_prediction": "90",
     "response_rate": "90",
     "donation_reliability": "78",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "18.524680",
+    "longitude": "73.780821",
+    "area": "North",
+    "pincode": "400091",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D092",
@@ -1469,7 +1924,12 @@
     "acceptance_prediction": "87",
     "response_rate": "85",
     "donation_reliability": "89",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "18.573563",
+    "longitude": "73.921736",
+    "area": "South",
+    "pincode": "400092",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D093",
@@ -1485,7 +1945,12 @@
     "acceptance_prediction": "81",
     "response_rate": "67",
     "donation_reliability": "94",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "18.429351",
+    "longitude": "73.843508",
+    "area": "East",
+    "pincode": "400093",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D094",
@@ -1501,7 +1966,12 @@
     "acceptance_prediction": "89",
     "response_rate": "96",
     "donation_reliability": "72",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "18.603061",
+    "longitude": "73.800422",
+    "area": "West",
+    "pincode": "400094",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D095",
@@ -1517,7 +1987,12 @@
     "acceptance_prediction": "90",
     "response_rate": "96",
     "donation_reliability": "79",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "18.495628",
+    "longitude": "73.961821",
+    "area": "Metro",
+    "pincode": "400095",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D096",
@@ -1533,7 +2008,12 @@
     "acceptance_prediction": "77",
     "response_rate": "72",
     "donation_reliability": "94",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "18.510633",
+    "longitude": "73.839247",
+    "area": "Central",
+    "pincode": "400096",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D097",
@@ -1549,7 +2029,12 @@
     "acceptance_prediction": "87",
     "response_rate": "98",
     "donation_reliability": "81",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "18.546988",
+    "longitude": "73.865481",
+    "area": "North",
+    "pincode": "400097",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D098",
@@ -1565,7 +2050,12 @@
     "acceptance_prediction": "82",
     "response_rate": "83",
     "donation_reliability": "84",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "18.487568",
+    "longitude": "73.871466",
+    "area": "South",
+    "pincode": "400098",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D099",
@@ -1581,7 +2071,12 @@
     "acceptance_prediction": "74",
     "response_rate": "65",
     "donation_reliability": "87",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "18.537798",
+    "longitude": "73.816286",
+    "area": "East",
+    "pincode": "400000",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D100",
@@ -1597,7 +2092,12 @@
     "acceptance_prediction": "86",
     "response_rate": "83",
     "donation_reliability": "86",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "18.537501",
+    "longitude": "73.905808",
+    "area": "West",
+    "pincode": "400001",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D101",
@@ -1613,7 +2113,12 @@
     "acceptance_prediction": "85",
     "response_rate": "89",
     "donation_reliability": "76",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "18.467575",
+    "longitude": "73.828247",
+    "area": "Metro",
+    "pincode": "400002",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D102",
@@ -1629,7 +2134,12 @@
     "acceptance_prediction": "90",
     "response_rate": "97",
     "donation_reliability": "78",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "18.586327",
+    "longitude": "73.840038",
+    "area": "Central",
+    "pincode": "400003",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D103",
@@ -1645,7 +2155,12 @@
     "acceptance_prediction": "86",
     "response_rate": "74",
     "donation_reliability": "84",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "18.478648",
+    "longitude": "73.920204",
+    "area": "North",
+    "pincode": "400004",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D104",
@@ -1661,7 +2176,12 @@
     "acceptance_prediction": "89",
     "response_rate": "85",
     "donation_reliability": "97",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "18.507016",
+    "longitude": "73.773773",
+    "area": "South",
+    "pincode": "400005",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D105",
@@ -1677,7 +2197,12 @@
     "acceptance_prediction": "95",
     "response_rate": "95",
     "donation_reliability": "92",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "18.592560",
+    "longitude": "73.913770",
+    "area": "East",
+    "pincode": "400006",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D106",
@@ -1693,7 +2218,12 @@
     "acceptance_prediction": "83",
     "response_rate": "86",
     "donation_reliability": "97",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "18.420662",
+    "longitude": "73.863940",
+    "area": "West",
+    "pincode": "400007",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D107",
@@ -1709,7 +2239,12 @@
     "acceptance_prediction": "80",
     "response_rate": "74",
     "donation_reliability": "72",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "18.594545",
+    "longitude": "73.778173",
+    "area": "Metro",
+    "pincode": "400008",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D108",
@@ -1725,7 +2260,12 @@
     "acceptance_prediction": "85",
     "response_rate": "85",
     "donation_reliability": "90",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "18.520098",
+    "longitude": "73.876698",
+    "area": "Central",
+    "pincode": "400009",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D109",
@@ -1741,7 +2281,12 @@
     "acceptance_prediction": "73",
     "response_rate": "70",
     "donation_reliability": "83",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "18.501800",
+    "longitude": "73.835771",
+    "area": "North",
+    "pincode": "400010",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D110",
@@ -1757,7 +2302,12 @@
     "acceptance_prediction": "75",
     "response_rate": "68",
     "donation_reliability": "79",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "18.556211",
+    "longitude": "73.860388",
+    "area": "South",
+    "pincode": "400011",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D111",
@@ -1773,7 +2323,12 @@
     "acceptance_prediction": "82",
     "response_rate": "76",
     "donation_reliability": "75",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "18.485082",
+    "longitude": "73.882941",
+    "area": "East",
+    "pincode": "400012",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D112",
@@ -1789,7 +2344,12 @@
     "acceptance_prediction": "79",
     "response_rate": "79",
     "donation_reliability": "84",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "18.530229",
+    "longitude": "73.805637",
+    "area": "West",
+    "pincode": "400013",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D113",
@@ -1805,7 +2365,12 @@
     "acceptance_prediction": "74",
     "response_rate": "69",
     "donation_reliability": "84",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "18.551836",
+    "longitude": "73.907806",
+    "area": "Metro",
+    "pincode": "400014",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D114",
@@ -1821,7 +2386,12 @@
     "acceptance_prediction": "83",
     "response_rate": "89",
     "donation_reliability": "97",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "18.455005",
+    "longitude": "73.838057",
+    "area": "Central",
+    "pincode": "400015",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D115",
@@ -1837,7 +2407,12 @@
     "acceptance_prediction": "89",
     "response_rate": "83",
     "donation_reliability": "70",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "18.588368",
+    "longitude": "73.822694",
+    "area": "North",
+    "pincode": "400016",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D116",
@@ -1853,7 +2428,12 @@
     "acceptance_prediction": "91",
     "response_rate": "83",
     "donation_reliability": "94",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "18.490396",
+    "longitude": "73.935159",
+    "area": "South",
+    "pincode": "400017",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D117",
@@ -1869,7 +2449,12 @@
     "acceptance_prediction": "80",
     "response_rate": "73",
     "donation_reliability": "90",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "18.486586",
+    "longitude": "73.771139",
+    "area": "East",
+    "pincode": "400018",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D118",
@@ -1885,7 +2470,12 @@
     "acceptance_prediction": "81",
     "response_rate": "73",
     "donation_reliability": "72",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "18.610322",
+    "longitude": "73.900449",
+    "area": "West",
+    "pincode": "400019",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D119",
@@ -1901,7 +2491,12 @@
     "acceptance_prediction": "94",
     "response_rate": "99",
     "donation_reliability": "98",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "18.416873",
+    "longitude": "73.887460",
+    "area": "Metro",
+    "pincode": "400020",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D120",
@@ -1917,7 +2512,12 @@
     "acceptance_prediction": "86",
     "response_rate": "86",
     "donation_reliability": "95",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "18.530689",
+    "longitude": "73.839549",
+    "area": "Central",
+    "pincode": "400021",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D121",
@@ -1933,7 +2533,12 @@
     "acceptance_prediction": "80",
     "response_rate": "90",
     "donation_reliability": "70",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "18.525998",
+    "longitude": "73.884135",
+    "area": "North",
+    "pincode": "400022",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D122",
@@ -1949,7 +2554,12 @@
     "acceptance_prediction": "92",
     "response_rate": "88",
     "donation_reliability": "73",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "18.491267",
+    "longitude": "73.835552",
+    "area": "South",
+    "pincode": "400023",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D123",
@@ -1965,7 +2575,12 @@
     "acceptance_prediction": "83",
     "response_rate": "69",
     "donation_reliability": "90",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "18.564116",
+    "longitude": "73.851707",
+    "area": "East",
+    "pincode": "400024",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D124",
@@ -1981,7 +2596,12 @@
     "acceptance_prediction": "77",
     "response_rate": "84",
     "donation_reliability": "85",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "18.486290",
+    "longitude": "73.895950",
+    "area": "West",
+    "pincode": "400025",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D125",
@@ -1997,7 +2617,12 @@
     "acceptance_prediction": "94",
     "response_rate": "99",
     "donation_reliability": "83",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "18.518829",
+    "longitude": "73.796721",
+    "area": "Metro",
+    "pincode": "400026",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D126",
@@ -2013,7 +2638,12 @@
     "acceptance_prediction": "74",
     "response_rate": "67",
     "donation_reliability": "92",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "18.567630",
+    "longitude": "73.905622",
+    "area": "Central",
+    "pincode": "400027",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D127",
@@ -2029,7 +2659,12 @@
     "acceptance_prediction": "86",
     "response_rate": "87",
     "donation_reliability": "71",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "18.444543",
+    "longitude": "73.852039",
+    "area": "North",
+    "pincode": "400028",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D128",
@@ -2045,7 +2680,12 @@
     "acceptance_prediction": "81",
     "response_rate": "66",
     "donation_reliability": "71",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "18.585702",
+    "longitude": "73.803864",
+    "area": "South",
+    "pincode": "400029",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D129",
@@ -2061,7 +2701,12 @@
     "acceptance_prediction": "81",
     "response_rate": "78",
     "donation_reliability": "96",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "18.506751",
+    "longitude": "73.947682",
+    "area": "East",
+    "pincode": "400030",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D130",
@@ -2077,7 +2722,12 @@
     "acceptance_prediction": "88",
     "response_rate": "99",
     "donation_reliability": "78",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "18.464539",
+    "longitude": "73.773757",
+    "area": "West",
+    "pincode": "400031",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D131",
@@ -2093,7 +2743,12 @@
     "acceptance_prediction": "86",
     "response_rate": "80",
     "donation_reliability": "88",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "18.625395",
+    "longitude": "73.882000",
+    "area": "Metro",
+    "pincode": "400032",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D132",
@@ -2109,7 +2764,12 @@
     "acceptance_prediction": "78",
     "response_rate": "72",
     "donation_reliability": "93",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "18.502898",
+    "longitude": "73.866379",
+    "area": "Central",
+    "pincode": "400033",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D133",
@@ -2125,7 +2785,12 @@
     "acceptance_prediction": "80",
     "response_rate": "79",
     "donation_reliability": "89",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "18.529314",
+    "longitude": "73.830157",
+    "area": "North",
+    "pincode": "400034",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D134",
@@ -2141,7 +2806,12 @@
     "acceptance_prediction": "80",
     "response_rate": "71",
     "donation_reliability": "85",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "18.535001",
+    "longitude": "73.889606",
+    "area": "South",
+    "pincode": "400035",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D135",
@@ -2157,7 +2827,12 @@
     "acceptance_prediction": "80",
     "response_rate": "82",
     "donation_reliability": "89",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "18.480074",
+    "longitude": "73.839099",
+    "area": "East",
+    "pincode": "400036",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D136",
@@ -2173,7 +2848,12 @@
     "acceptance_prediction": "87",
     "response_rate": "94",
     "donation_reliability": "86",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "18.569593",
+    "longitude": "73.839846",
+    "area": "West",
+    "pincode": "400037",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D137",
@@ -2189,7 +2869,12 @@
     "acceptance_prediction": "86",
     "response_rate": "93",
     "donation_reliability": "98",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "18.491682",
+    "longitude": "73.909381",
+    "area": "Metro",
+    "pincode": "400038",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D138",
@@ -2205,7 +2890,12 @@
     "acceptance_prediction": "87",
     "response_rate": "92",
     "donation_reliability": "80",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "18.504069",
+    "longitude": "73.790690",
+    "area": "Central",
+    "pincode": "400039",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D139",
@@ -2221,7 +2911,12 @@
     "acceptance_prediction": "84",
     "response_rate": "92",
     "donation_reliability": "73",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "18.583693",
+    "longitude": "73.898771",
+    "area": "North",
+    "pincode": "400040",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D140",
@@ -2237,7 +2932,12 @@
     "acceptance_prediction": "77",
     "response_rate": "72",
     "donation_reliability": "83",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "18.437407",
+    "longitude": "73.869667",
+    "area": "South",
+    "pincode": "400041",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D141",
@@ -2253,7 +2953,12 @@
     "acceptance_prediction": "89",
     "response_rate": "97",
     "donation_reliability": "76",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "20.054932",
+    "longitude": "73.717928",
+    "area": "East",
+    "pincode": "400042",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D142",
@@ -2269,7 +2974,12 @@
     "acceptance_prediction": "86",
     "response_rate": "82",
     "donation_reliability": "88",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "20.004239",
+    "longitude": "73.889573",
+    "area": "West",
+    "pincode": "400043",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D143",
@@ -2285,7 +2995,12 @@
     "acceptance_prediction": "77",
     "response_rate": "76",
     "donation_reliability": "78",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "19.919347",
+    "longitude": "73.715261",
+    "area": "Metro",
+    "pincode": "400044",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D144",
@@ -2301,7 +3016,12 @@
     "acceptance_prediction": "87",
     "response_rate": "90",
     "donation_reliability": "72",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "20.017496",
+    "longitude": "73.790202",
+    "area": "Central",
+    "pincode": "400045",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D145",
@@ -2317,7 +3037,12 @@
     "acceptance_prediction": "84",
     "response_rate": "86",
     "donation_reliability": "75",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "19.976478",
+    "longitude": "73.808295",
+    "area": "North",
+    "pincode": "400046",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D146",
@@ -2333,7 +3058,12 @@
     "acceptance_prediction": "72",
     "response_rate": "68",
     "donation_reliability": "91",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "20.001368",
+    "longitude": "73.754008",
+    "area": "South",
+    "pincode": "400047",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D147",
@@ -2349,7 +3079,12 @@
     "acceptance_prediction": "85",
     "response_rate": "82",
     "donation_reliability": "76",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "20.023563",
+    "longitude": "73.825250",
+    "area": "East",
+    "pincode": "400048",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D148",
@@ -2365,7 +3100,12 @@
     "acceptance_prediction": "83",
     "response_rate": "84",
     "donation_reliability": "71",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "19.946488",
+    "longitude": "73.779714",
+    "area": "West",
+    "pincode": "400049",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D149",
@@ -2381,7 +3121,12 @@
     "acceptance_prediction": "82",
     "response_rate": "73",
     "donation_reliability": "94",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "20.048763",
+    "longitude": "73.758622",
+    "area": "Metro",
+    "pincode": "400050",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D150",
@@ -2397,7 +3142,12 @@
     "acceptance_prediction": "77",
     "response_rate": "73",
     "donation_reliability": "82",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "19.978529",
+    "longitude": "73.855100",
+    "area": "Central",
+    "pincode": "400051",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D151",
@@ -2413,7 +3163,12 @@
     "acceptance_prediction": "79",
     "response_rate": "66",
     "donation_reliability": "84",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.963836",
+    "longitude": "73.721662",
+    "area": "North",
+    "pincode": "400052",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D152",
@@ -2429,7 +3184,12 @@
     "acceptance_prediction": "74",
     "response_rate": "72",
     "donation_reliability": "82",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "20.075807",
+    "longitude": "73.820198",
+    "area": "South",
+    "pincode": "400053",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D153",
@@ -2445,7 +3205,12 @@
     "acceptance_prediction": "84",
     "response_rate": "71",
     "donation_reliability": "77",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "19.911770",
+    "longitude": "73.823183",
+    "area": "East",
+    "pincode": "400054",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D154",
@@ -2461,7 +3226,12 @@
     "acceptance_prediction": "80",
     "response_rate": "86",
     "donation_reliability": "94",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "20.041701",
+    "longitude": "73.700099",
+    "area": "West",
+    "pincode": "400055",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D155",
@@ -2477,7 +3247,12 @@
     "acceptance_prediction": "93",
     "response_rate": "87",
     "donation_reliability": "81",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "20.027740",
+    "longitude": "73.893480",
+    "area": "Metro",
+    "pincode": "400056",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D156",
@@ -2493,7 +3268,12 @@
     "acceptance_prediction": "84",
     "response_rate": "74",
     "donation_reliability": "94",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.980401",
+    "longitude": "73.779425",
+    "area": "Central",
+    "pincode": "400057",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D157",
@@ -2509,7 +3289,12 @@
     "acceptance_prediction": "95",
     "response_rate": "93",
     "donation_reliability": "91",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "20.024963",
+    "longitude": "73.784340",
+    "area": "North",
+    "pincode": "400058",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D158",
@@ -2525,7 +3310,12 @@
     "acceptance_prediction": "84",
     "response_rate": "93",
     "donation_reliability": "72",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "19.976206",
+    "longitude": "73.818827",
+    "area": "South",
+    "pincode": "400059",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D159",
@@ -2541,7 +3331,12 @@
     "acceptance_prediction": "79",
     "response_rate": "69",
     "donation_reliability": "79",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "19.992727",
+    "longitude": "73.746060",
+    "area": "East",
+    "pincode": "400060",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D160",
@@ -2557,7 +3352,12 @@
     "acceptance_prediction": "91",
     "response_rate": "97",
     "donation_reliability": "82",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "20.036578",
+    "longitude": "73.824106",
+    "area": "West",
+    "pincode": "400061",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D161",
@@ -2573,7 +3373,12 @@
     "acceptance_prediction": "85",
     "response_rate": "95",
     "donation_reliability": "86",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "19.937513",
+    "longitude": "73.791069",
+    "area": "Metro",
+    "pincode": "400062",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D162",
@@ -2589,7 +3394,12 @@
     "acceptance_prediction": "77",
     "response_rate": "80",
     "donation_reliability": "92",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "20.046658",
+    "longitude": "73.742817",
+    "area": "Central",
+    "pincode": "400063",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D163",
@@ -2605,7 +3415,12 @@
     "acceptance_prediction": "89",
     "response_rate": "83",
     "donation_reliability": "82",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.992458",
+    "longitude": "73.865633",
+    "area": "North",
+    "pincode": "400064",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D164",
@@ -2621,7 +3436,12 @@
     "acceptance_prediction": "86",
     "response_rate": "89",
     "donation_reliability": "79",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "19.944993",
+    "longitude": "73.724233",
+    "area": "South",
+    "pincode": "400065",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D165",
@@ -2637,7 +3457,12 @@
     "acceptance_prediction": "92",
     "response_rate": "87",
     "donation_reliability": "79",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "20.088412",
+    "longitude": "73.803906",
+    "area": "East",
+    "pincode": "400066",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D166",
@@ -2653,7 +3478,12 @@
     "acceptance_prediction": "85",
     "response_rate": "86",
     "donation_reliability": "96",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "19.914277",
+    "longitude": "73.845244",
+    "area": "West",
+    "pincode": "400067",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D167",
@@ -2669,7 +3499,12 @@
     "acceptance_prediction": "81",
     "response_rate": "84",
     "donation_reliability": "75",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "20.023328",
+    "longitude": "73.684934",
+    "area": "Metro",
+    "pincode": "400068",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D168",
@@ -2685,7 +3520,12 @@
     "acceptance_prediction": "79",
     "response_rate": "71",
     "donation_reliability": "86",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "20.007091",
+    "longitude": "73.807350",
+    "area": "Central",
+    "pincode": "400069",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D169",
@@ -2701,7 +3541,12 @@
     "acceptance_prediction": "79",
     "response_rate": "75",
     "donation_reliability": "75",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.971002",
+    "longitude": "73.780753",
+    "area": "North",
+    "pincode": "400070",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D170",
@@ -2717,7 +3562,12 @@
     "acceptance_prediction": "86",
     "response_rate": "80",
     "donation_reliability": "84",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "20.030479",
+    "longitude": "73.775364",
+    "area": "South",
+    "pincode": "400071",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D171",
@@ -2733,7 +3583,12 @@
     "acceptance_prediction": "88",
     "response_rate": "77",
     "donation_reliability": "81",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "19.979696",
+    "longitude": "73.830037",
+    "area": "East",
+    "pincode": "400072",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D172",
@@ -2749,7 +3604,12 @@
     "acceptance_prediction": "78",
     "response_rate": "75",
     "donation_reliability": "96",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "19.980893",
+    "longitude": "73.740523",
+    "area": "West",
+    "pincode": "400073",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D173",
@@ -2765,7 +3625,12 @@
     "acceptance_prediction": "87",
     "response_rate": "71",
     "donation_reliability": "92",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "20.050036",
+    "longitude": "73.818782",
+    "area": "Metro",
+    "pincode": "400074",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D174",
@@ -2781,7 +3646,12 @@
     "acceptance_prediction": "97",
     "response_rate": "97",
     "donation_reliability": "74",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "19.931409",
+    "longitude": "73.805799",
+    "area": "Central",
+    "pincode": "400075",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D175",
@@ -2797,7 +3667,12 @@
     "acceptance_prediction": "81",
     "response_rate": "90",
     "donation_reliability": "86",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "20.039889",
+    "longitude": "73.726719",
+    "area": "North",
+    "pincode": "400076",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D176",
@@ -2813,7 +3688,12 @@
     "acceptance_prediction": "86",
     "response_rate": "71",
     "donation_reliability": "96",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "20.010049",
+    "longitude": "73.872857",
+    "area": "South",
+    "pincode": "400077",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D177",
@@ -2829,7 +3709,12 @@
     "acceptance_prediction": "93",
     "response_rate": "95",
     "donation_reliability": "84",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.925918",
+    "longitude": "73.732007",
+    "area": "East",
+    "pincode": "400078",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D178",
@@ -2845,7 +3730,12 @@
     "acceptance_prediction": "91",
     "response_rate": "98",
     "donation_reliability": "83",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "20.097305",
+    "longitude": "73.783563",
+    "area": "West",
+    "pincode": "400079",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D179",
@@ -2861,7 +3751,12 @@
     "acceptance_prediction": "88",
     "response_rate": "94",
     "donation_reliability": "72",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "19.922569",
+    "longitude": "73.867578",
+    "area": "Metro",
+    "pincode": "400080",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D180",
@@ -2877,7 +3772,12 @@
     "acceptance_prediction": "83",
     "response_rate": "74",
     "donation_reliability": "79",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.998003",
+    "longitude": "73.769806",
+    "area": "Central",
+    "pincode": "400081",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D181",
@@ -2893,7 +3793,12 @@
     "acceptance_prediction": "81",
     "response_rate": "70",
     "donation_reliability": "86",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.236689",
+    "longitude": "72.999215",
+    "area": "North",
+    "pincode": "400082",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D182",
@@ -2909,7 +3814,12 @@
     "acceptance_prediction": "89",
     "response_rate": "95",
     "donation_reliability": "71",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "19.182528",
+    "longitude": "72.974052",
+    "area": "South",
+    "pincode": "400083",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D183",
@@ -2925,7 +3835,12 @@
     "acceptance_prediction": "77",
     "response_rate": "71",
     "donation_reliability": "94",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.253880",
+    "longitude": "72.952215",
+    "area": "East",
+    "pincode": "400084",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D184",
@@ -2941,7 +3856,12 @@
     "acceptance_prediction": "93",
     "response_rate": "94",
     "donation_reliability": "92",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "19.207958",
+    "longitude": "73.029061",
+    "area": "West",
+    "pincode": "400085",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D185",
@@ -2957,7 +3877,12 @@
     "acceptance_prediction": "72",
     "response_rate": "67",
     "donation_reliability": "95",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "19.187380",
+    "longitude": "72.926681",
+    "area": "Metro",
+    "pincode": "400086",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D186",
@@ -2973,7 +3898,12 @@
     "acceptance_prediction": "76",
     "response_rate": "67",
     "donation_reliability": "94",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "19.283504",
+    "longitude": "72.997399",
+    "area": "Central",
+    "pincode": "400087",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D187",
@@ -2989,7 +3919,12 @@
     "acceptance_prediction": "93",
     "response_rate": "88",
     "donation_reliability": "83",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "19.149994",
+    "longitude": "73.011421",
+    "area": "North",
+    "pincode": "400088",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D188",
@@ -3005,7 +3940,12 @@
     "acceptance_prediction": "91",
     "response_rate": "98",
     "donation_reliability": "78",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "19.249092",
+    "longitude": "72.899947",
+    "area": "South",
+    "pincode": "400089",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D189",
@@ -3021,7 +3961,12 @@
     "acceptance_prediction": "80",
     "response_rate": "85",
     "donation_reliability": "73",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "19.251252",
+    "longitude": "73.063996",
+    "area": "East",
+    "pincode": "400090",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D190",
@@ -3037,7 +3982,12 @@
     "acceptance_prediction": "84",
     "response_rate": "93",
     "donation_reliability": "81",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "19.128822",
+    "longitude": "72.933449",
+    "area": "West",
+    "pincode": "400091",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D191",
@@ -3053,7 +4003,12 @@
     "acceptance_prediction": "82",
     "response_rate": "90",
     "donation_reliability": "81",
-    "fatigue_score": "10"
+    "fatigue_score": "10",
+    "latitude": "19.322131",
+    "longitude": "72.948382",
+    "area": "Metro",
+    "pincode": "400092",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D192",
@@ -3069,7 +4024,12 @@
     "acceptance_prediction": "79",
     "response_rate": "80",
     "donation_reliability": "94",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "19.207839",
+    "longitude": "72.995146",
+    "area": "Central",
+    "pincode": "400093",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D193",
@@ -3085,7 +4045,12 @@
     "acceptance_prediction": "90",
     "response_rate": "93",
     "donation_reliability": "81",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "19.212978",
+    "longitude": "72.950610",
+    "area": "North",
+    "pincode": "400094",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D194",
@@ -3101,7 +4066,12 @@
     "acceptance_prediction": "79",
     "response_rate": "82",
     "donation_reliability": "77",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "19.247219",
+    "longitude": "72.999540",
+    "area": "South",
+    "pincode": "400095",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D195",
@@ -3117,7 +4087,12 @@
     "acceptance_prediction": "80",
     "response_rate": "81",
     "donation_reliability": "92",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "19.174536",
+    "longitude": "72.982653",
+    "area": "East",
+    "pincode": "400096",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D196",
@@ -3133,7 +4108,12 @@
     "acceptance_prediction": "81",
     "response_rate": "69",
     "donation_reliability": "84",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "19.252802",
+    "longitude": "72.939195",
+    "area": "West",
+    "pincode": "400097",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D197",
@@ -3149,7 +4129,12 @@
     "acceptance_prediction": "94",
     "response_rate": "99",
     "donation_reliability": "79",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "19.219268",
+    "longitude": "73.038092",
+    "area": "Metro",
+    "pincode": "400098",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D198",
@@ -3165,7 +4150,12 @@
     "acceptance_prediction": "75",
     "response_rate": "77",
     "donation_reliability": "95",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "19.171564",
+    "longitude": "72.928706",
+    "area": "Central",
+    "pincode": "400000",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D199",
@@ -3181,7 +4171,12 @@
     "acceptance_prediction": "82",
     "response_rate": "73",
     "donation_reliability": "89",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "19.294106",
+    "longitude": "72.983523",
+    "area": "North",
+    "pincode": "400001",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D200",
@@ -3197,7 +4192,12 @@
     "acceptance_prediction": "92",
     "response_rate": "91",
     "donation_reliability": "96",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.152470",
+    "longitude": "73.030276",
+    "area": "South",
+    "pincode": "400002",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D201",
@@ -3213,7 +4213,12 @@
     "acceptance_prediction": "81",
     "response_rate": "73",
     "donation_reliability": "98",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "19.232863",
+    "longitude": "72.887260",
+    "area": "East",
+    "pincode": "400003",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D202",
@@ -3229,7 +4234,12 @@
     "acceptance_prediction": "81",
     "response_rate": "68",
     "donation_reliability": "96",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "19.273325",
+    "longitude": "73.061600",
+    "area": "West",
+    "pincode": "400004",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D203",
@@ -3245,7 +4255,12 @@
     "acceptance_prediction": "87",
     "response_rate": "98",
     "donation_reliability": "98",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "19.113565",
+    "longitude": "72.951746",
+    "area": "Metro",
+    "pincode": "400005",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D204",
@@ -3261,7 +4276,12 @@
     "acceptance_prediction": "92",
     "response_rate": "99",
     "donation_reliability": "72",
-    "fatigue_score": "10"
+    "fatigue_score": "10",
+    "latitude": "19.235898",
+    "longitude": "72.968597",
+    "area": "Central",
+    "pincode": "400006",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D205",
@@ -3277,7 +4297,12 @@
     "acceptance_prediction": "85",
     "response_rate": "67",
     "donation_reliability": "96",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "19.209119",
+    "longitude": "73.004552",
+    "area": "North",
+    "pincode": "400007",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D206",
@@ -3293,7 +4318,12 @@
     "acceptance_prediction": "92",
     "response_rate": "91",
     "donation_reliability": "89",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "19.204030",
+    "longitude": "72.945049",
+    "area": "South",
+    "pincode": "400008",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D207",
@@ -3309,7 +4339,12 @@
     "acceptance_prediction": "85",
     "response_rate": "80",
     "donation_reliability": "95",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "19.258447",
+    "longitude": "72.996106",
+    "area": "East",
+    "pincode": "400009",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D208",
@@ -3325,7 +4360,12 @@
     "acceptance_prediction": "86",
     "response_rate": "95",
     "donation_reliability": "84",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "19.168940",
+    "longitude": "72.994459",
+    "area": "West",
+    "pincode": "400010",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D209",
@@ -3341,7 +4381,12 @@
     "acceptance_prediction": "78",
     "response_rate": "73",
     "donation_reliability": "94",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "19.247546",
+    "longitude": "72.925710",
+    "area": "Metro",
+    "pincode": "400011",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D210",
@@ -3357,7 +4402,12 @@
     "acceptance_prediction": "83",
     "response_rate": "93",
     "donation_reliability": "77",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "19.233966",
+    "longitude": "73.044271",
+    "area": "Central",
+    "pincode": "400012",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D211",
@@ -3373,7 +4423,12 @@
     "acceptance_prediction": "85",
     "response_rate": "75",
     "donation_reliability": "96",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "21.082933",
+    "longitude": "79.045495",
+    "area": "North",
+    "pincode": "400013",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D212",
@@ -3389,7 +4444,12 @@
     "acceptance_prediction": "82",
     "response_rate": "84",
     "donation_reliability": "85",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "21.228919",
+    "longitude": "79.076068",
+    "area": "South",
+    "pincode": "400014",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D213",
@@ -3405,7 +4465,12 @@
     "acceptance_prediction": "75",
     "response_rate": "68",
     "donation_reliability": "71",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "21.087648",
+    "longitude": "79.159491",
+    "area": "East",
+    "pincode": "400015",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D214",
@@ -3421,7 +4486,12 @@
     "acceptance_prediction": "82",
     "response_rate": "71",
     "donation_reliability": "83",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "21.140065",
+    "longitude": "78.988365",
+    "area": "West",
+    "pincode": "400016",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D215",
@@ -3437,7 +4507,12 @@
     "acceptance_prediction": "83",
     "response_rate": "77",
     "donation_reliability": "81",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "21.223200",
+    "longitude": "79.163521",
+    "area": "Metro",
+    "pincode": "400017",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D216",
@@ -3453,7 +4528,12 @@
     "acceptance_prediction": "75",
     "response_rate": "72",
     "donation_reliability": "74",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "21.125809",
+    "longitude": "79.087597",
+    "area": "Central",
+    "pincode": "400018",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D217",
@@ -3469,7 +4549,12 @@
     "acceptance_prediction": "86",
     "response_rate": "97",
     "donation_reliability": "82",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "21.167007",
+    "longitude": "79.069918",
+    "area": "North",
+    "pincode": "400019",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D218",
@@ -3485,7 +4570,12 @@
     "acceptance_prediction": "83",
     "response_rate": "74",
     "donation_reliability": "89",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "21.141572",
+    "longitude": "79.123951",
+    "area": "South",
+    "pincode": "400020",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D219",
@@ -3501,7 +4591,12 @@
     "acceptance_prediction": "85",
     "response_rate": "84",
     "donation_reliability": "88",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "21.120094",
+    "longitude": "79.052490",
+    "area": "East",
+    "pincode": "400021",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D220",
@@ -3517,7 +4612,12 @@
     "acceptance_prediction": "81",
     "response_rate": "66",
     "donation_reliability": "81",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "21.196709",
+    "longitude": "79.098798",
+    "area": "West",
+    "pincode": "400022",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D221",
@@ -3533,7 +4633,12 @@
     "acceptance_prediction": "77",
     "response_rate": "79",
     "donation_reliability": "93",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "21.094226",
+    "longitude": "79.118861",
+    "area": "Metro",
+    "pincode": "400023",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D222",
@@ -3549,7 +4654,12 @@
     "acceptance_prediction": "79",
     "response_rate": "80",
     "donation_reliability": "71",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "21.165427",
+    "longitude": "79.023094",
+    "area": "Central",
+    "pincode": "400024",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D223",
@@ -3565,7 +4675,12 @@
     "acceptance_prediction": "82",
     "response_rate": "78",
     "donation_reliability": "83",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "21.178777",
+    "longitude": "79.156673",
+    "area": "North",
+    "pincode": "400025",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D224",
@@ -3581,7 +4696,12 @@
     "acceptance_prediction": "86",
     "response_rate": "85",
     "donation_reliability": "91",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "21.067803",
+    "longitude": "79.057016",
+    "area": "South",
+    "pincode": "400026",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D225",
@@ -3597,7 +4717,12 @@
     "acceptance_prediction": "88",
     "response_rate": "87",
     "donation_reliability": "91",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "21.231861",
+    "longitude": "79.055680",
+    "area": "East",
+    "pincode": "400027",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D226",
@@ -3613,7 +4738,12 @@
     "acceptance_prediction": "82",
     "response_rate": "79",
     "donation_reliability": "79",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "21.100700",
+    "longitude": "79.177452",
+    "area": "West",
+    "pincode": "400028",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D227",
@@ -3629,7 +4759,12 @@
     "acceptance_prediction": "82",
     "response_rate": "82",
     "donation_reliability": "79",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "21.116604",
+    "longitude": "78.984221",
+    "area": "Metro",
+    "pincode": "400029",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D228",
@@ -3645,7 +4780,12 @@
     "acceptance_prediction": "77",
     "response_rate": "67",
     "donation_reliability": "79",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "21.162793",
+    "longitude": "79.098746",
+    "area": "Central",
+    "pincode": "400030",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D229",
@@ -3661,7 +4801,12 @@
     "acceptance_prediction": "98",
     "response_rate": "99",
     "donation_reliability": "78",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "21.118284",
+    "longitude": "79.093383",
+    "area": "North",
+    "pincode": "400031",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D230",
@@ -3677,7 +4822,12 @@
     "acceptance_prediction": "81",
     "response_rate": "80",
     "donation_reliability": "71",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "21.167385",
+    "longitude": "79.059389",
+    "area": "South",
+    "pincode": "400032",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D231",
@@ -3693,7 +4843,12 @@
     "acceptance_prediction": "88",
     "response_rate": "95",
     "donation_reliability": "73",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "21.150133",
+    "longitude": "79.131986",
+    "area": "East",
+    "pincode": "400033",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D232",
@@ -3709,7 +4864,12 @@
     "acceptance_prediction": "81",
     "response_rate": "77",
     "donation_reliability": "94",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "21.107069",
+    "longitude": "79.053502",
+    "area": "West",
+    "pincode": "400034",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D233",
@@ -3725,7 +4885,12 @@
     "acceptance_prediction": "89",
     "response_rate": "99",
     "donation_reliability": "93",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "21.205796",
+    "longitude": "79.087534",
+    "area": "Metro",
+    "pincode": "400035",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D234",
@@ -3741,7 +4906,12 @@
     "acceptance_prediction": "77",
     "response_rate": "83",
     "donation_reliability": "98",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "21.096172",
+    "longitude": "79.134687",
+    "area": "Central",
+    "pincode": "400036",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D235",
@@ -3757,7 +4927,12 @@
     "acceptance_prediction": "90",
     "response_rate": "99",
     "donation_reliability": "86",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "21.151604",
+    "longitude": "79.012422",
+    "area": "North",
+    "pincode": "400037",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D236",
@@ -3773,7 +4948,12 @@
     "acceptance_prediction": "83",
     "response_rate": "94",
     "donation_reliability": "90",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "21.197645",
+    "longitude": "79.154292",
+    "area": "South",
+    "pincode": "400038",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D237",
@@ -3789,7 +4969,12 @@
     "acceptance_prediction": "83",
     "response_rate": "90",
     "donation_reliability": "96",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "21.055034",
+    "longitude": "79.073180",
+    "area": "East",
+    "pincode": "400039",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D238",
@@ -3805,7 +4990,12 @@
     "acceptance_prediction": "83",
     "response_rate": "85",
     "donation_reliability": "99",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "21.229576",
+    "longitude": "79.033596",
+    "area": "West",
+    "pincode": "400040",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D239",
@@ -3821,7 +5011,12 @@
     "acceptance_prediction": "84",
     "response_rate": "84",
     "donation_reliability": "88",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "21.118920",
+    "longitude": "79.192801",
+    "area": "Metro",
+    "pincode": "400041",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D240",
@@ -3837,7 +5032,12 @@
     "acceptance_prediction": "84",
     "response_rate": "84",
     "donation_reliability": "75",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "21.136386",
+    "longitude": "79.070554",
+    "area": "Central",
+    "pincode": "400042",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D241",
@@ -3853,7 +5053,12 @@
     "acceptance_prediction": "75",
     "response_rate": "73",
     "donation_reliability": "85",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "17.411406",
+    "longitude": "78.496013",
+    "area": "North",
+    "pincode": "400043",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D242",
@@ -3869,7 +5074,12 @@
     "acceptance_prediction": "85",
     "response_rate": "78",
     "donation_reliability": "94",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "17.351878",
+    "longitude": "78.500803",
+    "area": "South",
+    "pincode": "400044",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D243",
@@ -3885,7 +5095,12 @@
     "acceptance_prediction": "77",
     "response_rate": "72",
     "donation_reliability": "71",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "17.403207",
+    "longitude": "78.446644",
+    "area": "East",
+    "pincode": "400045",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D244",
@@ -3901,7 +5116,12 @@
     "acceptance_prediction": "86",
     "response_rate": "98",
     "donation_reliability": "84",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "17.401110",
+    "longitude": "78.536141",
+    "area": "West",
+    "pincode": "400046",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D245",
@@ -3917,7 +5137,12 @@
     "acceptance_prediction": "79",
     "response_rate": "73",
     "donation_reliability": "86",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "17.332758",
+    "longitude": "78.457191",
+    "area": "Metro",
+    "pincode": "400047",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D246",
@@ -3933,7 +5158,12 @@
     "acceptance_prediction": "79",
     "response_rate": "66",
     "donation_reliability": "82",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "17.451249",
+    "longitude": "78.471366",
+    "area": "Central",
+    "pincode": "400048",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D247",
@@ -3949,7 +5179,12 @@
     "acceptance_prediction": "79",
     "response_rate": "69",
     "donation_reliability": "87",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "17.341979",
+    "longitude": "78.549352",
+    "area": "North",
+    "pincode": "400049",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D248",
@@ -3965,7 +5200,12 @@
     "acceptance_prediction": "94",
     "response_rate": "91",
     "donation_reliability": "81",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "17.373286",
+    "longitude": "78.403521",
+    "area": "South",
+    "pincode": "400050",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D249",
@@ -3981,7 +5221,12 @@
     "acceptance_prediction": "79",
     "response_rate": "87",
     "donation_reliability": "73",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "17.455998",
+    "longitude": "78.545209",
+    "area": "East",
+    "pincode": "400051",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D250",
@@ -3997,7 +5242,12 @@
     "acceptance_prediction": "88",
     "response_rate": "94",
     "donation_reliability": "91",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "17.285137",
+    "longitude": "78.491934",
+    "area": "West",
+    "pincode": "400052",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D251",
@@ -4013,7 +5263,12 @@
     "acceptance_prediction": "77",
     "response_rate": "74",
     "donation_reliability": "78",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "17.460709",
+    "longitude": "78.409680",
+    "area": "Metro",
+    "pincode": "400053",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D252",
@@ -4029,7 +5284,12 @@
     "acceptance_prediction": "77",
     "response_rate": "78",
     "donation_reliability": "72",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "17.384296",
+    "longitude": "78.506688",
+    "area": "Central",
+    "pincode": "400054",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D253",
@@ -4045,7 +5305,12 @@
     "acceptance_prediction": "87",
     "response_rate": "93",
     "donation_reliability": "77",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "17.366824",
+    "longitude": "78.465401",
+    "area": "North",
+    "pincode": "400055",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D254",
@@ -4061,7 +5326,12 @@
     "acceptance_prediction": "82",
     "response_rate": "85",
     "donation_reliability": "77",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "17.420729",
+    "longitude": "78.491107",
+    "area": "South",
+    "pincode": "400056",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D255",
@@ -4077,7 +5347,12 @@
     "acceptance_prediction": "77",
     "response_rate": "76",
     "donation_reliability": "90",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "17.349161",
+    "longitude": "78.512226",
+    "area": "East",
+    "pincode": "400057",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D256",
@@ -4093,7 +5368,12 @@
     "acceptance_prediction": "96",
     "response_rate": "98",
     "donation_reliability": "80",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "17.395854",
+    "longitude": "78.435845",
+    "area": "West",
+    "pincode": "400058",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D257",
@@ -4109,7 +5389,12 @@
     "acceptance_prediction": "81",
     "response_rate": "80",
     "donation_reliability": "97",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "17.415402",
+    "longitude": "78.538427",
+    "area": "Metro",
+    "pincode": "400059",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D258",
@@ -4125,7 +5410,12 @@
     "acceptance_prediction": "90",
     "response_rate": "98",
     "donation_reliability": "74",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "17.319994",
+    "longitude": "78.466746",
+    "area": "Central",
+    "pincode": "400060",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D259",
@@ -4141,7 +5431,12 @@
     "acceptance_prediction": "88",
     "response_rate": "99",
     "donation_reliability": "93",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "17.453638",
+    "longitude": "78.454067",
+    "area": "North",
+    "pincode": "400061",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D260",
@@ -4157,7 +5452,12 @@
     "acceptance_prediction": "85",
     "response_rate": "69",
     "donation_reliability": "76",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "17.353424",
+    "longitude": "78.564539",
+    "area": "South",
+    "pincode": "400062",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D261",
@@ -4173,7 +5473,12 @@
     "acceptance_prediction": "85",
     "response_rate": "65",
     "donation_reliability": "76",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "17.352913",
+    "longitude": "78.400477",
+    "area": "East",
+    "pincode": "400063",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D262",
@@ -4189,7 +5494,12 @@
     "acceptance_prediction": "81",
     "response_rate": "80",
     "donation_reliability": "87",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "17.474024",
+    "longitude": "78.532248",
+    "area": "West",
+    "pincode": "400064",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D263",
@@ -4205,7 +5515,12 @@
     "acceptance_prediction": "88",
     "response_rate": "97",
     "donation_reliability": "98",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "17.280876",
+    "longitude": "78.515373",
+    "area": "Metro",
+    "pincode": "400065",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D264",
@@ -4221,7 +5536,12 @@
     "acceptance_prediction": "86",
     "response_rate": "91",
     "donation_reliability": "71",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "17.395632",
+    "longitude": "78.469760",
+    "area": "Central",
+    "pincode": "400066",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D265",
@@ -4237,7 +5557,12 @@
     "acceptance_prediction": "88",
     "response_rate": "91",
     "donation_reliability": "79",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "17.390045",
+    "longitude": "78.514242",
+    "area": "North",
+    "pincode": "400067",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D266",
@@ -4253,7 +5578,12 @@
     "acceptance_prediction": "88",
     "response_rate": "86",
     "donation_reliability": "78",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "17.356298",
+    "longitude": "78.464970",
+    "area": "South",
+    "pincode": "400068",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D267",
@@ -4269,7 +5599,12 @@
     "acceptance_prediction": "77",
     "response_rate": "73",
     "donation_reliability": "93",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "17.428807",
+    "longitude": "78.482587",
+    "area": "East",
+    "pincode": "400069",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D268",
@@ -4285,7 +5620,12 @@
     "acceptance_prediction": "80",
     "response_rate": "68",
     "donation_reliability": "94",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "17.350108",
+    "longitude": "78.525256",
+    "area": "West",
+    "pincode": "400070",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D269",
@@ -4301,7 +5641,12 @@
     "acceptance_prediction": "76",
     "response_rate": "78",
     "donation_reliability": "86",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "17.384636",
+    "longitude": "78.426701",
+    "area": "Metro",
+    "pincode": "400071",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D270",
@@ -4317,7 +5662,12 @@
     "acceptance_prediction": "71",
     "response_rate": "65",
     "donation_reliability": "87",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "17.431237",
+    "longitude": "78.536561",
+    "area": "Central",
+    "pincode": "400072",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D271",
@@ -4333,7 +5683,12 @@
     "acceptance_prediction": "85",
     "response_rate": "97",
     "donation_reliability": "96",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "17.309252",
+    "longitude": "78.480515",
+    "area": "North",
+    "pincode": "400073",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D272",
@@ -4349,7 +5704,12 @@
     "acceptance_prediction": "89",
     "response_rate": "98",
     "donation_reliability": "78",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "17.451351",
+    "longitude": "78.435188",
+    "area": "South",
+    "pincode": "400074",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D273",
@@ -4365,7 +5725,12 @@
     "acceptance_prediction": "83",
     "response_rate": "80",
     "donation_reliability": "92",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "17.369524",
+    "longitude": "78.577389",
+    "area": "East",
+    "pincode": "400075",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D274",
@@ -4381,7 +5746,12 @@
     "acceptance_prediction": "89",
     "response_rate": "95",
     "donation_reliability": "71",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "17.330817",
+    "longitude": "78.402651",
+    "area": "West",
+    "pincode": "400076",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D275",
@@ -4397,7 +5767,12 @@
     "acceptance_prediction": "81",
     "response_rate": "71",
     "donation_reliability": "98",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "17.489465",
+    "longitude": "78.514106",
+    "area": "Metro",
+    "pincode": "400077",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D276",
@@ -4413,7 +5788,12 @@
     "acceptance_prediction": "87",
     "response_rate": "69",
     "donation_reliability": "91",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "17.367307",
+    "longitude": "78.496025",
+    "area": "Central",
+    "pincode": "400078",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D277",
@@ -4429,7 +5809,12 @@
     "acceptance_prediction": "79",
     "response_rate": "74",
     "donation_reliability": "94",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "17.394446",
+    "longitude": "78.460341",
+    "area": "North",
+    "pincode": "400079",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D278",
@@ -4445,7 +5830,12 @@
     "acceptance_prediction": "94",
     "response_rate": "89",
     "donation_reliability": "91",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "17.398937",
+    "longitude": "78.519893",
+    "area": "South",
+    "pincode": "400080",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D279",
@@ -4461,7 +5851,12 @@
     "acceptance_prediction": "72",
     "response_rate": "71",
     "donation_reliability": "83",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "17.345036",
+    "longitude": "78.468292",
+    "area": "East",
+    "pincode": "400081",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D280",
@@ -4477,7 +5872,12 @@
     "acceptance_prediction": "78",
     "response_rate": "82",
     "donation_reliability": "95",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "17.434522",
+    "longitude": "78.470838",
+    "area": "West",
+    "pincode": "400082",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D281",
@@ -4493,7 +5893,12 @@
     "acceptance_prediction": "91",
     "response_rate": "89",
     "donation_reliability": "72",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "12.941829",
+    "longitude": "77.646693",
+    "area": "Metro",
+    "pincode": "400083",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D282",
@@ -4509,7 +5914,12 @@
     "acceptance_prediction": "79",
     "response_rate": "74",
     "donation_reliability": "93",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "12.956600",
+    "longitude": "77.528275",
+    "area": "Central",
+    "pincode": "400084",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D283",
@@ -4525,7 +5935,12 @@
     "acceptance_prediction": "80",
     "response_rate": "82",
     "donation_reliability": "73",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.034035",
+    "longitude": "77.637935",
+    "area": "North",
+    "pincode": "400085",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D284",
@@ -4541,7 +5956,12 @@
     "acceptance_prediction": "76",
     "response_rate": "71",
     "donation_reliability": "70",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "12.888363",
+    "longitude": "77.605896",
+    "area": "South",
+    "pincode": "400086",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D285",
@@ -4557,7 +5977,12 @@
     "acceptance_prediction": "78",
     "response_rate": "83",
     "donation_reliability": "83",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.030465",
+    "longitude": "77.523897",
+    "area": "East",
+    "pincode": "400087",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D286",
@@ -4573,7 +5998,12 @@
     "acceptance_prediction": "75",
     "response_rate": "73",
     "donation_reliability": "78",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "12.976332",
+    "longitude": "77.694488",
+    "area": "West",
+    "pincode": "400088",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D287",
@@ -4589,7 +6019,12 @@
     "acceptance_prediction": "86",
     "response_rate": "84",
     "donation_reliability": "85",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "12.894961",
+    "longitude": "77.518505",
+    "area": "Metro",
+    "pincode": "400089",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D288",
@@ -4605,7 +6040,12 @@
     "acceptance_prediction": "78",
     "response_rate": "71",
     "donation_reliability": "74",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "12.991584",
+    "longitude": "77.595404",
+    "area": "Central",
+    "pincode": "400090",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D289",
@@ -4621,7 +6061,12 @@
     "acceptance_prediction": "88",
     "response_rate": "92",
     "donation_reliability": "96",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "12.950210",
+    "longitude": "77.612668",
+    "area": "North",
+    "pincode": "400091",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D290",
@@ -4637,7 +6082,12 @@
     "acceptance_prediction": "84",
     "response_rate": "85",
     "donation_reliability": "75",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "12.976187",
+    "longitude": "77.558893",
+    "area": "South",
+    "pincode": "400092",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D291",
@@ -4653,7 +6103,12 @@
     "acceptance_prediction": "85",
     "response_rate": "82",
     "donation_reliability": "96",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "12.996945",
+    "longitude": "77.630567",
+    "area": "East",
+    "pincode": "400093",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D292",
@@ -4669,7 +6124,12 @@
     "acceptance_prediction": "73",
     "response_rate": "66",
     "donation_reliability": "93",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "12.920801",
+    "longitude": "77.583490",
+    "area": "West",
+    "pincode": "400094",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D293",
@@ -4685,7 +6145,12 @@
     "acceptance_prediction": "79",
     "response_rate": "84",
     "donation_reliability": "77",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "13.023480",
+    "longitude": "77.564459",
+    "area": "Metro",
+    "pincode": "400095",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D294",
@@ -4701,7 +6166,12 @@
     "acceptance_prediction": "88",
     "response_rate": "90",
     "donation_reliability": "87",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "12.951320",
+    "longitude": "77.659505",
+    "area": "Central",
+    "pincode": "400096",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D295",
@@ -4717,7 +6187,12 @@
     "acceptance_prediction": "79",
     "response_rate": "80",
     "donation_reliability": "91",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "12.939313",
+    "longitude": "77.525799",
+    "area": "North",
+    "pincode": "400097",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D296",
@@ -4733,7 +6208,12 @@
     "acceptance_prediction": "89",
     "response_rate": "86",
     "donation_reliability": "95",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "13.049280",
+    "longitude": "77.626567",
+    "area": "South",
+    "pincode": "400098",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D297",
@@ -4749,7 +6229,12 @@
     "acceptance_prediction": "83",
     "response_rate": "79",
     "donation_reliability": "84",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "12.885217",
+    "longitude": "77.626253",
+    "area": "East",
+    "pincode": "400000",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D298",
@@ -4765,7 +6250,12 @@
     "acceptance_prediction": "82",
     "response_rate": "95",
     "donation_reliability": "73",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "13.017595",
+    "longitude": "77.505806",
+    "area": "West",
+    "pincode": "400001",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D299",
@@ -4781,7 +6271,12 @@
     "acceptance_prediction": "82",
     "response_rate": "78",
     "donation_reliability": "86",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "12.999749",
+    "longitude": "77.698867",
+    "area": "Metro",
+    "pincode": "400002",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D300",
@@ -4797,7 +6292,12 @@
     "acceptance_prediction": "77",
     "response_rate": "67",
     "donation_reliability": "95",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "12.954713",
+    "longitude": "77.583883",
+    "area": "Central",
+    "pincode": "400003",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D301",
@@ -4813,7 +6313,12 @@
     "acceptance_prediction": "80",
     "response_rate": "76",
     "donation_reliability": "87",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "12.999167",
+    "longitude": "77.589694",
+    "area": "North",
+    "pincode": "400004",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D302",
@@ -4829,7 +6334,12 @@
     "acceptance_prediction": "81",
     "response_rate": "92",
     "donation_reliability": "82",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "12.949726",
+    "longitude": "77.623193",
+    "area": "South",
+    "pincode": "400005",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D303",
@@ -4845,7 +6355,12 @@
     "acceptance_prediction": "84",
     "response_rate": "78",
     "donation_reliability": "76",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "12.967707",
+    "longitude": "77.550773",
+    "area": "East",
+    "pincode": "400006",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D304",
@@ -4861,7 +6376,12 @@
     "acceptance_prediction": "84",
     "response_rate": "94",
     "donation_reliability": "73",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "13.009980",
+    "longitude": "77.629685",
+    "area": "West",
+    "pincode": "400007",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D305",
@@ -4877,7 +6397,12 @@
     "acceptance_prediction": "80",
     "response_rate": "72",
     "donation_reliability": "81",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "12.911600",
+    "longitude": "77.594663",
+    "area": "Metro",
+    "pincode": "400008",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D306",
@@ -4893,7 +6418,12 @@
     "acceptance_prediction": "80",
     "response_rate": "73",
     "donation_reliability": "80",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "13.021693",
+    "longitude": "77.548614",
+    "area": "Central",
+    "pincode": "400009",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D307",
@@ -4909,7 +6439,12 @@
     "acceptance_prediction": "88",
     "response_rate": "89",
     "donation_reliability": "83",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "12.965034",
+    "longitude": "77.670316",
+    "area": "North",
+    "pincode": "400010",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D308",
@@ -4925,7 +6460,12 @@
     "acceptance_prediction": "82",
     "response_rate": "76",
     "donation_reliability": "87",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "12.920422",
+    "longitude": "77.527990",
+    "area": "South",
+    "pincode": "400011",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D309",
@@ -4941,7 +6481,12 @@
     "acceptance_prediction": "91",
     "response_rate": "87",
     "donation_reliability": "70",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "13.062210",
+    "longitude": "77.610531",
+    "area": "East",
+    "pincode": "400012",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D310",
@@ -4957,7 +6502,12 @@
     "acceptance_prediction": "90",
     "response_rate": "96",
     "donation_reliability": "83",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "12.887280",
+    "longitude": "77.648359",
+    "area": "West",
+    "pincode": "400013",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D311",
@@ -4973,7 +6523,12 @@
     "acceptance_prediction": "74",
     "response_rate": "67",
     "donation_reliability": "78",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "12.999531",
+    "longitude": "77.490274",
+    "area": "Metro",
+    "pincode": "400014",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D312",
@@ -4989,7 +6544,12 @@
     "acceptance_prediction": "91",
     "response_rate": "97",
     "donation_reliability": "73",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "12.980836",
+    "longitude": "77.612340",
+    "area": "Central",
+    "pincode": "400015",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D313",
@@ -5005,7 +6565,12 @@
     "acceptance_prediction": "90",
     "response_rate": "93",
     "donation_reliability": "87",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "12.945289",
+    "longitude": "77.585022",
+    "area": "North",
+    "pincode": "400016",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D314",
@@ -5021,7 +6586,12 @@
     "acceptance_prediction": "85",
     "response_rate": "87",
     "donation_reliability": "97",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.004863",
+    "longitude": "77.580830",
+    "area": "South",
+    "pincode": "400017",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D315",
@@ -5037,7 +6607,12 @@
     "acceptance_prediction": "90",
     "response_rate": "87",
     "donation_reliability": "97",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "12.952991",
+    "longitude": "77.634471",
+    "area": "East",
+    "pincode": "400018",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D316",
@@ -5053,7 +6628,12 @@
     "acceptance_prediction": "84",
     "response_rate": "78",
     "donation_reliability": "95",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "12.955988",
+    "longitude": "77.544999",
+    "area": "West",
+    "pincode": "400019",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D317",
@@ -5069,7 +6649,12 @@
     "acceptance_prediction": "83",
     "response_rate": "83",
     "donation_reliability": "79",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "13.023543",
+    "longitude": "77.624633",
+    "area": "Metro",
+    "pincode": "400020",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D318",
@@ -5085,7 +6670,12 @@
     "acceptance_prediction": "86",
     "response_rate": "68",
     "donation_reliability": "78",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "12.905201",
+    "longitude": "77.609267",
+    "area": "Central",
+    "pincode": "400021",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D319",
@@ -5101,7 +6691,12 @@
     "acceptance_prediction": "82",
     "response_rate": "74",
     "donation_reliability": "88",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "13.015248",
+    "longitude": "77.532384",
+    "area": "North",
+    "pincode": "400022",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D320",
@@ -5117,7 +6712,12 @@
     "acceptance_prediction": "87",
     "response_rate": "97",
     "donation_reliability": "93",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "12.982477",
+    "longitude": "77.677893",
+    "area": "South",
+    "pincode": "400023",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D321",
@@ -5133,7 +6733,12 @@
     "acceptance_prediction": "93",
     "response_rate": "94",
     "donation_reliability": "90",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "13.012294",
+    "longitude": "80.211480",
+    "area": "East",
+    "pincode": "400024",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D322",
@@ -5149,7 +6754,12 @@
     "acceptance_prediction": "86",
     "response_rate": "82",
     "donation_reliability": "80",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "13.182611",
+    "longitude": "80.266471",
+    "area": "West",
+    "pincode": "400025",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D323",
@@ -5165,7 +6775,12 @@
     "acceptance_prediction": "91",
     "response_rate": "86",
     "donation_reliability": "98",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "13.006221",
+    "longitude": "80.346955",
+    "area": "Metro",
+    "pincode": "400026",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D324",
@@ -5181,7 +6796,12 @@
     "acceptance_prediction": "88",
     "response_rate": "94",
     "donation_reliability": "70",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "13.083604",
+    "longitude": "80.250720",
+    "area": "Central",
+    "pincode": "400027",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D325",
@@ -5197,7 +6817,12 @@
     "acceptance_prediction": "86",
     "response_rate": "88",
     "donation_reliability": "78",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "13.100661",
+    "longitude": "80.292181",
+    "area": "North",
+    "pincode": "400028",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D326",
@@ -5213,7 +6838,12 @@
     "acceptance_prediction": "87",
     "response_rate": "79",
     "donation_reliability": "83",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.047017",
+    "longitude": "80.265934",
+    "area": "South",
+    "pincode": "400029",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D327",
@@ -5229,7 +6859,12 @@
     "acceptance_prediction": "85",
     "response_rate": "79",
     "donation_reliability": "86",
-    "fatigue_score": "28"
+    "fatigue_score": "28",
+    "latitude": "13.118794",
+    "longitude": "80.245536",
+    "area": "East",
+    "pincode": "400030",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D328",
@@ -5245,7 +6880,12 @@
     "acceptance_prediction": "78",
     "response_rate": "69",
     "donation_reliability": "77",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.071335",
+    "longitude": "80.321443",
+    "area": "West",
+    "pincode": "400031",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D329",
@@ -5261,7 +6901,12 @@
     "acceptance_prediction": "80",
     "response_rate": "73",
     "donation_reliability": "90",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "13.052820",
+    "longitude": "80.218669",
+    "area": "Metro",
+    "pincode": "400032",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D330",
@@ -5277,7 +6922,12 @@
     "acceptance_prediction": "84",
     "response_rate": "87",
     "donation_reliability": "93",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "13.147503",
+    "longitude": "80.291306",
+    "area": "Central",
+    "pincode": "400033",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D331",
@@ -5293,7 +6943,12 @@
     "acceptance_prediction": "86",
     "response_rate": "71",
     "donation_reliability": "74",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "13.013738",
+    "longitude": "80.302641",
+    "area": "North",
+    "pincode": "400034",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D332",
@@ -5309,7 +6964,12 @@
     "acceptance_prediction": "83",
     "response_rate": "73",
     "donation_reliability": "77",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.115057",
+    "longitude": "80.193182",
+    "area": "South",
+    "pincode": "400035",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D333",
@@ -5325,7 +6985,12 @@
     "acceptance_prediction": "83",
     "response_rate": "66",
     "donation_reliability": "97",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "13.113918",
+    "longitude": "80.357241",
+    "area": "East",
+    "pincode": "400036",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D334",
@@ -5341,7 +7006,12 @@
     "acceptance_prediction": "78",
     "response_rate": "68",
     "donation_reliability": "95",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "12.994138",
+    "longitude": "80.224259",
+    "area": "West",
+    "pincode": "400037",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D335",
@@ -5357,7 +7027,12 @@
     "acceptance_prediction": "80",
     "response_rate": "65",
     "donation_reliability": "81",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "13.187107",
+    "longitude": "80.243075",
+    "area": "Metro",
+    "pincode": "400038",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D336",
@@ -5373,7 +7048,12 @@
     "acceptance_prediction": "84",
     "response_rate": "76",
     "donation_reliability": "94",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "13.071899",
+    "longitude": "80.287532",
+    "area": "Central",
+    "pincode": "400039",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D337",
@@ -5389,7 +7069,12 @@
     "acceptance_prediction": "72",
     "response_rate": "68",
     "donation_reliability": "95",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "13.077932",
+    "longitude": "80.243109",
+    "area": "North",
+    "pincode": "400040",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D338",
@@ -5405,7 +7090,12 @@
     "acceptance_prediction": "86",
     "response_rate": "99",
     "donation_reliability": "87",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "13.111183",
+    "longitude": "80.292717",
+    "area": "South",
+    "pincode": "400041",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D339",
@@ -5421,7 +7111,12 @@
     "acceptance_prediction": "84",
     "response_rate": "74",
     "donation_reliability": "87",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "13.038854",
+    "longitude": "80.274373",
+    "area": "East",
+    "pincode": "400042",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D340",
@@ -5437,7 +7132,12 @@
     "acceptance_prediction": "85",
     "response_rate": "80",
     "donation_reliability": "71",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "13.117978",
+    "longitude": "80.232497",
+    "area": "West",
+    "pincode": "400043",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D341",
@@ -5453,7 +7153,12 @@
     "acceptance_prediction": "76",
     "response_rate": "76",
     "donation_reliability": "73",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "13.082461",
+    "longitude": "80.330700",
+    "area": "Metro",
+    "pincode": "400044",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D342",
@@ -5469,7 +7174,12 @@
     "acceptance_prediction": "87",
     "response_rate": "81",
     "donation_reliability": "75",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "13.036967",
+    "longitude": "80.220376",
+    "area": "Central",
+    "pincode": "400045",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D343",
@@ -5485,7 +7195,12 @@
     "acceptance_prediction": "86",
     "response_rate": "98",
     "donation_reliability": "72",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "13.158382",
+    "longitude": "80.277646",
+    "area": "North",
+    "pincode": "400046",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D344",
@@ -5501,7 +7216,12 @@
     "acceptance_prediction": "84",
     "response_rate": "96",
     "donation_reliability": "97",
-    "fatigue_score": "10"
+    "fatigue_score": "10",
+    "latitude": "13.015834",
+    "longitude": "80.321542",
+    "area": "South",
+    "pincode": "400047",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D345",
@@ -5517,7 +7237,12 @@
     "acceptance_prediction": "84",
     "response_rate": "97",
     "donation_reliability": "70",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "13.099087",
+    "longitude": "80.180171",
+    "area": "East",
+    "pincode": "400048",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D346",
@@ -5533,7 +7258,12 @@
     "acceptance_prediction": "76",
     "response_rate": "67",
     "donation_reliability": "87",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "13.136035",
+    "longitude": "80.355290",
+    "area": "West",
+    "pincode": "400049",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D347",
@@ -5549,7 +7279,12 @@
     "acceptance_prediction": "75",
     "response_rate": "69",
     "donation_reliability": "88",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "12.978516",
+    "longitude": "80.242245",
+    "area": "Metro",
+    "pincode": "400050",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D348",
@@ -5565,7 +7300,12 @@
     "acceptance_prediction": "84",
     "response_rate": "90",
     "donation_reliability": "72",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "13.100486",
+    "longitude": "80.261553",
+    "area": "Central",
+    "pincode": "400051",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D349",
@@ -5581,7 +7321,12 @@
     "acceptance_prediction": "79",
     "response_rate": "88",
     "donation_reliability": "76",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "13.072989",
+    "longitude": "80.296962",
+    "area": "North",
+    "pincode": "400052",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D350",
@@ -5597,7 +7342,12 @@
     "acceptance_prediction": "92",
     "response_rate": "96",
     "donation_reliability": "94",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "13.069098",
+    "longitude": "80.237369",
+    "area": "South",
+    "pincode": "400053",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D351",
@@ -5613,7 +7363,12 @@
     "acceptance_prediction": "88",
     "response_rate": "99",
     "donation_reliability": "81",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "13.122477",
+    "longitude": "80.289509",
+    "area": "East",
+    "pincode": "400054",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D352",
@@ -5629,7 +7384,12 @@
     "acceptance_prediction": "83",
     "response_rate": "80",
     "donation_reliability": "83",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "13.033021",
+    "longitude": "80.286063",
+    "area": "West",
+    "pincode": "400055",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D353",
@@ -5645,7 +7405,12 @@
     "acceptance_prediction": "97",
     "response_rate": "98",
     "donation_reliability": "83",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "13.112993",
+    "longitude": "80.218909",
+    "area": "Metro",
+    "pincode": "400056",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D354",
@@ -5661,7 +7426,12 @@
     "acceptance_prediction": "83",
     "response_rate": "90",
     "donation_reliability": "72",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "13.097033",
+    "longitude": "80.337172",
+    "area": "Central",
+    "pincode": "400057",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D355",
@@ -5677,7 +7447,12 @@
     "acceptance_prediction": "92",
     "response_rate": "85",
     "donation_reliability": "99",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "13.020704",
+    "longitude": "80.226740",
+    "area": "North",
+    "pincode": "400058",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D356",
@@ -5693,7 +7468,12 @@
     "acceptance_prediction": "78",
     "response_rate": "73",
     "donation_reliability": "94",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "13.166046",
+    "longitude": "80.260242",
+    "area": "South",
+    "pincode": "400059",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D357",
@@ -5709,7 +7489,12 @@
     "acceptance_prediction": "86",
     "response_rate": "91",
     "donation_reliability": "73",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "13.023127",
+    "longitude": "80.340807",
+    "area": "East",
+    "pincode": "400060",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D358",
@@ -5725,7 +7510,12 @@
     "acceptance_prediction": "77",
     "response_rate": "75",
     "donation_reliability": "95",
-    "fatigue_score": "19"
+    "fatigue_score": "19",
+    "latitude": "13.078973",
+    "longitude": "80.170769",
+    "area": "West",
+    "pincode": "400061",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D359",
@@ -5741,7 +7531,12 @@
     "acceptance_prediction": "85",
     "response_rate": "80",
     "donation_reliability": "81",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "13.158570",
+    "longitude": "80.347562",
+    "area": "Metro",
+    "pincode": "400062",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D360",
@@ -5757,7 +7552,12 @@
     "acceptance_prediction": "89",
     "response_rate": "93",
     "donation_reliability": "87",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "13.062725",
+    "longitude": "80.269695",
+    "area": "Central",
+    "pincode": "400063",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D361",
@@ -5773,7 +7573,12 @@
     "acceptance_prediction": "74",
     "response_rate": "68",
     "donation_reliability": "96",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "23.044071",
+    "longitude": "72.553548",
+    "area": "North",
+    "pincode": "400064",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D362",
@@ -5789,7 +7594,12 @@
     "acceptance_prediction": "87",
     "response_rate": "81",
     "donation_reliability": "99",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "23.017554",
+    "longitude": "72.607059",
+    "area": "South",
+    "pincode": "400065",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D363",
@@ -5805,7 +7615,12 @@
     "acceptance_prediction": "88",
     "response_rate": "86",
     "donation_reliability": "73",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "22.997517",
+    "longitude": "72.535180",
+    "area": "East",
+    "pincode": "400066",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D364",
@@ -5821,7 +7636,12 @@
     "acceptance_prediction": "79",
     "response_rate": "66",
     "donation_reliability": "82",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "23.073185",
+    "longitude": "72.583020",
+    "area": "West",
+    "pincode": "400067",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D365",
@@ -5837,7 +7657,12 @@
     "acceptance_prediction": "81",
     "response_rate": "74",
     "donation_reliability": "71",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "22.970320",
+    "longitude": "72.601018",
+    "area": "Metro",
+    "pincode": "400068",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D366",
@@ -5853,7 +7678,12 @@
     "acceptance_prediction": "77",
     "response_rate": "68",
     "donation_reliability": "72",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "23.043432",
+    "longitude": "72.506702",
+    "area": "Central",
+    "pincode": "400069",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D367",
@@ -5869,7 +7699,12 @@
     "acceptance_prediction": "83",
     "response_rate": "66",
     "donation_reliability": "82",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "23.054094",
+    "longitude": "72.640522",
+    "area": "North",
+    "pincode": "400070",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D368",
@@ -5885,7 +7720,12 @@
     "acceptance_prediction": "83",
     "response_rate": "89",
     "donation_reliability": "78",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "22.945146",
+    "longitude": "72.538654",
+    "area": "South",
+    "pincode": "400071",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D369",
@@ -5901,7 +7741,12 @@
     "acceptance_prediction": "83",
     "response_rate": "95",
     "donation_reliability": "86",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "23.109197",
+    "longitude": "72.540617",
+    "area": "East",
+    "pincode": "400072",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D370",
@@ -5917,7 +7762,12 @@
     "acceptance_prediction": "90",
     "response_rate": "99",
     "donation_reliability": "96",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "22.975614",
+    "longitude": "72.659728",
+    "area": "West",
+    "pincode": "400073",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D371",
@@ -5933,7 +7783,12 @@
     "acceptance_prediction": "83",
     "response_rate": "85",
     "donation_reliability": "95",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "22.995401",
+    "longitude": "72.466855",
+    "area": "Metro",
+    "pincode": "400074",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D372",
@@ -5949,7 +7804,12 @@
     "acceptance_prediction": "85",
     "response_rate": "77",
     "donation_reliability": "96",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "23.039278",
+    "longitude": "72.582286",
+    "area": "Central",
+    "pincode": "400075",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D373",
@@ -5965,7 +7825,12 @@
     "acceptance_prediction": "75",
     "response_rate": "79",
     "donation_reliability": "89",
-    "fatigue_score": "1"
+    "fatigue_score": "1",
+    "latitude": "22.994885",
+    "longitude": "72.576029",
+    "area": "North",
+    "pincode": "400076",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D374",
@@ -5981,7 +7846,12 @@
     "acceptance_prediction": "86",
     "response_rate": "73",
     "donation_reliability": "80",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "23.044660",
+    "longitude": "72.543029",
+    "area": "South",
+    "pincode": "400077",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D375",
@@ -5997,7 +7867,12 @@
     "acceptance_prediction": "84",
     "response_rate": "72",
     "donation_reliability": "97",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "23.025952",
+    "longitude": "72.615264",
+    "area": "East",
+    "pincode": "400078",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D376",
@@ -6013,7 +7888,12 @@
     "acceptance_prediction": "81",
     "response_rate": "85",
     "donation_reliability": "74",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "22.984475",
+    "longitude": "72.535931",
+    "area": "West",
+    "pincode": "400079",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D377",
@@ -6029,7 +7909,12 @@
     "acceptance_prediction": "90",
     "response_rate": "87",
     "donation_reliability": "77",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "23.082498",
+    "longitude": "72.571940",
+    "area": "Metro",
+    "pincode": "400080",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D378",
@@ -6045,7 +7930,12 @@
     "acceptance_prediction": "81",
     "response_rate": "65",
     "donation_reliability": "92",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "22.971947",
+    "longitude": "72.616880",
+    "area": "Central",
+    "pincode": "400081",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D379",
@@ -6061,7 +7951,12 @@
     "acceptance_prediction": "81",
     "response_rate": "71",
     "donation_reliability": "99",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "23.029827",
+    "longitude": "72.495754",
+    "area": "North",
+    "pincode": "400082",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D380",
@@ -6077,7 +7972,12 @@
     "acceptance_prediction": "76",
     "response_rate": "70",
     "donation_reliability": "96",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "23.073006",
+    "longitude": "72.638521",
+    "area": "South",
+    "pincode": "400083",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D381",
@@ -6093,7 +7993,12 @@
     "acceptance_prediction": "80",
     "response_rate": "69",
     "donation_reliability": "81",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "22.932055",
+    "longitude": "72.554559",
+    "area": "East",
+    "pincode": "400084",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D382",
@@ -6109,7 +8014,12 @@
     "acceptance_prediction": "86",
     "response_rate": "91",
     "donation_reliability": "85",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "23.107357",
+    "longitude": "72.518491",
+    "area": "West",
+    "pincode": "400085",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D383",
@@ -6125,7 +8035,12 @@
     "acceptance_prediction": "84",
     "response_rate": "79",
     "donation_reliability": "75",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "22.993522",
+    "longitude": "72.675440",
+    "area": "Metro",
+    "pincode": "400086",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D384",
@@ -6141,7 +8056,12 @@
     "acceptance_prediction": "83",
     "response_rate": "86",
     "donation_reliability": "75",
-    "fatigue_score": "24"
+    "fatigue_score": "24",
+    "latitude": "23.013443",
+    "longitude": "72.553568",
+    "area": "Central",
+    "pincode": "400087",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D385",
@@ -6157,7 +8077,12 @@
     "acceptance_prediction": "88",
     "response_rate": "95",
     "donation_reliability": "92",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "23.048713",
+    "longitude": "72.581242",
+    "area": "North",
+    "pincode": "400088",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D386",
@@ -6173,7 +8098,12 @@
     "acceptance_prediction": "79",
     "response_rate": "86",
     "donation_reliability": "76",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "22.989101",
+    "longitude": "72.584835",
+    "area": "South",
+    "pincode": "400089",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D387",
@@ -6189,7 +8119,12 @@
     "acceptance_prediction": "78",
     "response_rate": "80",
     "donation_reliability": "73",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "23.041509",
+    "longitude": "72.531718",
+    "area": "East",
+    "pincode": "400090",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D388",
@@ -6205,7 +8140,12 @@
     "acceptance_prediction": "81",
     "response_rate": "92",
     "donation_reliability": "72",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "23.037613",
+    "longitude": "72.621155",
+    "area": "West",
+    "pincode": "400091",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D389",
@@ -6221,7 +8161,12 @@
     "acceptance_prediction": "80",
     "response_rate": "83",
     "donation_reliability": "72",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "22.970862",
+    "longitude": "72.540847",
+    "area": "Metro",
+    "pincode": "400092",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D390",
@@ -6237,7 +8182,12 @@
     "acceptance_prediction": "83",
     "response_rate": "99",
     "donation_reliability": "82",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "23.089044",
+    "longitude": "72.557401",
+    "area": "Central",
+    "pincode": "400093",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D391",
@@ -6253,7 +8203,12 @@
     "acceptance_prediction": "87",
     "response_rate": "94",
     "donation_reliability": "78",
-    "fatigue_score": "17"
+    "fatigue_score": "17",
+    "latitude": "28.569628",
+    "longitude": "77.270774",
+    "area": "North",
+    "pincode": "400094",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D392",
@@ -6269,7 +8224,12 @@
     "acceptance_prediction": "96",
     "response_rate": "99",
     "donation_reliability": "83",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "28.603861",
+    "longitude": "77.125602",
+    "area": "South",
+    "pincode": "400095",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D393",
@@ -6285,7 +8245,12 @@
     "acceptance_prediction": "92",
     "response_rate": "95",
     "donation_reliability": "88",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "28.683707",
+    "longitude": "77.268925",
+    "area": "East",
+    "pincode": "400096",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D394",
@@ -6301,7 +8266,12 @@
     "acceptance_prediction": "91",
     "response_rate": "98",
     "donation_reliability": "95",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "28.513952",
+    "longitude": "77.212225",
+    "area": "West",
+    "pincode": "400097",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D395",
@@ -6317,7 +8287,12 @@
     "acceptance_prediction": "83",
     "response_rate": "77",
     "donation_reliability": "74",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "28.691142",
+    "longitude": "77.133517",
+    "area": "Metro",
+    "pincode": "400098",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D396",
@@ -6333,7 +8308,12 @@
     "acceptance_prediction": "91",
     "response_rate": "81",
     "donation_reliability": "80",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "28.612795",
+    "longitude": "77.228969",
+    "area": "Central",
+    "pincode": "400000",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D397",
@@ -6349,7 +8329,12 @@
     "acceptance_prediction": "88",
     "response_rate": "82",
     "donation_reliability": "86",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "28.596156",
+    "longitude": "77.187340",
+    "area": "North",
+    "pincode": "400001",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D398",
@@ -6365,7 +8350,12 @@
     "acceptance_prediction": "77",
     "response_rate": "74",
     "donation_reliability": "88",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "28.649533",
+    "longitude": "77.214125",
+    "area": "South",
+    "pincode": "400002",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D399",
@@ -6381,7 +8371,12 @@
     "acceptance_prediction": "91",
     "response_rate": "87",
     "donation_reliability": "98",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "28.577555",
+    "longitude": "77.233800",
+    "area": "East",
+    "pincode": "400003",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D400",
@@ -6397,7 +8392,12 @@
     "acceptance_prediction": "75",
     "response_rate": "76",
     "donation_reliability": "78",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "28.625774",
+    "longitude": "77.158374",
+    "area": "West",
+    "pincode": "400004",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D401",
@@ -6413,7 +8413,12 @@
     "acceptance_prediction": "87",
     "response_rate": "80",
     "donation_reliability": "71",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "28.643256",
+    "longitude": "77.261328",
+    "area": "Metro",
+    "pincode": "400005",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D402",
@@ -6429,7 +8434,12 @@
     "acceptance_prediction": "88",
     "response_rate": "96",
     "donation_reliability": "97",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "28.549308",
+    "longitude": "77.187743",
+    "area": "Central",
+    "pincode": "400006",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D403",
@@ -6445,7 +8455,12 @@
     "acceptance_prediction": "86",
     "response_rate": "91",
     "donation_reliability": "89",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "28.683180",
+    "longitude": "77.177754",
+    "area": "North",
+    "pincode": "400007",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D404",
@@ -6461,7 +8476,12 @@
     "acceptance_prediction": "93",
     "response_rate": "98",
     "donation_reliability": "97",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "28.580766",
+    "longitude": "77.286189",
+    "area": "South",
+    "pincode": "400008",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D405",
@@ -6477,7 +8497,12 @@
     "acceptance_prediction": "81",
     "response_rate": "73",
     "donation_reliability": "94",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "28.583553",
+    "longitude": "77.122149",
+    "area": "East",
+    "pincode": "400009",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D406",
@@ -6493,7 +8518,12 @@
     "acceptance_prediction": "72",
     "response_rate": "67",
     "donation_reliability": "84",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "28.701991",
+    "longitude": "77.256329",
+    "area": "West",
+    "pincode": "400010",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D407",
@@ -6509,7 +8539,12 @@
     "acceptance_prediction": "79",
     "response_rate": "72",
     "donation_reliability": "91",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "28.509220",
+    "longitude": "77.235574",
+    "area": "Metro",
+    "pincode": "400011",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D408",
@@ -6525,7 +8560,12 @@
     "acceptance_prediction": "85",
     "response_rate": "87",
     "donation_reliability": "81",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "28.624870",
+    "longitude": "77.192277",
+    "area": "Central",
+    "pincode": "400012",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D409",
@@ -6541,7 +8581,12 @@
     "acceptance_prediction": "85",
     "response_rate": "78",
     "donation_reliability": "97",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "28.618390",
+    "longitude": "77.236638",
+    "area": "North",
+    "pincode": "400013",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D410",
@@ -6557,7 +8602,12 @@
     "acceptance_prediction": "78",
     "response_rate": "73",
     "donation_reliability": "90",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "28.585640",
+    "longitude": "77.186698",
+    "area": "South",
+    "pincode": "400014",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D411",
@@ -6573,7 +8623,12 @@
     "acceptance_prediction": "85",
     "response_rate": "89",
     "donation_reliability": "97",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "28.657781",
+    "longitude": "77.205768",
+    "area": "East",
+    "pincode": "400015",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D412",
@@ -6589,7 +8644,12 @@
     "acceptance_prediction": "89",
     "response_rate": "90",
     "donation_reliability": "88",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "28.578240",
+    "longitude": "77.246847",
+    "area": "West",
+    "pincode": "400016",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D413",
@@ -6605,7 +8665,12 @@
     "acceptance_prediction": "74",
     "response_rate": "71",
     "donation_reliability": "85",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "28.614742",
+    "longitude": "77.149006",
+    "area": "Metro",
+    "pincode": "400017",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D414",
@@ -6621,7 +8686,12 @@
     "acceptance_prediction": "79",
     "response_rate": "74",
     "donation_reliability": "86",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "28.659125",
+    "longitude": "77.259781",
+    "area": "Central",
+    "pincode": "400018",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D415",
@@ -6637,7 +8707,12 @@
     "acceptance_prediction": "81",
     "response_rate": "66",
     "donation_reliability": "90",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "28.538292",
+    "longitude": "77.201293",
+    "area": "North",
+    "pincode": "400019",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D416",
@@ -6653,7 +8728,12 @@
     "acceptance_prediction": "85",
     "response_rate": "77",
     "donation_reliability": "80",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "28.681274",
+    "longitude": "77.158832",
+    "area": "South",
+    "pincode": "400020",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D417",
@@ -6669,7 +8749,12 @@
     "acceptance_prediction": "87",
     "response_rate": "75",
     "donation_reliability": "96",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "28.596604",
+    "longitude": "77.299360",
+    "area": "East",
+    "pincode": "400021",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D418",
@@ -6685,7 +8770,12 @@
     "acceptance_prediction": "87",
     "response_rate": "76",
     "donation_reliability": "91",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "28.561418",
+    "longitude": "77.123879",
+    "area": "West",
+    "pincode": "400022",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D419",
@@ -6701,7 +8791,12 @@
     "acceptance_prediction": "83",
     "response_rate": "86",
     "donation_reliability": "81",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "28.717793",
+    "longitude": "77.238501",
+    "area": "Metro",
+    "pincode": "400023",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D420",
@@ -6717,7 +8812,12 @@
     "acceptance_prediction": "82",
     "response_rate": "69",
     "donation_reliability": "85",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "28.596023",
+    "longitude": "77.217968",
+    "area": "Central",
+    "pincode": "400024",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D421",
@@ -6733,7 +8833,12 @@
     "acceptance_prediction": "73",
     "response_rate": "74",
     "donation_reliability": "74",
-    "fatigue_score": "21"
+    "fatigue_score": "21",
+    "latitude": "28.623874",
+    "longitude": "77.182837",
+    "area": "North",
+    "pincode": "400025",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D422",
@@ -6749,7 +8854,12 @@
     "acceptance_prediction": "82",
     "response_rate": "70",
     "donation_reliability": "85",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "28.627167",
+    "longitude": "77.242466",
+    "area": "South",
+    "pincode": "400026",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D423",
@@ -6765,7 +8875,12 @@
     "acceptance_prediction": "79",
     "response_rate": "75",
     "donation_reliability": "88",
-    "fatigue_score": "10"
+    "fatigue_score": "10",
+    "latitude": "28.574314",
+    "longitude": "77.189792",
+    "area": "East",
+    "pincode": "400027",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D424",
@@ -6781,7 +8896,12 @@
     "acceptance_prediction": "86",
     "response_rate": "92",
     "donation_reliability": "85",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "28.663731",
+    "longitude": "77.194137",
+    "area": "West",
+    "pincode": "400028",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D425",
@@ -6797,7 +8917,12 @@
     "acceptance_prediction": "91",
     "response_rate": "98",
     "donation_reliability": "76",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "28.583088",
+    "longitude": "77.260484",
+    "area": "Metro",
+    "pincode": "400029",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D426",
@@ -6813,7 +8938,12 @@
     "acceptance_prediction": "77",
     "response_rate": "73",
     "donation_reliability": "73",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "28.600236",
+    "longitude": "77.142387",
+    "area": "Central",
+    "pincode": "400030",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D427",
@@ -6829,7 +8959,12 @@
     "acceptance_prediction": "86",
     "response_rate": "94",
     "donation_reliability": "93",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "28.675451",
+    "longitude": "77.253581",
+    "area": "North",
+    "pincode": "400031",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D428",
@@ -6845,7 +8980,12 @@
     "acceptance_prediction": "83",
     "response_rate": "77",
     "donation_reliability": "75",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "28.530453",
+    "longitude": "77.218620",
+    "area": "South",
+    "pincode": "400032",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D429",
@@ -6861,7 +9001,12 @@
     "acceptance_prediction": "89",
     "response_rate": "97",
     "donation_reliability": "75",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "28.674175",
+    "longitude": "77.139495",
+    "area": "East",
+    "pincode": "400033",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D430",
@@ -6877,7 +9022,12 @@
     "acceptance_prediction": "77",
     "response_rate": "68",
     "donation_reliability": "89",
-    "fatigue_score": "6"
+    "fatigue_score": "6",
+    "latitude": "28.616622",
+    "longitude": "77.308963",
+    "area": "West",
+    "pincode": "400034",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D431",
@@ -6893,7 +9043,12 @@
     "acceptance_prediction": "77",
     "response_rate": "72",
     "donation_reliability": "87",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "28.538806",
+    "longitude": "77.131379",
+    "area": "Metro",
+    "pincode": "400035",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D432",
@@ -6909,7 +9064,12 @@
     "acceptance_prediction": "93",
     "response_rate": "98",
     "donation_reliability": "78",
-    "fatigue_score": "38"
+    "fatigue_score": "38",
+    "latitude": "28.633864",
+    "longitude": "77.210206",
+    "area": "Central",
+    "pincode": "400036",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D433",
@@ -6925,7 +9085,12 @@
     "acceptance_prediction": "75",
     "response_rate": "72",
     "donation_reliability": "95",
-    "fatigue_score": "31"
+    "fatigue_score": "31",
+    "latitude": "28.592151",
+    "longitude": "77.226635",
+    "area": "North",
+    "pincode": "400037",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D434",
@@ -6941,7 +9106,12 @@
     "acceptance_prediction": "84",
     "response_rate": "91",
     "donation_reliability": "79",
-    "fatigue_score": "2"
+    "fatigue_score": "2",
+    "latitude": "28.619204",
+    "longitude": "77.173393",
+    "area": "South",
+    "pincode": "400038",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D435",
@@ -6957,7 +9127,12 @@
     "acceptance_prediction": "68",
     "response_rate": "65",
     "donation_reliability": "91",
-    "fatigue_score": "7"
+    "fatigue_score": "7",
+    "latitude": "28.638517",
+    "longitude": "77.245469",
+    "area": "East",
+    "pincode": "400039",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D436",
@@ -6973,7 +9148,12 @@
     "acceptance_prediction": "73",
     "response_rate": "71",
     "donation_reliability": "98",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "28.563334",
+    "longitude": "77.196871",
+    "area": "West",
+    "pincode": "400040",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D437",
@@ -6989,7 +9169,12 @@
     "acceptance_prediction": "83",
     "response_rate": "76",
     "donation_reliability": "97",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "28.666375",
+    "longitude": "77.179908",
+    "area": "Metro",
+    "pincode": "400041",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D438",
@@ -7005,7 +9190,12 @@
     "acceptance_prediction": "75",
     "response_rate": "67",
     "donation_reliability": "70",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "28.592319",
+    "longitude": "77.273485",
+    "area": "Central",
+    "pincode": "400042",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D439",
@@ -7021,7 +9211,12 @@
     "acceptance_prediction": "87",
     "response_rate": "82",
     "donation_reliability": "98",
-    "fatigue_score": "5"
+    "fatigue_score": "5",
+    "latitude": "28.583003",
+    "longitude": "77.139564",
+    "area": "North",
+    "pincode": "400043",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D440",
@@ -7037,7 +9232,12 @@
     "acceptance_prediction": "83",
     "response_rate": "82",
     "donation_reliability": "96",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "28.690921",
+    "longitude": "77.242522",
+    "area": "South",
+    "pincode": "400044",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D441",
@@ -7053,7 +9253,12 @@
     "acceptance_prediction": "85",
     "response_rate": "75",
     "donation_reliability": "73",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "18.930598",
+    "longitude": "72.886110",
+    "area": "East",
+    "pincode": "400045",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D442",
@@ -7069,7 +9274,12 @@
     "acceptance_prediction": "86",
     "response_rate": "87",
     "donation_reliability": "89",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "19.065371",
+    "longitude": "72.768348",
+    "area": "West",
+    "pincode": "400046",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D443",
@@ -7085,7 +9295,12 @@
     "acceptance_prediction": "77",
     "response_rate": "81",
     "donation_reliability": "90",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.043647",
+    "longitude": "72.961012",
+    "area": "Metro",
+    "pincode": "400047",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D444",
@@ -7101,7 +9316,12 @@
     "acceptance_prediction": "92",
     "response_rate": "98",
     "donation_reliability": "92",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.000932",
+    "longitude": "72.845146",
+    "area": "Central",
+    "pincode": "400048",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D445",
@@ -7117,7 +9337,12 @@
     "acceptance_prediction": "75",
     "response_rate": "68",
     "donation_reliability": "70",
-    "fatigue_score": "10"
+    "fatigue_score": "10",
+    "latitude": "19.045260",
+    "longitude": "72.851849",
+    "area": "North",
+    "pincode": "400049",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D446",
@@ -7133,7 +9358,12 @@
     "acceptance_prediction": "80",
     "response_rate": "80",
     "donation_reliability": "80",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "18.995156",
+    "longitude": "72.884347",
+    "area": "South",
+    "pincode": "400050",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D447",
@@ -7149,7 +9379,12 @@
     "acceptance_prediction": "85",
     "response_rate": "94",
     "donation_reliability": "84",
-    "fatigue_score": "36"
+    "fatigue_score": "36",
+    "latitude": "19.014589",
+    "longitude": "72.812303",
+    "area": "East",
+    "pincode": "400051",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D448",
@@ -7165,7 +9400,12 @@
     "acceptance_prediction": "77",
     "response_rate": "66",
     "donation_reliability": "73",
-    "fatigue_score": "26"
+    "fatigue_score": "26",
+    "latitude": "19.055267",
+    "longitude": "72.892050",
+    "area": "West",
+    "pincode": "400052",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D449",
@@ -7181,7 +9421,12 @@
     "acceptance_prediction": "93",
     "response_rate": "97",
     "donation_reliability": "87",
-    "fatigue_score": "29"
+    "fatigue_score": "29",
+    "latitude": "18.957611",
+    "longitude": "72.855057",
+    "area": "Metro",
+    "pincode": "400053",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D450",
@@ -7197,7 +9442,12 @@
     "acceptance_prediction": "91",
     "response_rate": "95",
     "donation_reliability": "92",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "19.068608",
+    "longitude": "72.811231",
+    "area": "Central",
+    "pincode": "400054",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D451",
@@ -7213,7 +9463,12 @@
     "acceptance_prediction": "83",
     "response_rate": "83",
     "donation_reliability": "87",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "19.009513",
+    "longitude": "72.931769",
+    "area": "North",
+    "pincode": "400055",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D452",
@@ -7229,7 +9484,12 @@
     "acceptance_prediction": "77",
     "response_rate": "81",
     "donation_reliability": "89",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "18.967772",
+    "longitude": "72.788575",
+    "area": "South",
+    "pincode": "400056",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D453",
@@ -7245,7 +9505,12 @@
     "acceptance_prediction": "85",
     "response_rate": "91",
     "donation_reliability": "71",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "19.107871",
+    "longitude": "72.873950",
+    "area": "East",
+    "pincode": "400057",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D454",
@@ -7261,7 +9526,12 @@
     "acceptance_prediction": "78",
     "response_rate": "73",
     "donation_reliability": "85",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "18.932216",
+    "longitude": "72.908253",
+    "area": "West",
+    "pincode": "400058",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D455",
@@ -7277,7 +9547,12 @@
     "acceptance_prediction": "86",
     "response_rate": "76",
     "donation_reliability": "92",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "19.047622",
+    "longitude": "72.752457",
+    "area": "Metro",
+    "pincode": "400059",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D456",
@@ -7293,7 +9568,12 @@
     "acceptance_prediction": "88",
     "response_rate": "89",
     "donation_reliability": "83",
-    "fatigue_score": "15"
+    "fatigue_score": "15",
+    "latitude": "19.026478",
+    "longitude": "72.874122",
+    "area": "Central",
+    "pincode": "400060",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D457",
@@ -7309,7 +9589,12 @@
     "acceptance_prediction": "84",
     "response_rate": "91",
     "donation_reliability": "89",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "18.991487",
+    "longitude": "72.846095",
+    "area": "North",
+    "pincode": "400061",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D458",
@@ -7325,7 +9610,12 @@
     "acceptance_prediction": "82",
     "response_rate": "78",
     "donation_reliability": "76",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.051133",
+    "longitude": "72.843102",
+    "area": "South",
+    "pincode": "400062",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D459",
@@ -7341,7 +9631,12 @@
     "acceptance_prediction": "92",
     "response_rate": "99",
     "donation_reliability": "92",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "18.998193",
+    "longitude": "72.895689",
+    "area": "East",
+    "pincode": "400063",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D460",
@@ -7357,7 +9652,12 @@
     "acceptance_prediction": "91",
     "response_rate": "91",
     "donation_reliability": "91",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.002988",
+    "longitude": "72.806295",
+    "area": "West",
+    "pincode": "400064",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D461",
@@ -7373,7 +9673,12 @@
     "acceptance_prediction": "81",
     "response_rate": "74",
     "donation_reliability": "71",
-    "fatigue_score": "3"
+    "fatigue_score": "3",
+    "latitude": "19.068928",
+    "longitude": "72.887271",
+    "area": "Metro",
+    "pincode": "400065",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D462",
@@ -7389,7 +9694,12 @@
     "acceptance_prediction": "76",
     "response_rate": "68",
     "donation_reliability": "92",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "18.950919",
+    "longitude": "72.869529",
+    "area": "Central",
+    "pincode": "400066",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D463",
@@ -7405,7 +9715,12 @@
     "acceptance_prediction": "85",
     "response_rate": "79",
     "donation_reliability": "93",
-    "fatigue_score": "35"
+    "fatigue_score": "35",
+    "latitude": "19.062490",
+    "longitude": "72.794874",
+    "area": "North",
+    "pincode": "400067",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D464",
@@ -7421,7 +9736,12 @@
     "acceptance_prediction": "92",
     "response_rate": "89",
     "donation_reliability": "82",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "19.026800",
+    "longitude": "72.939695",
+    "area": "South",
+    "pincode": "400068",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D465",
@@ -7437,7 +9757,12 @@
     "acceptance_prediction": "88",
     "response_rate": "79",
     "donation_reliability": "99",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "18.948399",
+    "longitude": "72.795576",
+    "area": "East",
+    "pincode": "400069",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D466",
@@ -7453,7 +9778,12 @@
     "acceptance_prediction": "87",
     "response_rate": "93",
     "donation_reliability": "75",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.117575",
+    "longitude": "72.853980",
+    "area": "West",
+    "pincode": "400070",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D467",
@@ -7469,7 +9799,12 @@
     "acceptance_prediction": "82",
     "response_rate": "82",
     "donation_reliability": "87",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "18.939603",
+    "longitude": "72.930902",
+    "area": "Metro",
+    "pincode": "400071",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D468",
@@ -7485,7 +9820,12 @@
     "acceptance_prediction": "81",
     "response_rate": "74",
     "donation_reliability": "71",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "19.018906",
+    "longitude": "72.836243",
+    "area": "Central",
+    "pincode": "400072",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D469",
@@ -7501,7 +9841,12 @@
     "acceptance_prediction": "89",
     "response_rate": "87",
     "donation_reliability": "72",
-    "fatigue_score": "20"
+    "fatigue_score": "20",
+    "latitude": "19.035125",
+    "longitude": "72.878037",
+    "area": "North",
+    "pincode": "400073",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D470",
@@ -7517,7 +9862,12 @@
     "acceptance_prediction": "84",
     "response_rate": "91",
     "donation_reliability": "87",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "18.982020",
+    "longitude": "72.850717",
+    "area": "South",
+    "pincode": "400074",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D471",
@@ -7533,7 +9883,12 @@
     "acceptance_prediction": "82",
     "response_rate": "88",
     "donation_reliability": "79",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.054192",
+    "longitude": "72.831766",
+    "area": "East",
+    "pincode": "400075",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D472",
@@ -7549,7 +9904,12 @@
     "acceptance_prediction": "84",
     "response_rate": "80",
     "donation_reliability": "98",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.005217",
+    "longitude": "72.906704",
+    "area": "West",
+    "pincode": "400076",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D473",
@@ -7565,7 +9925,12 @@
     "acceptance_prediction": "84",
     "response_rate": "81",
     "donation_reliability": "87",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "18.988772",
+    "longitude": "72.803579",
+    "area": "Metro",
+    "pincode": "400077",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D474",
@@ -7581,7 +9946,12 @@
     "acceptance_prediction": "80",
     "response_rate": "67",
     "donation_reliability": "79",
-    "fatigue_score": "12"
+    "fatigue_score": "12",
+    "latitude": "19.081975",
+    "longitude": "72.878105",
+    "area": "Central",
+    "pincode": "400078",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D475",
@@ -7597,7 +9967,12 @@
     "acceptance_prediction": "75",
     "response_rate": "65",
     "donation_reliability": "90",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "18.948010",
+    "longitude": "72.886748",
+    "area": "North",
+    "pincode": "400079",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D476",
@@ -7613,7 +9988,12 @@
     "acceptance_prediction": "91",
     "response_rate": "92",
     "donation_reliability": "90",
-    "fatigue_score": "4"
+    "fatigue_score": "4",
+    "latitude": "19.051509",
+    "longitude": "72.779348",
+    "area": "South",
+    "pincode": "400080",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D477",
@@ -7629,7 +10009,12 @@
     "acceptance_prediction": "75",
     "response_rate": "68",
     "donation_reliability": "75",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "19.047072",
+    "longitude": "72.943352",
+    "area": "East",
+    "pincode": "400081",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D478",
@@ -7645,7 +10030,12 @@
     "acceptance_prediction": "86",
     "response_rate": "93",
     "donation_reliability": "90",
-    "fatigue_score": "27"
+    "fatigue_score": "27",
+    "latitude": "18.929990",
+    "longitude": "72.807988",
+    "area": "West",
+    "pincode": "400082",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D479",
@@ -7661,7 +10051,12 @@
     "acceptance_prediction": "82",
     "response_rate": "69",
     "donation_reliability": "94",
-    "fatigue_score": "37"
+    "fatigue_score": "37",
+    "latitude": "19.122542",
+    "longitude": "72.830680",
+    "area": "Metro",
+    "pincode": "400083",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D480",
@@ -7677,7 +10072,12 @@
     "acceptance_prediction": "80",
     "response_rate": "84",
     "donation_reliability": "89",
-    "fatigue_score": "18"
+    "fatigue_score": "18",
+    "latitude": "19.006462",
+    "longitude": "72.872812",
+    "area": "Central",
+    "pincode": "400084",
+    "willing_radius_km": "10"
   },
   {
     "donor_id": "D481",
@@ -7693,7 +10093,12 @@
     "acceptance_prediction": "85",
     "response_rate": "79",
     "donation_reliability": "74",
-    "fatigue_score": "25"
+    "fatigue_score": "25",
+    "latitude": "19.013388",
+    "longitude": "72.828519",
+    "area": "North",
+    "pincode": "400085",
+    "willing_radius_km": "11"
   },
   {
     "donor_id": "D482",
@@ -7709,7 +10114,12 @@
     "acceptance_prediction": "72",
     "response_rate": "74",
     "donation_reliability": "73",
-    "fatigue_score": "0"
+    "fatigue_score": "0",
+    "latitude": "19.045634",
+    "longitude": "72.878785",
+    "area": "South",
+    "pincode": "400086",
+    "willing_radius_km": "12"
   },
   {
     "donor_id": "D483",
@@ -7725,7 +10135,12 @@
     "acceptance_prediction": "81",
     "response_rate": "78",
     "donation_reliability": "93",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "18.973689",
+    "longitude": "72.858990",
+    "area": "East",
+    "pincode": "400087",
+    "willing_radius_km": "13"
   },
   {
     "donor_id": "D484",
@@ -7741,7 +10156,12 @@
     "acceptance_prediction": "78",
     "response_rate": "81",
     "donation_reliability": "76",
-    "fatigue_score": "11"
+    "fatigue_score": "11",
+    "latitude": "19.053639",
+    "longitude": "72.818714",
+    "area": "West",
+    "pincode": "400088",
+    "willing_radius_km": "14"
   },
   {
     "donor_id": "D485",
@@ -7757,7 +10177,12 @@
     "acceptance_prediction": "76",
     "response_rate": "83",
     "donation_reliability": "91",
-    "fatigue_score": "16"
+    "fatigue_score": "16",
+    "latitude": "19.016155",
+    "longitude": "72.916183",
+    "area": "Metro",
+    "pincode": "400089",
+    "willing_radius_km": "15"
   },
   {
     "donor_id": "D486",
@@ -7773,7 +10198,12 @@
     "acceptance_prediction": "77",
     "response_rate": "80",
     "donation_reliability": "73",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "18.972888",
+    "longitude": "72.804967",
+    "area": "Central",
+    "pincode": "400090",
+    "willing_radius_km": "16"
   },
   {
     "donor_id": "D487",
@@ -7789,7 +10219,12 @@
     "acceptance_prediction": "87",
     "response_rate": "84",
     "donation_reliability": "92",
-    "fatigue_score": "9"
+    "fatigue_score": "9",
+    "latitude": "19.093127",
+    "longitude": "72.864666",
+    "area": "North",
+    "pincode": "400091",
+    "willing_radius_km": "17"
   },
   {
     "donor_id": "D488",
@@ -7805,7 +10240,12 @@
     "acceptance_prediction": "81",
     "response_rate": "85",
     "donation_reliability": "77",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "18.949725",
+    "longitude": "72.905688",
+    "area": "South",
+    "pincode": "400092",
+    "willing_radius_km": "18"
   },
   {
     "donor_id": "D489",
@@ -7821,7 +10261,12 @@
     "acceptance_prediction": "94",
     "response_rate": "95",
     "donation_reliability": "84",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "19.035803",
+    "longitude": "72.766019",
+    "area": "East",
+    "pincode": "400093",
+    "willing_radius_km": "19"
   },
   {
     "donor_id": "D490",
@@ -7837,7 +10282,12 @@
     "acceptance_prediction": "90",
     "response_rate": "82",
     "donation_reliability": "97",
-    "fatigue_score": "8"
+    "fatigue_score": "8",
+    "latitude": "19.069223",
+    "longitude": "72.941845",
+    "area": "West",
+    "pincode": "400094",
+    "willing_radius_km": "20"
   },
   {
     "donor_id": "D491",
@@ -7853,7 +10303,12 @@
     "acceptance_prediction": "83",
     "response_rate": "66",
     "donation_reliability": "97",
-    "fatigue_score": "40"
+    "fatigue_score": "40",
+    "latitude": "18.914009",
+    "longitude": "72.825656",
+    "area": "Metro",
+    "pincode": "400095",
+    "willing_radius_km": "21"
   },
   {
     "donor_id": "D492",
@@ -7869,7 +10324,12 @@
     "acceptance_prediction": "82",
     "response_rate": "67",
     "donation_reliability": "87",
-    "fatigue_score": "34"
+    "fatigue_score": "34",
+    "latitude": "19.035566",
+    "longitude": "72.847413",
+    "area": "Central",
+    "pincode": "400096",
+    "willing_radius_km": "22"
   },
   {
     "donor_id": "D493",
@@ -7885,7 +10345,12 @@
     "acceptance_prediction": "89",
     "response_rate": "83",
     "donation_reliability": "74",
-    "fatigue_score": "32"
+    "fatigue_score": "32",
+    "latitude": "19.007363",
+    "longitude": "72.882262",
+    "area": "North",
+    "pincode": "400097",
+    "willing_radius_km": "23"
   },
   {
     "donor_id": "D494",
@@ -7901,7 +10366,12 @@
     "acceptance_prediction": "87",
     "response_rate": "80",
     "donation_reliability": "97",
-    "fatigue_score": "39"
+    "fatigue_score": "39",
+    "latitude": "19.004671",
+    "longitude": "72.822602",
+    "area": "South",
+    "pincode": "400098",
+    "willing_radius_km": "24"
   },
   {
     "donor_id": "D495",
@@ -7917,7 +10387,12 @@
     "acceptance_prediction": "83",
     "response_rate": "74",
     "donation_reliability": "93",
-    "fatigue_score": "30"
+    "fatigue_score": "30",
+    "latitude": "19.056991",
+    "longitude": "72.875805",
+    "area": "East",
+    "pincode": "400000",
+    "willing_radius_km": "25"
   },
   {
     "donor_id": "D496",
@@ -7933,7 +10408,12 @@
     "acceptance_prediction": "81",
     "response_rate": "88",
     "donation_reliability": "77",
-    "fatigue_score": "13"
+    "fatigue_score": "13",
+    "latitude": "18.967622",
+    "longitude": "72.870561",
+    "area": "West",
+    "pincode": "400001",
+    "willing_radius_km": "26"
   },
   {
     "donor_id": "D497",
@@ -7949,7 +10429,12 @@
     "acceptance_prediction": "81",
     "response_rate": "85",
     "donation_reliability": "73",
-    "fatigue_score": "33"
+    "fatigue_score": "33",
+    "latitude": "19.048928",
+    "longitude": "72.805028",
+    "area": "Metro",
+    "pincode": "400002",
+    "willing_radius_km": "27"
   },
   {
     "donor_id": "D498",
@@ -7965,7 +10450,12 @@
     "acceptance_prediction": "82",
     "response_rate": "89",
     "donation_reliability": "90",
-    "fatigue_score": "23"
+    "fatigue_score": "23",
+    "latitude": "19.030594",
+    "longitude": "72.922947",
+    "area": "Central",
+    "pincode": "400003",
+    "willing_radius_km": "28"
   },
   {
     "donor_id": "D499",
@@ -7981,7 +10471,12 @@
     "acceptance_prediction": "88",
     "response_rate": "79",
     "donation_reliability": "86",
-    "fatigue_score": "22"
+    "fatigue_score": "22",
+    "latitude": "18.956501",
+    "longitude": "72.811002",
+    "area": "North",
+    "pincode": "400004",
+    "willing_radius_km": "29"
   },
   {
     "donor_id": "D500",
@@ -7997,6 +10492,11 @@
     "acceptance_prediction": "83",
     "response_rate": "73",
     "donation_reliability": "84",
-    "fatigue_score": "14"
+    "fatigue_score": "14",
+    "latitude": "19.101140",
+    "longitude": "72.847420",
+    "area": "South",
+    "pincode": "400005",
+    "willing_radius_km": "10"
   }
 ]
