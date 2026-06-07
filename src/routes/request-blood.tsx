@@ -4,26 +4,9 @@ import { motion } from "framer-motion";
 import { Droplet, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { submitBloodRequest, type BloodRequestInput } from "@/lib/api/blood-request.functions";
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyRbtp1lDrY8hm3PkB21ynwklG7uQLNr08gI2AQmylneotgN36UOgLEv8xHVZLsMILs/exec";
-
-type FormState = {
-  patient_name: string;
-  blood_group: string;
-  units_needed: string;
-  city: string;
-  hospital: string;
-  urgency: string;
-  status: string;
-  patient_type: string;
-  hospital_contact: string;
-  patient_trust_score: string;
-  required_before: string;
-  assigned_donor_pool: string;
-  backup_donor_pool: string;
-  request_source: string;
-};
+type FormState = BloodRequestInput;
 
 const initial: FormState = {
   patient_name: "",
@@ -64,24 +47,17 @@ function RequestBloodPage() {
     e.preventDefault();
     setSubmitting(true);
     setResult(null);
-    const request_id = `SJX-${Date.now().toString(36).toUpperCase()}`;
-    const payload = { request_id, ...form };
     try {
-      // text/plain avoids CORS preflight against Apps Script
-      const res = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => ({ ok: res.ok }));
-      if (res.ok && data.ok !== false) {
-        setResult({ ok: true, msg: "Request submitted to Sanjeevani Command.", id: request_id });
+      const data = await submitBloodRequest({ data: form });
+      if (data.ok) {
+        setResult({ ok: true, msg: "Request saved to Google Sheet.", id: data.request_id });
         setForm(initial);
       } else {
-        setResult({ ok: false, msg: data.error || "Submission failed. Try again." });
+        setResult({ ok: false, msg: data.error });
       }
-    } catch (err: any) {
-      setResult({ ok: false, msg: err?.message || "Network error" });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Network error";
+      setResult({ ok: false, msg });
     } finally {
       setSubmitting(false);
     }

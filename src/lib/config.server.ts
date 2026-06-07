@@ -19,8 +19,11 @@ import process from "node:process";
 export function getServerConfig() {
   return {
     nodeEnv: process.env.NODE_ENV,
-    // Add server-only values here, e.g.:
-    //   databaseUrl: process.env.DATABASE_URL,
-    //   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    appsScriptUrl: process.env.APPS_SCRIPT_URL,
   };
+}
+
+/** Google Apps Script web-app URL that appends rows to the blood intake sheet. */
+export function getAppsScriptUrl(): string | undefined {
+  return process.env.APPS_SCRIPT_URL?.trim() || undefined;
 }
