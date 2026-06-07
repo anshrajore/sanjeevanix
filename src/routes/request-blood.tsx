@@ -53,7 +53,7 @@ function RequestBloodPage() {
     try {
       const data = await submitBloodRequest(form);
       if (data.ok) {
-        setResult({ ok: true, msg: "Request saved to Google Sheet.", id: data.request_id });
+        setResult({ ok: true, msg: "Request submitted to Sanjeevani Command.", id: data.request_id });
         setForm(initial);
       } else {
         setResult({ ok: false, msg: data.error });
@@ -334,7 +334,7 @@ function RequestBloodPage() {
                 )}
               </button>
               <div className="text-xs text-white/40 md:max-w-xs">
-                Data routes securely into the Sanjeevani Blood Bridge intake sheet for AI matching.
+                Your request is routed to the Sanjeevani Blood Bridge for AI donor matching.
               </div>
             </div>
 
