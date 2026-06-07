@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as RequestBloodRouteImport } from './routes/request-blood'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as DigitalBloodTwinRouteImport } from './routes/digital-blood-twin'
 import { Route as CommandCenterRouteImport } from './routes/command-center'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StoriesRoute = StoriesRouteImport.update({
   id: '/stories',
   path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RequestBloodRoute = RequestBloodRouteImport.update({
+  id: '/request-blood',
+  path: '/request-blood',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
   '/impact': typeof ImpactRoute
+  '/request-blood': typeof RequestBloodRoute
   '/stories': typeof StoriesRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
   '/impact': typeof ImpactRoute
+  '/request-blood': typeof RequestBloodRoute
   '/stories': typeof StoriesRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
   '/impact': typeof ImpactRoute
+  '/request-blood': typeof RequestBloodRoute
   '/stories': typeof StoriesRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/command-center'
     | '/digital-blood-twin'
     | '/impact'
+    | '/request-blood'
     | '/stories'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/command-center'
     | '/digital-blood-twin'
     | '/impact'
+    | '/request-blood'
     | '/stories'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/command-center'
     | '/digital-blood-twin'
     | '/impact'
+    | '/request-blood'
     | '/stories'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   CommandCenterRoute: typeof CommandCenterRoute
   DigitalBloodTwinRoute: typeof DigitalBloodTwinRoute
   ImpactRoute: typeof ImpactRoute
+  RequestBloodRoute: typeof RequestBloodRoute
   StoriesRoute: typeof StoriesRoute
 }
 
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/stories'
       fullPath: '/stories'
       preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/request-blood': {
+      id: '/request-blood'
+      path: '/request-blood'
+      fullPath: '/request-blood'
+      preLoaderRoute: typeof RequestBloodRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impact': {
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommandCenterRoute: CommandCenterRoute,
   DigitalBloodTwinRoute: DigitalBloodTwinRoute,
   ImpactRoute: ImpactRoute,
+  RequestBloodRoute: RequestBloodRoute,
   StoriesRoute: StoriesRoute,
 }
 export const routeTree = rootRouteImport

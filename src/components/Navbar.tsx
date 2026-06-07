@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Activity } from "lucide-react";
+import logoAsset from "@/assets/sanjeevani-logo.png.asset.json";
 
 export function Navbar() {
   const links = [
@@ -20,14 +20,9 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl glass rounded-2xl flex items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="relative">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#FF4D6D] to-[#E63946] flex items-center justify-center glow-red-sm">
-              <Activity className="w-4 h-4 text-white" strokeWidth={2.5} />
-            </div>
+          <div className="bg-white rounded-lg px-2 py-1 flex items-center">
+            <img src={logoAsset.url} alt="Sanjeevani X — Blood Bridge AI Autonomous Platform" className="h-7 w-auto object-contain" />
           </div>
-          <span className="font-display font-bold text-lg tracking-tight">
-            Sanjeevani <span className="text-gradient-red">X</span>
-          </span>
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
@@ -42,9 +37,12 @@ export function Navbar() {
         </nav>
         <div className="flex items-center gap-2">
           <button className="hidden sm:block text-sm text-white/70 hover:text-white px-3 py-1.5">Sign in</button>
-          <button className="text-sm font-medium bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-4 py-2 rounded-lg glow-red-sm hover:scale-105 transition-transform">
+          <Link
+            to="/request-blood"
+            className="text-sm font-medium bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-4 py-2 rounded-lg glow-red-sm hover:scale-105 transition-transform"
+          >
             Request Blood
-          </button>
+          </Link>
         </div>
       </div>
     </motion.header>
