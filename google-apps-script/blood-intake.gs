@@ -12,14 +12,26 @@
  * Sheet: https://docs.google.com/spreadsheets/d/19evLGSsU_PW8dPIILm8NeZWS0qKBnh57pkp2QaQYz44
  */
 
-const SHEET_ID = '19evLGSsU_PW8dPIILm8NeZWS0qKBnh57pkp2QaQYz44';
-const SHEET_NAME = 'Sheet1';
+const SHEET_ID = "19evLGSsU_PW8dPIILm8NeZWS0qKBnh57pkp2QaQYz44";
+const SHEET_NAME = "Sheet1";
 
 const HEADERS = [
-  'request_id', 'patient_name', 'blood_group', 'units_needed', 'city', 'hospital',
-  'urgency', 'status', 'patient_type', 'hospital_contact', 'patient_trust_score',
-  'required_before', 'assigned_donor_pool', 'backup_donor_pool', 'request_source',
-  'created_at',
+  "request_id",
+  "patient_name",
+  "blood_group",
+  "units_needed",
+  "city",
+  "hospital",
+  "urgency",
+  "status",
+  "patient_type",
+  "hospital_contact",
+  "patient_trust_score",
+  "required_before",
+  "assigned_donor_pool",
+  "backup_donor_pool",
+  "request_source",
+  "created_at",
 ];
 
 function doPost(e) {
@@ -30,22 +42,22 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
 
     const row = HEADERS.map(function (h) {
-      return h === 'created_at' ? new Date() : (body[h] ?? '');
+      return h === "created_at" ? new Date() : (body[h] ?? "");
     });
     sheet.appendRow(row);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ ok: true, request_id: body.request_id }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: true, request_id: body.request_id }),
+    ).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: false, error: String(err) }),
+    ).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet() {
-  return ContentService
-    .createTextOutput(JSON.stringify({ ok: true, service: 'Sanjeevani X intake' }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(
+    JSON.stringify({ ok: true, service: "Sanjeevani X intake" }),
+  ).setMimeType(ContentService.MimeType.JSON);
 }

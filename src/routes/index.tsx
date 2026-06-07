@@ -17,9 +17,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Sanjeevani X — AI Blood Intelligence Platform" },
-      { name: "description", content: "India's first AI Blood Intelligence Platform. Voice AI, predictive analytics, and donor intelligence to help patients receive blood faster." },
+      {
+        name: "description",
+        content:
+          "India's first AI Blood Intelligence Platform. Voice AI, predictive analytics, and donor intelligence to help patients receive blood faster.",
+      },
       { property: "og:title", content: "Sanjeevani X — AI Blood Intelligence Platform" },
-      { property: "og:description", content: "The AI infrastructure behind blood accessibility and thalassemia care." },
+      {
+        property: "og:description",
+        content: "The AI infrastructure behind blood accessibility and thalassemia care.",
+      },
     ],
   }),
   component: Index,

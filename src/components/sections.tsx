@@ -1,6 +1,29 @@
+import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Mic, ArrowRight, Play, Sparkles, Brain, Phone, Activity, Zap, Heart, Shield, Network, TrendingUp, Clock, MapPin, Users, CheckCircle2, AlertCircle, Radio, Database, Cpu, Volume2 } from "lucide-react";
+import {
+  Mic,
+  ArrowRight,
+  Play,
+  Sparkles,
+  Brain,
+  Phone,
+  Activity,
+  Zap,
+  Heart,
+  Shield,
+  Network,
+  TrendingUp,
+  Clock,
+  MapPin,
+  Users,
+  CheckCircle2,
+  AlertCircle,
+  Radio,
+  Database,
+  Cpu,
+  Volume2,
+} from "lucide-react";
 
 const rotatingWords = [
   "Finding Donors.",
@@ -73,7 +96,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-center font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight max-w-5xl mx-auto"
         >
-          India's First <span className="text-gradient-red">AI Blood</span><br />
+          India's First <span className="text-gradient-red">AI Blood</span>
+          <br />
           Intelligence Platform
         </motion.h1>
 
@@ -102,8 +126,8 @@ export function Hero() {
           transition={{ delay: 0.5 }}
           className="text-center text-white/60 text-lg max-w-2xl mx-auto mt-8 leading-relaxed"
         >
-          Sanjeevani X combines Voice AI, Predictive Analytics, Donor Intelligence, and Real-Time Coordination
-          to help patients receive blood faster than ever before.
+          Sanjeevani X combines Voice AI, Predictive Analytics, Donor Intelligence, and Real-Time
+          Coordination to help patients receive blood faster than ever before.
         </motion.p>
 
         <motion.div
@@ -112,9 +136,13 @@ export function Hero() {
           transition={{ delay: 0.6 }}
           className="flex flex-wrap items-center justify-center gap-3 mt-10"
         >
-          <button className="group bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white font-medium px-6 py-3 rounded-xl glow-red flex items-center gap-2 hover:scale-105 transition-transform">
-            Request Blood <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <Link
+            to="/request-blood"
+            className="group bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white font-medium px-6 py-3 rounded-xl glow-red flex items-center gap-2 hover:scale-105 transition-transform"
+          >
+            Request Blood{" "}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
           <button className="glass rounded-xl px-6 py-3 font-medium hover:border-white/20 flex items-center gap-2">
             <Heart className="w-4 h-4" /> Become Donor
           </button>
@@ -158,7 +186,16 @@ export function Hero() {
 
 // =============================================================================
 export function MarqueeStrip() {
-  const items = ["AI Matching Engine", "Voice AI Outreach", "Predictive Demand", "Thalassemia Care", "Digital Blood Twin", "Real-Time Coordination", "Donor Intelligence", "RAG Memory Layer"];
+  const items = [
+    "AI Matching Engine",
+    "Voice AI Outreach",
+    "Predictive Demand",
+    "Thalassemia Care",
+    "Digital Blood Twin",
+    "Real-Time Coordination",
+    "Donor Intelligence",
+    "RAG Memory Layer",
+  ];
   return (
     <div className="border-y border-white/5 bg-white/[0.02] overflow-hidden py-4">
       <div className="flex animate-marquee whitespace-nowrap">
@@ -239,7 +276,10 @@ export function AISection() {
               <div className="flex items-center gap-2 text-xs text-white/40 mb-2 uppercase tracking-wider">
                 <div className="w-2 h-2 rounded-full bg-white/40" /> Patient
               </div>
-              <p className="text-white/90">Need <span className="text-[#FF4D6D] font-semibold">A+ blood</span> in Nashik urgently.</p>
+              <p className="text-white/90">
+                Need <span className="text-[#FF4D6D] font-semibold">A+ blood</span> in Nashik
+                urgently.
+              </p>
             </div>
 
             <motion.div
@@ -251,9 +291,14 @@ export function AISection() {
               <div className="flex items-center gap-2 text-xs text-[#FF4D6D] mb-2 uppercase tracking-wider">
                 <Sparkles className="w-3 h-3" /> Sanjeevani AI
               </div>
-              <p className="text-white/95">I found <span className="text-[#FF4D6D] font-bold">28 potential donors</span> within 12km. Trust score average 87%. Would you like me to start outreach calls now?</p>
+              <p className="text-white/95">
+                I found <span className="text-[#FF4D6D] font-bold">28 potential donors</span> within
+                12km. Trust score average 87%. Would you like me to start outreach calls now?
+              </p>
               <div className="flex gap-2 mt-3">
-                <button className="text-xs bg-[#E63946] px-3 py-1.5 rounded-md font-medium">Start outreach</button>
+                <button className="text-xs bg-[#E63946] px-3 py-1.5 rounded-md font-medium">
+                  Start outreach
+                </button>
                 <button className="text-xs bg-white/5 px-3 py-1.5 rounded-md">Show donors</button>
               </div>
             </motion.div>
@@ -273,8 +318,18 @@ export function AISection() {
             </motion.div>
 
             <div className="grid grid-cols-2 gap-2 max-w-md ml-auto mt-6">
-              {["Find donors", "Explain thalassemia", "Register volunteer", "Guide hospital", "Schedule donation", "Answer FAQ"].map((c) => (
-                <div key={c} className="glass rounded-lg px-3 py-2 text-xs text-white/70 flex items-center gap-2">
+              {[
+                "Find donors",
+                "Explain thalassemia",
+                "Register volunteer",
+                "Guide hospital",
+                "Schedule donation",
+                "Answer FAQ",
+              ].map((c) => (
+                <div
+                  key={c}
+                  className="glass rounded-lg px-3 py-2 text-xs text-white/70 flex items-center gap-2"
+                >
                   <CheckCircle2 className="w-3 h-3 text-[#FF4D6D]" /> {c}
                 </div>
               ))}
@@ -302,12 +357,13 @@ export function DirectCommSection() {
                 <Radio className="w-3 h-3 text-[#FF4D6D] animate-pulse" /> Live · Direct Line
               </div>
               <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight">
-                Talk directly to <span className="text-gradient-red">Sanjeevani</span><br />
+                Talk directly to <span className="text-gradient-red">Sanjeevani</span>
+                <br />
                 Check donor availability in <span className="italic">seconds.</span>
               </h2>
               <p className="text-white/70 mt-4 text-lg">
-                Skip forms, skip waits. Speak your blood group, city, and urgency — Sanjeevani's voice AI checks
-                live donor availability across the network and responds instantly.
+                Skip forms, skip waits. Speak your blood group, city, and urgency — Sanjeevani's
+                voice AI checks live donor availability across the network and responds instantly.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <button className="bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-6 py-3 rounded-xl glow-red flex items-center gap-2 font-medium hover:scale-105 transition-transform">
@@ -318,16 +374,25 @@ export function DirectCommSection() {
                 </button>
               </div>
               <div className="flex items-center gap-6 mt-8 text-xs text-white/60">
-                <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /> 11 languages</div>
-                <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#FF4D6D] animate-pulse" /> &lt;3s response</div>
-                <div className="flex items-center gap-2"><Shield className="w-3 h-3" /> HIPAA compliant</div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /> 11 languages
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#FF4D6D] animate-pulse" /> &lt;3s
+                  response
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-3 h-3" /> HIPAA compliant
+                </div>
               </div>
             </div>
 
             {/* Live availability widget */}
             <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
-                <div className="text-xs text-white/50 uppercase tracking-wider">Live Donor Availability</div>
+                <div className="text-xs text-white/50 uppercase tracking-wider">
+                  Live Donor Availability
+                </div>
                 <div className="flex items-center gap-2 text-xs text-green-400">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /> Live
                 </div>
@@ -340,7 +405,10 @@ export function DirectCommSection() {
                   { g: "AB-", c: "Delhi", n: 17, s: 71, urgent: true },
                   { g: "O-", c: "Bangalore", n: 89, s: 84 },
                 ].map((d) => (
-                  <div key={d.g + d.c} className={`flex items-center gap-3 p-3 rounded-lg ${d.urgent ? "bg-[#E63946]/15 border border-[#E63946]/30" : "bg-white/5"}`}>
+                  <div
+                    key={d.g + d.c}
+                    className={`flex items-center gap-3 p-3 rounded-lg ${d.urgent ? "bg-[#E63946]/15 border border-[#E63946]/30" : "bg-white/5"}`}
+                  >
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FF4D6D] to-[#E63946] flex items-center justify-center font-display font-bold text-sm">
                       {d.g}
                     </div>
@@ -348,19 +416,25 @@ export function DirectCommSection() {
                       <div className="text-sm font-medium flex items-center gap-2">
                         <MapPin className="w-3 h-3 text-white/40" /> {d.c}
                       </div>
-                      <div className="text-xs text-white/50">{d.n} available · Trust {d.s}%</div>
+                      <div className="text-xs text-white/50">
+                        {d.n} available · Trust {d.s}%
+                      </div>
                     </div>
                     {d.urgent ? (
                       <div className="text-xs px-2 py-1 rounded bg-[#E63946] text-white flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> Low
                       </div>
                     ) : (
-                      <div className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-300">OK</div>
+                      <div className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-300">
+                        OK
+                      </div>
                     )}
                   </div>
                 ))}
               </div>
-              <button className="w-full mt-4 text-xs text-white/60 hover:text-white py-2">View full availability map →</button>
+              <button className="w-full mt-4 text-xs text-white/60 hover:text-white py-2">
+                View full availability map →
+              </button>
             </div>
           </div>
         </div>
@@ -371,7 +445,14 @@ export function DirectCommSection() {
 
 // =============================================================================
 export function ProblemSolutionSection() {
-  const problem = ["Patient needs blood", "Hospital starts calling", "Volunteers search WhatsApp", "Multiple donors unavailable", "Hours wasted", "Patient waits"];
+  const problem = [
+    "Patient needs blood",
+    "Hospital starts calling",
+    "Volunteers search WhatsApp",
+    "Multiple donors unavailable",
+    "Hours wasted",
+    "Patient waits",
+  ];
   const solution = [
     { icon: Activity, t: "Request enters system" },
     { icon: Shield, t: "AI validates request" },
@@ -391,7 +472,9 @@ export function ProblemSolutionSection() {
             <Clock className="w-3 h-3 text-[#FF4D6D]" /> The Problem · The Solution
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-bold">
-            From <span className="text-white/40 line-through decoration-[#E63946]">hours wasted</span> to <span className="text-gradient-red">seconds saved</span>
+            From{" "}
+            <span className="text-white/40 line-through decoration-[#E63946]">hours wasted</span> to{" "}
+            <span className="text-gradient-red">seconds saved</span>
           </h2>
         </div>
 
@@ -421,8 +504,15 @@ export function ProblemSolutionSection() {
               ))}
             </div>
             <div className="mt-6 grid grid-cols-3 gap-3">
-              {[{ v: "4-8h", l: "Avg wait" }, { v: "62%", l: "Calls unanswered" }, { v: "31%", l: "No donor found" }].map((s) => (
-                <div key={s.l} className="text-center p-3 bg-white/[0.02] rounded-lg border border-white/5">
+              {[
+                { v: "4-8h", l: "Avg wait" },
+                { v: "62%", l: "Calls unanswered" },
+                { v: "31%", l: "No donor found" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="text-center p-3 bg-white/[0.02] rounded-lg border border-white/5"
+                >
                   <div className="text-2xl font-display font-bold text-[#E63946]">{s.v}</div>
                   <div className="text-[10px] uppercase tracking-wider text-white/50">{s.l}</div>
                 </div>
@@ -455,8 +545,15 @@ export function ProblemSolutionSection() {
               ))}
             </div>
             <div className="mt-6 grid grid-cols-3 gap-3">
-              {[{ v: "<3min", l: "Avg match" }, { v: "94%", l: "Acceptance" }, { v: "99.2%", l: "Donor found" }].map((s) => (
-                <div key={s.l} className="text-center p-3 bg-black/40 rounded-lg border border-[#E63946]/20">
+              {[
+                { v: "<3min", l: "Avg match" },
+                { v: "94%", l: "Acceptance" },
+                { v: "99.2%", l: "Donor found" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="text-center p-3 bg-black/40 rounded-lg border border-[#E63946]/20"
+                >
                   <div className="text-2xl font-display font-bold text-gradient-red">{s.v}</div>
                   <div className="text-[10px] uppercase tracking-wider text-white/60">{s.l}</div>
                 </div>
@@ -472,14 +569,45 @@ export function ProblemSolutionSection() {
 // =============================================================================
 export function ThalassemiaSection() {
   const cards = [
-    { icon: Shield, t: "Carrier Detection", d: "Screen entire families with predictive genetic risk modeling." },
-    { icon: Brain, t: "Genetic Awareness", d: "Education programs targeted to at-risk communities." },
-    { icon: Heart, t: "Recurring Transfusion Support", d: "Lifetime tracking of every transfusion event." },
-    { icon: Clock, t: "Predictive Scheduling", d: "AI forecasts the next transfusion 30 days in advance." },
-    { icon: Users, t: "Donor Pool Assignment", d: "Each patient gets a dedicated rotating donor cohort." },
-    { icon: Activity, t: "Lifetime Care Tracking", d: "Integrated medical timeline for every patient." },
+    {
+      icon: Shield,
+      t: "Carrier Detection",
+      d: "Screen entire families with predictive genetic risk modeling.",
+    },
+    {
+      icon: Brain,
+      t: "Genetic Awareness",
+      d: "Education programs targeted to at-risk communities.",
+    },
+    {
+      icon: Heart,
+      t: "Recurring Transfusion Support",
+      d: "Lifetime tracking of every transfusion event.",
+    },
+    {
+      icon: Clock,
+      t: "Predictive Scheduling",
+      d: "AI forecasts the next transfusion 30 days in advance.",
+    },
+    {
+      icon: Users,
+      t: "Donor Pool Assignment",
+      d: "Each patient gets a dedicated rotating donor cohort.",
+    },
+    {
+      icon: Activity,
+      t: "Lifetime Care Tracking",
+      d: "Integrated medical timeline for every patient.",
+    },
   ];
-  const journey = ["Child diagnosed", "Patient onboarded", "Monthly transfusions tracked", "Dedicated donor network created", "AI predicts future needs", "Risk reduced"];
+  const journey = [
+    "Child diagnosed",
+    "Patient onboarded",
+    "Monthly transfusions tracked",
+    "Dedicated donor network created",
+    "AI predicts future needs",
+    "Risk reduced",
+  ];
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -490,10 +618,13 @@ export function ThalassemiaSection() {
             <Heart className="w-3 h-3" /> Thalassemia Care
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-bold">
-            End Thalassemia<br />Through <span className="text-gradient-red">Intelligence</span>
+            End Thalassemia
+            <br />
+            Through <span className="text-gradient-red">Intelligence</span>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mt-4">
-            Thalassemia patients need transfusions every 15-30 days for life. Sanjeevani X builds dedicated donor cohorts and predictive schedules for each patient.
+            Thalassemia patients need transfusions every 15-30 days for life. Sanjeevani X builds
+            dedicated donor cohorts and predictive schedules for each patient.
           </p>
         </div>
 
@@ -520,7 +651,9 @@ export function ThalassemiaSection() {
 
         {/* Journey */}
         <div className="glass rounded-3xl p-8 lg:p-12">
-          <div className="text-xs uppercase tracking-wider text-white/40 mb-6 font-mono">Patient Journey</div>
+          <div className="text-xs uppercase tracking-wider text-white/40 mb-6 font-mono">
+            Patient Journey
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             {journey.map((step, i) => (
               <div key={step} className="relative">
@@ -549,7 +682,9 @@ export function CommandCenterPreview() {
           <h2 className="font-display text-5xl md:text-6xl font-bold">
             Mission Control for <span className="text-gradient-red">Lives.</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto mt-4">Watch every active request, every AI call, every coordination event — in real time.</p>
+          <p className="text-white/60 max-w-2xl mx-auto mt-4">
+            Watch every active request, every AI call, every coordination event — in real time.
+          </p>
         </div>
 
         <div className="glass rounded-3xl p-6 lg:p-8 relative overflow-hidden">
@@ -558,7 +693,9 @@ export function CommandCenterPreview() {
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm font-mono uppercase tracking-wider">Sanjeevani X · Live Ops</span>
+              <span className="text-sm font-mono uppercase tracking-wider">
+                Sanjeevani X · Live Ops
+              </span>
             </div>
             <div className="flex gap-2 text-xs font-mono text-white/40">
               <span>UTC 14:32:08</span>
@@ -583,28 +720,48 @@ export function CommandCenterPreview() {
           <div className="grid lg:grid-cols-3 gap-4">
             {/* Request feed */}
             <div className="lg:col-span-2 bg-black/30 border border-white/5 rounded-xl p-5">
-              <div className="text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">Live Request Feed</div>
+              <div className="text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">
+                Live Request Feed
+              </div>
               <div className="space-y-2">
                 {[
                   { id: "REQ-8421", g: "O-", c: "Mumbai", st: "matching", d: "Hospital: Lilavati" },
                   { id: "REQ-8420", g: "AB+", c: "Pune", st: "calling", d: "12 donors contacted" },
                   { id: "REQ-8419", g: "B-", c: "Nashik", st: "confirmed", d: "Donor en-route" },
                   { id: "REQ-8418", g: "A+", c: "Delhi", st: "delivered", d: "Unit transfused" },
-                  { id: "REQ-8417", g: "O+", c: "Bangalore", st: "matching", d: "Hospital: Manipal" },
+                  {
+                    id: "REQ-8417",
+                    g: "O+",
+                    c: "Bangalore",
+                    st: "matching",
+                    d: "Hospital: Manipal",
+                  },
                 ].map((r) => (
-                  <div key={r.id} className="flex items-center gap-3 p-3 bg-white/[0.02] rounded-lg border border-white/5 hover:border-[#E63946]/30 transition-colors">
+                  <div
+                    key={r.id}
+                    className="flex items-center gap-3 p-3 bg-white/[0.02] rounded-lg border border-white/5 hover:border-[#E63946]/30 transition-colors"
+                  >
                     <div className="font-mono text-xs text-white/40 w-20">{r.id}</div>
-                    <div className="w-8 h-8 rounded bg-gradient-to-br from-[#FF4D6D] to-[#E63946] flex items-center justify-center text-xs font-bold">{r.g}</div>
+                    <div className="w-8 h-8 rounded bg-gradient-to-br from-[#FF4D6D] to-[#E63946] flex items-center justify-center text-xs font-bold">
+                      {r.g}
+                    </div>
                     <div className="flex-1 text-sm">
                       <div>{r.c}</div>
                       <div className="text-xs text-white/40">{r.d}</div>
                     </div>
-                    <div className={`text-xs px-2 py-1 rounded ${
-                      r.st === "delivered" ? "bg-green-500/20 text-green-300" :
-                      r.st === "confirmed" ? "bg-cyan-500/20 text-cyan-300" :
-                      r.st === "calling" ? "bg-orange-500/20 text-orange-300 animate-pulse" :
-                      "bg-[#E63946]/20 text-[#FF4D6D] animate-pulse"
-                    }`}>{r.st}</div>
+                    <div
+                      className={`text-xs px-2 py-1 rounded ${
+                        r.st === "delivered"
+                          ? "bg-green-500/20 text-green-300"
+                          : r.st === "confirmed"
+                            ? "bg-cyan-500/20 text-cyan-300"
+                            : r.st === "calling"
+                              ? "bg-orange-500/20 text-orange-300 animate-pulse"
+                              : "bg-[#E63946]/20 text-[#FF4D6D] animate-pulse"
+                      }`}
+                    >
+                      {r.st}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -612,7 +769,9 @@ export function CommandCenterPreview() {
 
             {/* System health */}
             <div className="bg-black/30 border border-white/5 rounded-xl p-5">
-              <div className="text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">System Health</div>
+              <div className="text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">
+                System Health
+              </div>
               <div className="space-y-3">
                 {[
                   { n: "Matching Engine", v: 98, s: "OK" },
@@ -624,7 +783,9 @@ export function CommandCenterPreview() {
                   <div key={h.n}>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-white/70">{h.n}</span>
-                      <span className={h.s === "OK" ? "text-green-400" : "text-orange-400"}>{h.s}</span>
+                      <span className={h.s === "OK" ? "text-green-400" : "text-orange-400"}>
+                        {h.s}
+                      </span>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                       <motion.div
@@ -664,9 +825,14 @@ export function ImpactSection() {
               <MapPin className="w-3 h-3 text-[#FF4D6D]" /> National Impact
             </div>
             <h2 className="font-display text-5xl font-bold mb-4">
-              A nationwide<br /><span className="text-gradient-red">blood network.</span>
+              A nationwide
+              <br />
+              <span className="text-gradient-red">blood network.</span>
             </h2>
-            <p className="text-white/60">Live across 18 Indian states. Coordinating with hospitals, NGOs, labs, and government agencies to ensure no patient waits.</p>
+            <p className="text-white/60">
+              Live across 18 Indian states. Coordinating with hospitals, NGOs, labs, and government
+              agencies to ensure no patient waits.
+            </p>
             <button className="mt-6 glass-red rounded-xl px-5 py-3 flex items-center gap-2 text-sm font-medium">
               See impact map <ArrowRight className="w-4 h-4" />
             </button>
@@ -681,7 +847,11 @@ export function ImpactSection() {
                 transition={{ delay: i * 0.05 }}
                 className="glass rounded-2xl p-6 relative overflow-hidden group"
               >
-                <div className={`font-display text-4xl font-bold bg-gradient-to-br ${s.c} bg-clip-text text-transparent`}>{s.v}</div>
+                <div
+                  className={`font-display text-4xl font-bold bg-gradient-to-br ${s.c} bg-clip-text text-transparent`}
+                >
+                  {s.v}
+                </div>
                 <div className="text-xs uppercase tracking-wider text-white/50 mt-1">{s.l}</div>
                 <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#E63946] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
@@ -704,11 +874,13 @@ export function FinalCTA() {
           <div className="relative">
             <Zap className="w-10 h-10 text-[#FF4D6D] mx-auto mb-6" />
             <h2 className="font-display text-5xl md:text-6xl font-bold leading-tight">
-              Be a <span className="text-gradient-red">Blood Warrior.</span><br />
+              Be a <span className="text-gradient-red">Blood Warrior.</span>
+              <br />
               Save a life this week.
             </h2>
             <p className="text-white/70 mt-6 max-w-xl mx-auto">
-              Whether you're a donor, hospital, NGO, or volunteer — Sanjeevani X gives you the tools to act faster than ever.
+              Whether you're a donor, hospital, NGO, or volunteer — Sanjeevani X gives you the tools
+              to act faster than ever.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
               <button className="bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-7 py-3.5 rounded-xl glow-red font-medium hover:scale-105 transition-transform">

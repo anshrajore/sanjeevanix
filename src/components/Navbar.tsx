@@ -21,7 +21,11 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl glass rounded-2xl flex items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center gap-2 group">
           <div className="bg-white rounded-lg px-2 py-1 flex items-center">
-            <img src={logoAsset.url} alt="Sanjeevani X — Blood Bridge AI Autonomous Platform" className="h-7 w-auto object-contain" />
+            <img
+              src={logoAsset.url}
+              alt="Sanjeevani X — Blood Bridge AI Autonomous Platform"
+              className="h-7 w-auto object-contain"
+            />
           </div>
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
@@ -36,7 +40,9 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <button className="hidden sm:block text-sm text-white/70 hover:text-white px-3 py-1.5">Sign in</button>
+          <button className="hidden sm:block text-sm text-white/70 hover:text-white px-3 py-1.5">
+            Sign in
+          </button>
           <Link
             to="/request-blood"
             className="text-sm font-medium bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-4 py-2 rounded-lg glow-red-sm hover:scale-105 transition-transform"

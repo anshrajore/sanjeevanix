@@ -52,7 +52,8 @@ export async function submitBloodRequest(
     if (text.includes("Script function not found")) {
       return {
         ok: false,
-        error: "Google Apps Script is not deployed. Deploy google-apps-script/blood-intake.gs as a web app.",
+        error:
+          "Google Apps Script is not deployed. Deploy google-apps-script/blood-intake.gs as a web app.",
       };
     }
     return { ok: false, error: "Unexpected response from Google Sheets intake." };

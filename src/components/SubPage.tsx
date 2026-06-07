@@ -4,7 +4,17 @@ import { Footer } from "./Footer";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
-export function SubPage({ tag, title, subtitle, children }: { tag: string; title: ReactNode; subtitle: string; children?: ReactNode }) {
+export function SubPage({
+  tag,
+  title,
+  subtitle,
+  children,
+}: {
+  tag: string;
+  title: ReactNode;
+  subtitle: string;
+  children?: ReactNode;
+}) {
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
       <Navbar />

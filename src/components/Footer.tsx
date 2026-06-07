@@ -48,7 +48,8 @@ export function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm max-w-sm leading-relaxed mb-6">
-              The AI Infrastructure Behind Blood Accessibility. Building the future of donor intelligence and thalassemia care in India.
+              The AI Infrastructure Behind Blood Accessibility. Building the future of donor
+              intelligence and thalassemia care in India.
             </p>
             <div className="glass-red rounded-xl p-4 mb-6">
               <div className="flex items-center gap-3">
@@ -56,14 +57,20 @@ export function Footer() {
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs text-white/60 uppercase tracking-wider">24/7 Emergency Helpline</div>
+                  <div className="text-xs text-white/60 uppercase tracking-wider">
+                    24/7 Emergency Helpline
+                  </div>
                   <div className="font-mono font-semibold">+91 1800-SANJ-XAI</div>
                 </div>
               </div>
             </div>
             <div className="flex gap-3">
               {[Twitter, Linkedin, Instagram, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-lg glass flex items-center justify-center hover:glow-red-sm hover:border-[#E63946]/40 transition-all">
+                <a
+                  key={i}
+                  href="#"
+                  className="w-9 h-9 rounded-lg glass flex items-center justify-center hover:glow-red-sm hover:border-[#E63946]/40 transition-all"
+                >
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
@@ -71,21 +78,34 @@ export function Footer() {
           </div>
           {cols.map((col) => (
             <div key={col.title} className="lg:col-span-2">
-              <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">{col.title}</h4>
+              <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">
+                {col.title}
+              </h4>
               <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <Link to={l.to} className="text-sm text-white/60 hover:text-[#FF4D6D] transition-colors">{l.label}</Link>
+                    <Link
+                      to={l.to}
+                      className="text-sm text-white/60 hover:text-[#FF4D6D] transition-colors"
+                    >
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
           <div className="lg:col-span-2">
-            <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">Newsletter</h4>
+            <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">
+              Newsletter
+            </h4>
             <p className="text-xs text-white/50 mb-3">AI insights, weekly.</p>
             <div className="flex gap-2">
-              <input type="email" placeholder="you@email.com" className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#E63946]" />
+              <input
+                type="email"
+                placeholder="you@email.com"
+                className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#E63946]"
+              />
             </div>
             <button className="mt-2 w-full text-sm bg-white/10 hover:bg-[#E63946] transition-colors rounded-lg px-3 py-2 flex items-center justify-center gap-2">
               <Mail className="w-3.5 h-3.5" /> Subscribe
@@ -95,10 +115,18 @@ export function Footer() {
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <div>© 2026 Sanjeevani X · Built for Blood Warriors · Made in India 🇮🇳</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white">Security</a>
-            <a href="#" className="hover:text-white">HIPAA</a>
+            <a href="#" className="hover:text-white">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-white">
+              Terms
+            </a>
+            <a href="#" className="hover:text-white">
+              Security
+            </a>
+            <a href="#" className="hover:text-white">
+              HIPAA
+            </a>
           </div>
         </div>
       </div>
