@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as DigitalBloodTwinRouteImport } from './routes/digital-blood-twin'
+import { Route as CommandCenterRouteImport } from './routes/command-center'
+import { Route as BloodBridgeRouteImport } from './routes/blood-bridge'
+import { Route as AiEngineRouteImport } from './routes/ai-engine'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalBloodTwinRoute = DigitalBloodTwinRouteImport.update({
+  id: '/digital-blood-twin',
+  path: '/digital-blood-twin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterRoute = CommandCenterRouteImport.update({
+  id: '/command-center',
+  path: '/command-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BloodBridgeRoute = BloodBridgeRouteImport.update({
+  id: '/blood-bridge',
+  path: '/blood-bridge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiEngineRoute = AiEngineRouteImport.update({
+  id: '/ai-engine',
+  path: '/ai-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/blood-bridge': typeof BloodBridgeRoute
+  '/command-center': typeof CommandCenterRoute
+  '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/impact': typeof ImpactRoute
+  '/stories': typeof StoriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/blood-bridge': typeof BloodBridgeRoute
+  '/command-center': typeof CommandCenterRoute
+  '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/impact': typeof ImpactRoute
+  '/stories': typeof StoriesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/blood-bridge': typeof BloodBridgeRoute
+  '/command-center': typeof CommandCenterRoute
+  '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/impact': typeof ImpactRoute
+  '/stories': typeof StoriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-engine'
+    | '/blood-bridge'
+    | '/command-center'
+    | '/digital-blood-twin'
+    | '/impact'
+    | '/stories'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-engine'
+    | '/blood-bridge'
+    | '/command-center'
+    | '/digital-blood-twin'
+    | '/impact'
+    | '/stories'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-engine'
+    | '/blood-bridge'
+    | '/command-center'
+    | '/digital-blood-twin'
+    | '/impact'
+    | '/stories'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiEngineRoute: typeof AiEngineRoute
+  BloodBridgeRoute: typeof BloodBridgeRoute
+  CommandCenterRoute: typeof CommandCenterRoute
+  DigitalBloodTwinRoute: typeof DigitalBloodTwinRoute
+  ImpactRoute: typeof ImpactRoute
+  StoriesRoute: typeof StoriesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-blood-twin': {
+      id: '/digital-blood-twin'
+      path: '/digital-blood-twin'
+      fullPath: '/digital-blood-twin'
+      preLoaderRoute: typeof DigitalBloodTwinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center': {
+      id: '/command-center'
+      path: '/command-center'
+      fullPath: '/command-center'
+      preLoaderRoute: typeof CommandCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blood-bridge': {
+      id: '/blood-bridge'
+      path: '/blood-bridge'
+      fullPath: '/blood-bridge'
+      preLoaderRoute: typeof BloodBridgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-engine': {
+      id: '/ai-engine'
+      path: '/ai-engine'
+      fullPath: '/ai-engine'
+      preLoaderRoute: typeof AiEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +177,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiEngineRoute: AiEngineRoute,
+  BloodBridgeRoute: BloodBridgeRoute,
+  CommandCenterRoute: CommandCenterRoute,
+  DigitalBloodTwinRoute: DigitalBloodTwinRoute,
+  ImpactRoute: ImpactRoute,
+  StoriesRoute: StoriesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

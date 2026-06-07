@@ -1,29 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import {
+  Hero,
+  MarqueeStrip,
+  AISection,
+  DirectCommSection,
+  ProblemSolutionSection,
+  ThalassemiaSection,
+  CommandCenterPreview,
+  ImpactSection,
+  FinalCTA,
+} from "@/components/sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Sanjeevani X — AI Blood Intelligence Platform" },
+      { name: "description", content: "India's first AI Blood Intelligence Platform. Voice AI, predictive analytics, and donor intelligence to help patients receive blood faster." },
+      { property: "og:title", content: "Sanjeevani X — AI Blood Intelligence Platform" },
+      { property: "og:description", content: "The AI infrastructure behind blood accessibility and thalassemia care." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
+      <Navbar />
+      <main>
+        <Hero />
+        <MarqueeStrip />
+        <AISection />
+        <DirectCommSection />
+        <ProblemSolutionSection />
+        <ThalassemiaSection />
+        <CommandCenterPreview />
+        <ImpactSection />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
 }
