@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { VapiMicOrb, VapiTalkButton } from "@/components/VapiTalkButton";
+import { useVapi } from "@/hooks/use-vapi";
 import {
   Mic,
   ArrowRight,
@@ -146,9 +148,7 @@ export function Hero() {
           <button className="glass rounded-xl px-6 py-3 font-medium hover:border-white/20 flex items-center gap-2">
             <Heart className="w-4 h-4" /> Become Donor
           </button>
-          <button className="glass-red rounded-xl px-6 py-3 font-medium flex items-center gap-2">
-            <Mic className="w-4 h-4" /> Talk to AI
-          </button>
+          <VapiTalkButton className="glass-red rounded-xl px-6 py-3 font-medium flex items-center gap-2 hover:scale-105 transition-transform" />
           <button className="text-white/70 hover:text-white px-4 py-3 flex items-center gap-2 text-sm">
             <Play className="w-3.5 h-3.5" /> Watch Demo
           </button>
@@ -212,7 +212,7 @@ export function MarqueeStrip() {
 
 // =============================================================================
 export function AISection() {
-  const [listening, setListening] = useState(false);
+  const { isActive: listening } = useVapi();
   return (
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,57,70,0.15),transparent_60%)]" />
@@ -249,12 +249,7 @@ export function AISection() {
               className="absolute inset-16 rounded-full border border-[#FF4D6D]/20"
             />
             <div className="absolute inset-24 rounded-full bg-gradient-to-br from-[#1a0408] to-black border border-[#E63946]/40 flex items-center justify-center">
-              <button
-                onClick={() => setListening((l) => !l)}
-                className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FF4D6D] to-[#E63946] flex items-center justify-center glow-red hover:scale-110 transition-transform"
-              >
-                <Mic className="w-10 h-10 text-white" />
-              </button>
+              <VapiMicOrb />
             </div>
             {/* Waveform */}
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-end gap-1 h-12">
@@ -296,10 +291,15 @@ export function AISection() {
                 12km. Trust score average 87%. Would you like me to start outreach calls now?
               </p>
               <div className="flex gap-2 mt-3">
-                <button className="text-xs bg-[#E63946] px-3 py-1.5 rounded-md font-medium">
-                  Start outreach
-                </button>
-                <button className="text-xs bg-white/5 px-3 py-1.5 rounded-md">Show donors</button>
+                <VapiTalkButton
+                  className="text-xs bg-[#E63946] px-3 py-1.5 rounded-md font-medium"
+                  inactiveLabel="Start outreach"
+                  activeLabel="End call"
+                  showError={false}
+                />
+                <Link to="/ai-engine" className="text-xs bg-white/5 px-3 py-1.5 rounded-md">
+                  Show donors
+                </Link>
               </div>
             </motion.div>
 
@@ -366,9 +366,11 @@ export function DirectCommSection() {
                 voice AI checks live donor availability across the network and responds instantly.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
-                <button className="bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-6 py-3 rounded-xl glow-red flex items-center gap-2 font-medium hover:scale-105 transition-transform">
-                  <Mic className="w-4 h-4" /> Start Voice Call
-                </button>
+                <VapiTalkButton
+                  className="bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white px-6 py-3 rounded-xl glow-red flex items-center gap-2 font-medium hover:scale-105 transition-transform"
+                  inactiveLabel="Start Voice Call"
+                  activeLabel="End call"
+                />
                 <button className="bg-black/40 backdrop-blur rounded-xl px-6 py-3 flex items-center gap-2 font-medium border border-white/10">
                   <Phone className="w-4 h-4" /> Call 1800-SANJ-XAI
                 </button>

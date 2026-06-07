@@ -53,7 +53,11 @@ function RequestBloodPage() {
     try {
       const data = await submitBloodRequest(form);
       if (data.ok) {
-        setResult({ ok: true, msg: "Request submitted to Sanjeevani Command.", id: data.request_id });
+        setResult({
+          ok: true,
+          msg: "Request submitted to Sanjeevani Command.",
+          id: data.request_id,
+        });
         setForm(initial);
       } else {
         setResult({ ok: false, msg: data.error });
