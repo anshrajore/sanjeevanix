@@ -34,7 +34,7 @@ export type MapHospitalPin = {
   stock?: number;
 };
 
-type DonorMapProps = {
+export type DonorMapProps = {
   center: GeoPoint;
   zoom?: number;
   donors?: MapDonorPin[];
