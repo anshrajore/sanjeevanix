@@ -12,7 +12,7 @@ export const Route = createFileRoute("/risk-map")({
 function RiskMapPage() {
   const cities = useMemo(() => cityStats(), []);
   const [selected, setSelected] = useState<string | null>(null);
-  const [window, setWindow] = useState<7 | 30 | 90>(30);
+  const [windowDays, setWindowDays] = useState<7 | 30 | 90>(30);
   const sel = selected ? cities.find((c) => c.city === selected) : null;
 
   return (
@@ -37,7 +37,7 @@ function RiskMapPage() {
                     key={d}
                     onClick={() => setWindow(d as 7 | 30 | 90)}
                     className={`text-xs px-3 py-1 rounded-full ${
-                      window === d ? "bg-[#FF4D6D] text-white" : "bg-white/5 text-white/60"
+                      windowDays === d ? "bg-[#FF4D6D] text-white" : "bg-white/5 text-white/60"
                     }`}
                   >
                     {d}d
