@@ -10,17 +10,32 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as RiskMapRouteImport } from './routes/risk-map'
+import { Route as RequestsRouteImport } from './routes/requests'
 import { Route as RequestBloodRouteImport } from './routes/request-blood'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as DonorsRouteImport } from './routes/donors'
 import { Route as DigitalBloodTwinRouteImport } from './routes/digital-blood-twin'
 import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as BloodBridgeRouteImport } from './routes/blood-bridge'
 import { Route as AiEngineRouteImport } from './routes/ai-engine'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DonorIdRouteImport } from './routes/donor.$id'
 
 const StoriesRoute = StoriesRouteImport.update({
   id: '/stories',
   path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiskMapRoute = RiskMapRouteImport.update({
+  id: '/risk-map',
+  path: '/risk-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RequestsRoute = RequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RequestBloodRoute = RequestBloodRouteImport.update({
@@ -31,6 +46,11 @@ const RequestBloodRoute = RequestBloodRouteImport.update({
 const ImpactRoute = ImpactRouteImport.update({
   id: '/impact',
   path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonorsRoute = DonorsRouteImport.update({
+  id: '/donors',
+  path: '/donors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DigitalBloodTwinRoute = DigitalBloodTwinRouteImport.update({
@@ -53,85 +73,130 @@ const AiEngineRoute = AiEngineRouteImport.update({
   path: '/ai-engine',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonorIdRoute = DonorIdRouteImport.update({
+  id: '/donor/$id',
+  path: '/donor/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donors': typeof DonorsRoute
   '/impact': typeof ImpactRoute
   '/request-blood': typeof RequestBloodRoute
+  '/requests': typeof RequestsRoute
+  '/risk-map': typeof RiskMapRoute
   '/stories': typeof StoriesRoute
+  '/donor/$id': typeof DonorIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donors': typeof DonorsRoute
   '/impact': typeof ImpactRoute
   '/request-blood': typeof RequestBloodRoute
+  '/requests': typeof RequestsRoute
+  '/risk-map': typeof RiskMapRoute
   '/stories': typeof StoriesRoute
+  '/donor/$id': typeof DonorIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donors': typeof DonorsRoute
   '/impact': typeof ImpactRoute
   '/request-blood': typeof RequestBloodRoute
+  '/requests': typeof RequestsRoute
+  '/risk-map': typeof RiskMapRoute
   '/stories': typeof StoriesRoute
+  '/donor/$id': typeof DonorIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/ai-engine'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donors'
     | '/impact'
     | '/request-blood'
+    | '/requests'
+    | '/risk-map'
     | '/stories'
+    | '/donor/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/ai-engine'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donors'
     | '/impact'
     | '/request-blood'
+    | '/requests'
+    | '/risk-map'
     | '/stories'
+    | '/donor/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/ai-engine'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donors'
     | '/impact'
     | '/request-blood'
+    | '/requests'
+    | '/risk-map'
     | '/stories'
+    | '/donor/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AiEngineRoute: typeof AiEngineRoute
   BloodBridgeRoute: typeof BloodBridgeRoute
   CommandCenterRoute: typeof CommandCenterRoute
   DigitalBloodTwinRoute: typeof DigitalBloodTwinRoute
+  DonorsRoute: typeof DonorsRoute
   ImpactRoute: typeof ImpactRoute
   RequestBloodRoute: typeof RequestBloodRoute
+  RequestsRoute: typeof RequestsRoute
+  RiskMapRoute: typeof RiskMapRoute
   StoriesRoute: typeof StoriesRoute
+  DonorIdRoute: typeof DonorIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +206,20 @@ declare module '@tanstack/react-router' {
       path: '/stories'
       fullPath: '/stories'
       preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/risk-map': {
+      id: '/risk-map'
+      path: '/risk-map'
+      fullPath: '/risk-map'
+      preLoaderRoute: typeof RiskMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/requests': {
+      id: '/requests'
+      path: '/requests'
+      fullPath: '/requests'
+      preLoaderRoute: typeof RequestsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/request-blood': {
@@ -155,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/impact'
       fullPath: '/impact'
       preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donors': {
+      id: '/donors'
+      path: '/donors'
+      fullPath: '/donors'
+      preLoaderRoute: typeof DonorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/digital-blood-twin': {
@@ -185,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiEngineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -192,29 +285,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donor/$id': {
+      id: '/donor/$id'
+      path: '/donor/$id'
+      fullPath: '/donor/$id'
+      preLoaderRoute: typeof DonorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AiEngineRoute: AiEngineRoute,
   BloodBridgeRoute: BloodBridgeRoute,
   CommandCenterRoute: CommandCenterRoute,
   DigitalBloodTwinRoute: DigitalBloodTwinRoute,
+  DonorsRoute: DonorsRoute,
   ImpactRoute: ImpactRoute,
   RequestBloodRoute: RequestBloodRoute,
+  RequestsRoute: RequestsRoute,
+  RiskMapRoute: RiskMapRoute,
   StoriesRoute: StoriesRoute,
+  DonorIdRoute: DonorIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
