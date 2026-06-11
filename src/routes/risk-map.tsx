@@ -35,7 +35,7 @@ function RiskMapPage() {
                 {[7, 30, 90].map((d) => (
                   <button
                     key={d}
-                    onClick={() => setWindow(d as 7 | 30 | 90)}
+                    onClick={() => setWindowDays(d as 7 | 30 | 90)}
                     className={`text-xs px-3 py-1 rounded-full ${
                       windowDays === d ? "bg-[#FF4D6D] text-white" : "bg-white/5 text-white/60"
                     }`}

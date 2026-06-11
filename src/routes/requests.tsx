@@ -9,7 +9,26 @@ import {
   cooldownStatus,
   type BBRequest,
 } from "@/lib/bloodbridge";
-import { Phone, Check, X, Clock, ShieldCheck, MapPin, AlertTriangle } from "lucide-react";
+import {
+  downloadICS,
+  googleCalendarUrl,
+  outlookCalendarUrl,
+  mapsUrl,
+  appleMapsUrl,
+  type CalendarEvent,
+} from "@/lib/calendar";
+import {
+  Phone,
+  Check,
+  X,
+  Clock,
+  ShieldCheck,
+  MapPin,
+  AlertTriangle,
+  Calendar,
+  Download,
+  Navigation,
+} from "lucide-react";
 
 export const Route = createFileRoute("/requests")({
   head: () => ({ meta: [{ title: "Blood Requests · Sanjeevani X" }] }),
@@ -22,6 +41,7 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
   const [step, setStep] = useState(0);
   const [calls, setCalls] = useState<Record<string, CallState>>({});
   const [otp, setOtp] = useState<string | null>(null);
+  const [confirmedDonorId, setConfirmedDonorId] = useState<string | null>(null);
   const queue = useMemo(
     () =>
       request.assigned_donor_pool
@@ -31,6 +51,49 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
     [request],
   );
 
+  // Appointment slot: 2 hours from now, rounded to next 15 min, 45-min visit.
+  const appointment = useMemo(() => {
+    const start = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    start.setMinutes(Math.ceil(start.getMinutes() / 15) * 15, 0, 0);
+    return { start, duration: 45 };
+  }, []);
+
+  const ward = useMemo(() => {
+    const wards = ["Ward 3B · Transfusion Bay", "Ward 5A · Day-Care Unit", "OPD-2 · Phlebotomy Room"];
+    return wards[Math.abs(request.request_id.charCodeAt(request.request_id.length - 1)) % wards.length];
+  }, [request.request_id]);
+
+  const confirmedDonor = confirmedDonorId
+    ? queue.find((d) => d.donor_id === confirmedDonorId)
+    : null;
+
+  const calendarEvent: CalendarEvent | null = confirmedDonor
+    ? {
+        title: `Blood Donation · ${request.patient_name} · ${request.blood_group}`,
+        description: [
+          `Recipient: ${request.patient_name} (${request.patient_type})`,
+          `Blood group: ${request.blood_group} · Units: ${request.units_needed}`,
+          `Hospital: ${request.hospital}, ${request.city}`,
+          `Ward: ${ward}`,
+          `Coordinator: +${request.hospital_contact}`,
+          `Directions: ${mapsUrl(`${request.hospital}, ${request.city}`)}`,
+          `Sanjeevani X confirmation OTP: ${otp ?? "(in SMS)"}`,
+          ``,
+          `Please arrive 15 minutes early. Carry photo ID. Stay hydrated.`,
+        ].join("\n"),
+        location: `${request.hospital}, ${ward}, ${request.city}`,
+        start: appointment.start,
+        durationMinutes: appointment.duration,
+        organizer: { name: "Sanjeevani X", email: "dispatch@sanjeevanix.app" },
+        attendees: [
+          { name: confirmedDonor.donor_name, email: `donor+${confirmedDonor.donor_id}@sanjeevanix.app` },
+          { name: request.patient_name, email: `patient+${request.request_id}@sanjeevanix.app` },
+          { name: `${request.hospital} Coordinator`, email: `hospital+${request.request_id}@sanjeevanix.app` },
+        ],
+        url: mapsUrl(`${request.hospital}, ${request.city}`),
+      }
+    : null;
+
   const dial = async (idx: number) => {
     if (idx >= queue.length) return;
     const d = queue[idx];
@@ -39,12 +102,12 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
     await new Promise((r) => setTimeout(r, 1200));
     setCalls((p) => ({ ...p, [d.donor_id]: "speaking" }));
     await new Promise((r) => setTimeout(r, 1800));
-    // 60% acceptance based on acceptance_prediction
     const accept = d.acceptance_prediction > 80 || Math.random() > 0.5;
     if (accept) {
       setCalls((p) => ({ ...p, [d.donor_id]: "accepted" }));
       const code = Math.floor(100000 + Math.random() * 900000).toString();
       setOtp(code);
+      setConfirmedDonorId(d.donor_id);
     } else {
       const out: CallState = Math.random() > 0.3 ? "declined" : "no-answer";
       setCalls((p) => ({ ...p, [d.donor_id]: out }));
@@ -79,16 +142,107 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
           </button>
         </div>
 
-        {otp && (
+        {otp && calendarEvent && confirmedDonor && (
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="mb-4 p-4 bg-emerald-500/10 border border-emerald-500/40 rounded-xl"
+            className="mb-4 p-5 bg-emerald-500/10 border border-emerald-500/40 rounded-xl space-y-4"
           >
-            <div className="text-xs text-emerald-300 font-mono mb-1">✓ DONOR CONFIRMED · OTP DISPATCHED</div>
-            <div className="font-display text-4xl font-bold tracking-[0.5em] text-emerald-300">{otp}</div>
-            <div className="text-xs text-white/50 mt-2">
-              Sent via SMS to donor + hospital coordinator. Calendar invite issued. Expires 4h after appointment.
+            <div>
+              <div className="text-xs text-emerald-300 font-mono mb-1">
+                ✓ DONOR CONFIRMED · OTP DISPATCHED
+              </div>
+              <div className="font-display text-4xl font-bold tracking-[0.5em] text-emerald-300">
+                {otp}
+              </div>
+              <div className="text-xs text-white/50 mt-2">
+                SMS sent to donor + hospital coordinator. Expires 4h after appointment.
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3 pt-3 border-t border-emerald-500/20">
+              <div className="text-xs space-y-1">
+                <div className="text-[10px] font-mono text-emerald-300/80 uppercase">
+                  Appointment
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <Calendar className="w-3.5 h-3.5 text-emerald-300" />
+                  {appointment.start.toLocaleString("en-IN", {
+                    weekday: "short",
+                    day: "numeric",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  · {appointment.duration} min
+                </div>
+                <div className="flex items-center gap-2 text-white/70">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-300" />
+                  {request.hospital}
+                </div>
+                <div className="text-white/60 pl-5">{ward}</div>
+                <div className="text-white/50 pl-5">
+                  Donor: {confirmedDonor.donor_name} ({confirmedDonor.blood_group})
+                </div>
+              </div>
+
+              <div className="text-xs space-y-2">
+                <div className="text-[10px] font-mono text-emerald-300/80 uppercase">
+                  Sync invite
+                </div>
+                <a
+                  href={googleCalendarUrl(calendarEvent)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 bg-white/5 hover:bg-white/10 transition px-3 py-2 rounded-lg"
+                >
+                  <Calendar className="w-3.5 h-3.5" /> Add to Google Calendar
+                </a>
+                <button
+                  onClick={() =>
+                    downloadICS(
+                      `sanjeevani-${request.request_id}-${confirmedDonor.donor_id}`,
+                      calendarEvent,
+                    )
+                  }
+                  className="w-full flex items-center gap-2 bg-white/5 hover:bg-white/10 transition px-3 py-2 rounded-lg text-left"
+                >
+                  <Download className="w-3.5 h-3.5" /> Apple Calendar / .ics
+                </button>
+                <a
+                  href={outlookCalendarUrl(calendarEvent)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 bg-white/5 hover:bg-white/10 transition px-3 py-2 rounded-lg"
+                >
+                  <Calendar className="w-3.5 h-3.5" /> Outlook
+                </a>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 pt-3 border-t border-emerald-500/20">
+              <a
+                href={mapsUrl(`${request.hospital}, ${request.city}`)}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-200 px-3 py-1.5 rounded-full"
+              >
+                <Navigation className="w-3 h-3" /> Google Maps directions
+              </a>
+              <a
+                href={appleMapsUrl(`${request.hospital}, ${request.city}`)}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-200 px-3 py-1.5 rounded-full"
+              >
+                <Navigation className="w-3 h-3" /> Apple Maps
+              </a>
+              <a
+                href={`tel:+${request.hospital_contact}`}
+                className="text-xs flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-200 px-3 py-1.5 rounded-full"
+              >
+                <Phone className="w-3 h-3" /> Call coordinator
+              </a>
             </div>
           </motion.div>
         )}
