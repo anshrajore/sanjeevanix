@@ -7,29 +7,18 @@ import { useRole } from "@/hooks/use-role";
 export function Navbar() {
   const [role] = useRole();
 
-  const linksByRole = {
-    donor: [
-      { to: "/donors", label: "Directory" },
-      { to: "/risk-map", label: "Risk Map" },
-      { to: "/impact", label: "My Impact" },
-      { to: "/stories", label: "Stories" },
-    ],
-    hospital: [
-      { to: "/requests", label: "Requests" },
-      { to: "/donors", label: "Directory" },
-      { to: "/risk-map", label: "Risk Map" },
-      { to: "/command-center", label: "Command" },
-    ],
-    admin: [
-      { to: "/admin", label: "Dashboard" },
-      { to: "/requests", label: "Requests" },
-      { to: "/risk-map", label: "Risk Map" },
-      { to: "/donors", label: "Donors" },
-      { to: "/command-center", label: "Command" },
-    ],
-  } as const;
-
-  const links = linksByRole[role];
+  // Show all tracking destinations in the nav so any role can monitor every
+  // surface (directory, live risk map, requests queue, admin command, impact).
+  const links = [
+    { to: "/requests", label: "Requests" },
+    { to: "/donors", label: "Directory" },
+    { to: "/risk-map", label: "Risk Map" },
+    { to: "/command-center", label: "Command" },
+    { to: "/admin", label: "Admin" },
+    { to: "/impact", label: "Impact" },
+    { to: "/stories", label: "Stories" },
+  ] as const;
+  void role;
 
   return (
     <motion.header
