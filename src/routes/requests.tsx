@@ -9,7 +9,26 @@ import {
   cooldownStatus,
   type BBRequest,
 } from "@/lib/bloodbridge";
-import { Phone, Check, X, Clock, ShieldCheck, MapPin, AlertTriangle } from "lucide-react";
+import {
+  downloadICS,
+  googleCalendarUrl,
+  outlookCalendarUrl,
+  mapsUrl,
+  appleMapsUrl,
+  type CalendarEvent,
+} from "@/lib/calendar";
+import {
+  Phone,
+  Check,
+  X,
+  Clock,
+  ShieldCheck,
+  MapPin,
+  AlertTriangle,
+  Calendar,
+  Download,
+  Navigation,
+} from "lucide-react";
 
 export const Route = createFileRoute("/requests")({
   head: () => ({ meta: [{ title: "Blood Requests · Sanjeevani X" }] }),
