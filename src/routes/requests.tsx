@@ -41,6 +41,7 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
   const [step, setStep] = useState(0);
   const [calls, setCalls] = useState<Record<string, CallState>>({});
   const [otp, setOtp] = useState<string | null>(null);
+  const [confirmedDonorId, setConfirmedDonorId] = useState<string | null>(null);
   const queue = useMemo(
     () =>
       request.assigned_donor_pool
@@ -50,6 +51,49 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
     [request],
   );
 
+  // Appointment slot: 2 hours from now, rounded to next 15 min, 45-min visit.
+  const appointment = useMemo(() => {
+    const start = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    start.setMinutes(Math.ceil(start.getMinutes() / 15) * 15, 0, 0);
+    return { start, duration: 45 };
+  }, []);
+
+  const ward = useMemo(() => {
+    const wards = ["Ward 3B · Transfusion Bay", "Ward 5A · Day-Care Unit", "OPD-2 · Phlebotomy Room"];
+    return wards[Math.abs(request.request_id.charCodeAt(request.request_id.length - 1)) % wards.length];
+  }, [request.request_id]);
+
+  const confirmedDonor = confirmedDonorId
+    ? queue.find((d) => d.donor_id === confirmedDonorId)
+    : null;
+
+  const calendarEvent: CalendarEvent | null = confirmedDonor
+    ? {
+        title: `Blood Donation · ${request.patient_name} · ${request.blood_group}`,
+        description: [
+          `Recipient: ${request.patient_name} (${request.patient_type})`,
+          `Blood group: ${request.blood_group} · Units: ${request.units_needed}`,
+          `Hospital: ${request.hospital}, ${request.city}`,
+          `Ward: ${ward}`,
+          `Coordinator: +${request.hospital_contact}`,
+          `Directions: ${mapsUrl(`${request.hospital}, ${request.city}`)}`,
+          `Sanjeevani X confirmation OTP: ${otp ?? "(in SMS)"}`,
+          ``,
+          `Please arrive 15 minutes early. Carry photo ID. Stay hydrated.`,
+        ].join("\n"),
+        location: `${request.hospital}, ${ward}, ${request.city}`,
+        start: appointment.start,
+        durationMinutes: appointment.duration,
+        organizer: { name: "Sanjeevani X", email: "dispatch@sanjeevanix.app" },
+        attendees: [
+          { name: confirmedDonor.donor_name, email: `donor+${confirmedDonor.donor_id}@sanjeevanix.app` },
+          { name: request.patient_name, email: `patient+${request.request_id}@sanjeevanix.app` },
+          { name: `${request.hospital} Coordinator`, email: `hospital+${request.request_id}@sanjeevanix.app` },
+        ],
+        url: mapsUrl(`${request.hospital}, ${request.city}`),
+      }
+    : null;
+
   const dial = async (idx: number) => {
     if (idx >= queue.length) return;
     const d = queue[idx];
@@ -58,12 +102,12 @@ function VapiCallSimulator({ request, onClose }: { request: BBRequest; onClose: 
     await new Promise((r) => setTimeout(r, 1200));
     setCalls((p) => ({ ...p, [d.donor_id]: "speaking" }));
     await new Promise((r) => setTimeout(r, 1800));
-    // 60% acceptance based on acceptance_prediction
     const accept = d.acceptance_prediction > 80 || Math.random() > 0.5;
     if (accept) {
       setCalls((p) => ({ ...p, [d.donor_id]: "accepted" }));
       const code = Math.floor(100000 + Math.random() * 900000).toString();
       setOtp(code);
+      setConfirmedDonorId(d.donor_id);
     } else {
       const out: CallState = Math.random() > 0.3 ? "declined" : "no-answer";
       setCalls((p) => ({ ...p, [d.donor_id]: out }));
