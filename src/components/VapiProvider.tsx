@@ -1,4 +1,3 @@
-import Vapi from "@vapi-ai/web";
 import {
   createContext,
   useCallback,
@@ -23,54 +22,70 @@ type VapiContextValue = {
 const VapiContext = createContext<VapiContextValue | null>(null);
 
 export function VapiProvider({ children }: { children: React.ReactNode }) {
-  const vapiRef = useRef<Vapi | null>(null);
+  // Use `any` to avoid SSR-time type evaluation of the browser-only SDK.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const vapiRef = useRef<any>(null);
   const [isActive, setIsActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const configured = Boolean(getVapiPublicKey());
 
-  useEffect(() => {
+  const ensureVapi = useCallback(async () => {
+    if (typeof window === "undefined") return null;
     const publicKey = getVapiPublicKey();
-    if (!publicKey) return;
+    if (!publicKey) return null;
+    if (vapiRef.current) return vapiRef.current;
+    try {
+      const mod = await import("@vapi-ai/web");
+      const Vapi = mod.default;
+      const vapi = new Vapi(publicKey);
+      vapi.on("call-start", () => {
+        setIsActive(true);
+        setError(null);
+      });
+      vapi.on("call-end", () => setIsActive(false));
+      vapi.on("error", (e: { message?: string }) => {
+        setError(e?.message ?? "Voice call failed.");
+        setIsActive(false);
+      });
+      vapiRef.current = vapi;
+      return vapi;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Voice SDK failed to load.");
+      return null;
+    }
+  }, []);
 
-    const vapi = new Vapi(publicKey);
-    vapi.on("call-start", () => {
-      setIsActive(true);
-      setError(null);
-    });
-    vapi.on("call-end", () => setIsActive(false));
-    vapi.on("error", (e: { message?: string }) => {
-      setError(e?.message ?? "Voice call failed.");
-      setIsActive(false);
-    });
-
-    vapiRef.current = vapi;
-
+  useEffect(() => {
     return () => {
-      vapi.stop();
+      try {
+        vapiRef.current?.stop?.();
+      } catch {
+        /* noop */
+      }
       vapiRef.current = null;
     };
   }, []);
 
   const startCall = useCallback(async () => {
-    const publicKey = getVapiPublicKey();
-    if (!publicKey) {
+    const vapi = await ensureVapi();
+    if (!vapi) {
       setError("Voice AI is not configured. Set VITE_VAPI_PUBLIC_KEY in your environment.");
       return;
     }
-
-    const vapi = vapiRef.current ?? new Vapi(publicKey);
-    vapiRef.current = vapi;
-
     try {
       setError(null);
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not start voice call.");
     }
-  }, []);
+  }, [ensureVapi]);
 
   const stopCall = useCallback(() => {
-    vapiRef.current?.stop();
+    try {
+      vapiRef.current?.stop?.();
+    } catch {
+      /* noop */
+    }
     setIsActive(false);
   }, []);
 
