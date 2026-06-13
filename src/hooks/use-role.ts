@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getRole, type Role } from "@/lib/bloodbridge";
 
 export function useRole(): [Role, (r: Role) => void] {
-  const [role, setRoleState] = useState<Role>("hospital");
+  const [role, setRoleState] = useState<Role>("admin");
   useEffect(() => {
     setRoleState(getRole());
     const h = () => setRoleState(getRole());

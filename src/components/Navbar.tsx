@@ -3,22 +3,48 @@ import { motion } from "framer-motion";
 import logoAsset from "@/assets/sanjeevani-logo.png.asset.json";
 import { RoleSwitcher } from "./RoleSwitcher";
 import { useRole } from "@/hooks/use-role";
+import { ROLE_META, type Role } from "@/lib/bloodbridge";
 
-export function Navbar() {
-  const [role] = useRole();
-
-  // Show all tracking destinations in the nav so any role can monitor every
-  // surface (directory, live risk map, requests queue, admin command, impact).
-  const links = [
+const ROLE_LINKS: Record<Role, { to: string; label: string }[]> = {
+  admin: [
+    { to: "/admin", label: "Executive" },
+    { to: "/national-command-map", label: "National Map" },
+    { to: "/command-center", label: "Command" },
     { to: "/requests", label: "Requests" },
     { to: "/donors", label: "Directory" },
     { to: "/risk-map", label: "Risk Map" },
+  ],
+  hospital: [
+    { to: "/hospital-dashboard", label: "Hospital" },
+    { to: "/requests", label: "Requests" },
     { to: "/command-center", label: "Command" },
-    { to: "/admin", label: "Admin" },
+    { to: "/donors", label: "Directory" },
+    { to: "/risk-map", label: "Risk Map" },
+  ],
+  blood_bank: [
+    { to: "/blood-bank", label: "Inventory" },
+    { to: "/national-command-map", label: "National Map" },
+    { to: "/requests", label: "Requests" },
+    { to: "/risk-map", label: "Risk Map" },
+  ],
+  donor: [
+    { to: "/donor-dashboard", label: "My Dashboard" },
+    { to: "/donors", label: "Directory" },
     { to: "/impact", label: "Impact" },
     { to: "/stories", label: "Stories" },
-  ] as const;
-  void role;
+  ],
+  patient: [
+    { to: "/patient-dashboard", label: "My Care" },
+    { to: "/digital-blood-twin", label: "Digital Twin" },
+    { to: "/stories", label: "Stories" },
+    { to: "/impact", label: "Impact" },
+  ],
+};
+
+export function Navbar() {
+  const [role] = useRole();
+  const links = ROLE_LINKS[role];
+  const accent = ROLE_META[role].accent;
 
   return (
     <motion.header
@@ -27,7 +53,10 @@ export function Navbar() {
       transition={{ duration: 0.6 }}
       className="fixed top-0 inset-x-0 z-50 px-4 pt-4"
     >
-      <div className="mx-auto max-w-7xl glass rounded-2xl flex items-center justify-between px-5 py-3 gap-4">
+      <div
+        className="mx-auto max-w-7xl glass rounded-2xl flex items-center justify-between px-5 py-3 gap-4"
+        style={{ boxShadow: `0 0 0 1px ${accent}22, 0 20px 60px -20px ${accent}30` }}
+      >
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <div className="bg-white rounded-lg px-2 py-1 flex items-center">
             <img

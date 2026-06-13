@@ -2,7 +2,15 @@ import donorsRaw from "@/data/donors.json";
 import requestsRaw from "@/data/requests.json";
 import { getCityCenter } from "./geo";
 
-export type Role = "donor" | "hospital" | "admin";
+export type Role = "donor" | "hospital" | "blood_bank" | "patient" | "admin";
+
+export const ROLE_META: Record<Role, { label: string; accent: string; home: string }> = {
+  admin: { label: "Super Admin", accent: "#FF4D6D", home: "/admin" },
+  hospital: { label: "Hospital", accent: "#22D3EE", home: "/hospital-dashboard" },
+  blood_bank: { label: "Blood Bank", accent: "#A78BFA", home: "/blood-bank" },
+  donor: { label: "Donor", accent: "#34D399", home: "/donor-dashboard" },
+  patient: { label: "Patient", accent: "#FBBF24", home: "/patient-dashboard" },
+};
 
 export type BBDonor = {
   donor_id: string;
@@ -146,9 +154,11 @@ export function riskLabel(risk: number): string {
 
 // ---- Role state (localStorage + event) ----
 const ROLE_KEY = "bb_role";
+const VALID_ROLES: Role[] = ["admin", "hospital", "blood_bank", "donor", "patient"];
 export function getRole(): Role {
-  if (typeof window === "undefined") return "hospital";
-  return (localStorage.getItem(ROLE_KEY) as Role) || "hospital";
+  if (typeof window === "undefined") return "admin";
+  const r = localStorage.getItem(ROLE_KEY) as Role;
+  return VALID_ROLES.includes(r) ? r : "admin";
 }
 export function setRole(r: Role) {
   localStorage.setItem(ROLE_KEY, r);
