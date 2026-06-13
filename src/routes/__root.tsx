@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { VapiProvider } from "../components/VapiProvider";
+import { SanjeevaniAssistant } from "../components/SanjeevaniAssistant";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -149,6 +150,7 @@ function RootComponent() {
       <VapiProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <SanjeevaniAssistant />
       </VapiProvider>
     </QueryClientProvider>
   );
