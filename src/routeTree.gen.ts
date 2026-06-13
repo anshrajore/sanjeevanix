@@ -13,11 +13,16 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as RiskMapRouteImport } from './routes/risk-map'
 import { Route as RequestsRouteImport } from './routes/requests'
 import { Route as RequestBloodRouteImport } from './routes/request-blood'
+import { Route as PatientDashboardRouteImport } from './routes/patient-dashboard'
+import { Route as NationalCommandMapRouteImport } from './routes/national-command-map'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as HospitalDashboardRouteImport } from './routes/hospital-dashboard'
 import { Route as DonorsRouteImport } from './routes/donors'
+import { Route as DonorDashboardRouteImport } from './routes/donor-dashboard'
 import { Route as DigitalBloodTwinRouteImport } from './routes/digital-blood-twin'
 import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as BloodBridgeRouteImport } from './routes/blood-bridge'
+import { Route as BloodBankRouteImport } from './routes/blood-bank'
 import { Route as AiEngineRouteImport } from './routes/ai-engine'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,14 +48,34 @@ const RequestBloodRoute = RequestBloodRouteImport.update({
   path: '/request-blood',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PatientDashboardRoute = PatientDashboardRouteImport.update({
+  id: '/patient-dashboard',
+  path: '/patient-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NationalCommandMapRoute = NationalCommandMapRouteImport.update({
+  id: '/national-command-map',
+  path: '/national-command-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ImpactRoute = ImpactRouteImport.update({
   id: '/impact',
   path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HospitalDashboardRoute = HospitalDashboardRouteImport.update({
+  id: '/hospital-dashboard',
+  path: '/hospital-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DonorsRoute = DonorsRouteImport.update({
   id: '/donors',
   path: '/donors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonorDashboardRoute = DonorDashboardRouteImport.update({
+  id: '/donor-dashboard',
+  path: '/donor-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DigitalBloodTwinRoute = DigitalBloodTwinRouteImport.update({
@@ -66,6 +91,11 @@ const CommandCenterRoute = CommandCenterRouteImport.update({
 const BloodBridgeRoute = BloodBridgeRouteImport.update({
   id: '/blood-bridge',
   path: '/blood-bridge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BloodBankRoute = BloodBankRouteImport.update({
+  id: '/blood-bank',
+  path: '/blood-bank',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiEngineRoute = AiEngineRouteImport.update({
@@ -93,11 +123,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
+  '/hospital-dashboard': typeof HospitalDashboardRoute
   '/impact': typeof ImpactRoute
+  '/national-command-map': typeof NationalCommandMapRoute
+  '/patient-dashboard': typeof PatientDashboardRoute
   '/request-blood': typeof RequestBloodRoute
   '/requests': typeof RequestsRoute
   '/risk-map': typeof RiskMapRoute
@@ -108,11 +143,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
+  '/hospital-dashboard': typeof HospitalDashboardRoute
   '/impact': typeof ImpactRoute
+  '/national-command-map': typeof NationalCommandMapRoute
+  '/patient-dashboard': typeof PatientDashboardRoute
   '/request-blood': typeof RequestBloodRoute
   '/requests': typeof RequestsRoute
   '/risk-map': typeof RiskMapRoute
@@ -124,11 +164,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
   '/digital-blood-twin': typeof DigitalBloodTwinRoute
+  '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
+  '/hospital-dashboard': typeof HospitalDashboardRoute
   '/impact': typeof ImpactRoute
+  '/national-command-map': typeof NationalCommandMapRoute
+  '/patient-dashboard': typeof PatientDashboardRoute
   '/request-blood': typeof RequestBloodRoute
   '/requests': typeof RequestsRoute
   '/risk-map': typeof RiskMapRoute
@@ -141,11 +186,16 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donor-dashboard'
     | '/donors'
+    | '/hospital-dashboard'
     | '/impact'
+    | '/national-command-map'
+    | '/patient-dashboard'
     | '/request-blood'
     | '/requests'
     | '/risk-map'
@@ -156,11 +206,16 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donor-dashboard'
     | '/donors'
+    | '/hospital-dashboard'
     | '/impact'
+    | '/national-command-map'
+    | '/patient-dashboard'
     | '/request-blood'
     | '/requests'
     | '/risk-map'
@@ -171,11 +226,16 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
     | '/digital-blood-twin'
+    | '/donor-dashboard'
     | '/donors'
+    | '/hospital-dashboard'
     | '/impact'
+    | '/national-command-map'
+    | '/patient-dashboard'
     | '/request-blood'
     | '/requests'
     | '/risk-map'
@@ -187,11 +247,16 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AiEngineRoute: typeof AiEngineRoute
+  BloodBankRoute: typeof BloodBankRoute
   BloodBridgeRoute: typeof BloodBridgeRoute
   CommandCenterRoute: typeof CommandCenterRoute
   DigitalBloodTwinRoute: typeof DigitalBloodTwinRoute
+  DonorDashboardRoute: typeof DonorDashboardRoute
   DonorsRoute: typeof DonorsRoute
+  HospitalDashboardRoute: typeof HospitalDashboardRoute
   ImpactRoute: typeof ImpactRoute
+  NationalCommandMapRoute: typeof NationalCommandMapRoute
+  PatientDashboardRoute: typeof PatientDashboardRoute
   RequestBloodRoute: typeof RequestBloodRoute
   RequestsRoute: typeof RequestsRoute
   RiskMapRoute: typeof RiskMapRoute
@@ -229,6 +294,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RequestBloodRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/patient-dashboard': {
+      id: '/patient-dashboard'
+      path: '/patient-dashboard'
+      fullPath: '/patient-dashboard'
+      preLoaderRoute: typeof PatientDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/national-command-map': {
+      id: '/national-command-map'
+      path: '/national-command-map'
+      fullPath: '/national-command-map'
+      preLoaderRoute: typeof NationalCommandMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/impact': {
       id: '/impact'
       path: '/impact'
@@ -236,11 +315,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hospital-dashboard': {
+      id: '/hospital-dashboard'
+      path: '/hospital-dashboard'
+      fullPath: '/hospital-dashboard'
+      preLoaderRoute: typeof HospitalDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/donors': {
       id: '/donors'
       path: '/donors'
       fullPath: '/donors'
       preLoaderRoute: typeof DonorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donor-dashboard': {
+      id: '/donor-dashboard'
+      path: '/donor-dashboard'
+      fullPath: '/donor-dashboard'
+      preLoaderRoute: typeof DonorDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/digital-blood-twin': {
@@ -262,6 +355,13 @@ declare module '@tanstack/react-router' {
       path: '/blood-bridge'
       fullPath: '/blood-bridge'
       preLoaderRoute: typeof BloodBridgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blood-bank': {
+      id: '/blood-bank'
+      path: '/blood-bank'
+      fullPath: '/blood-bank'
+      preLoaderRoute: typeof BloodBankRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai-engine': {
@@ -299,11 +399,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AiEngineRoute: AiEngineRoute,
+  BloodBankRoute: BloodBankRoute,
   BloodBridgeRoute: BloodBridgeRoute,
   CommandCenterRoute: CommandCenterRoute,
   DigitalBloodTwinRoute: DigitalBloodTwinRoute,
+  DonorDashboardRoute: DonorDashboardRoute,
   DonorsRoute: DonorsRoute,
+  HospitalDashboardRoute: HospitalDashboardRoute,
   ImpactRoute: ImpactRoute,
+  NationalCommandMapRoute: NationalCommandMapRoute,
+  PatientDashboardRoute: PatientDashboardRoute,
   RequestBloodRoute: RequestBloodRoute,
   RequestsRoute: RequestsRoute,
   RiskMapRoute: RiskMapRoute,
