@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SubPage } from "@/components/SubPage";
-import { DONORS, BLOOD_GROUPS, cooldownStatus, synthDonations } from "@/lib/bloodbridge";
+import { DONORS, BLOOD_GROUPS, cooldownStatus, synthDonations, type BBDonor } from "@/lib/bloodbridge";
 import { Search, Shield, Award, MapPin, Phone } from "lucide-react";
+import { DonorContactDialog } from "@/components/DonorContactDialog";
 
 export const Route = createFileRoute("/donors")({
   head: () => ({
@@ -22,6 +23,7 @@ function DonorsPage() {
   const [q, setQ] = useState("");
   const [group, setGroup] = useState<string>("all");
   const [city, setCity] = useState<string>("all");
+  const [contactDonor, setContactDonor] = useState<BBDonor | null>(null);
   const cities = useMemo(() => Array.from(new Set(DONORS.map((d) => d.city))).sort(), []);
 
   const filtered = useMemo(() => {
@@ -149,6 +151,7 @@ function DonorsPage() {
                 </Link>
                 <button
                   disabled={cd.state !== "available"}
+                  onClick={() => setContactDonor(d)}
                   className="flex-1 text-xs py-2 rounded-lg bg-gradient-to-r from-[#FF4D6D] to-[#E63946] text-white font-medium disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <Phone className="w-3 h-3 inline mr-1" /> AI Contact
@@ -158,6 +161,11 @@ function DonorsPage() {
           );
         })}
       </div>
+      <DonorContactDialog
+        donor={contactDonor}
+        open={!!contactDonor}
+        onClose={() => setContactDonor(null)}
+      />
     </SubPage>
   );
 }
