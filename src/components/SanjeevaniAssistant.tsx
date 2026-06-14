@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, Send, Sparkles, X } from "lucide-react";
+import { Mic, Send, Sparkles, X, Ear, Phone, PhoneOff } from "lucide-react";
+import { useVapi } from "@/hooks/use-vapi";
 
 type Msg = { role: "user" | "assistant"; text: string };
 
