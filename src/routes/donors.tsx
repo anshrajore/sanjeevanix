@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SubPage } from "@/components/SubPage";
-import { DONORS, BLOOD_GROUPS, cooldownStatus, synthDonations } from "@/lib/bloodbridge";
+import { DONORS, BLOOD_GROUPS, cooldownStatus, synthDonations, type BBDonor } from "@/lib/bloodbridge";
 import { Search, Shield, Award, MapPin, Phone } from "lucide-react";
+import { DonorContactDialog } from "@/components/DonorContactDialog";
 
 export const Route = createFileRoute("/donors")({
   head: () => ({
