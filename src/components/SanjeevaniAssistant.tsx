@@ -37,6 +37,14 @@ export function SanjeevaniAssistant() {
   ]);
   const [input, setInput] = useState("");
   const [listening, setListening] = useState(false);
+  const {
+    isActive: callActive,
+    wakeListening,
+    wakeSupported,
+    setWakeListening,
+    toggleCall,
+    error: vapiError,
+  } = useVapi();
 
   const send = (text: string) => {
     if (!text.trim()) return;
