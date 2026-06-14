@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, CheckCircle2, Calendar, Loader2, AlertTriangle, ExternalLink } from "lucide-react";
 import { triggerDonorContact, newRequestId, type ContactTriggerResponse } from "@/lib/n8n";
+import { scheduleDonationAppointment } from "@/lib/calendar.functions";
 import type { BBDonor } from "@/lib/bloodbridge";
 
 type Stage = "idle" | "triggering" | "calling" | "confirmed" | "scheduled" | "declined" | "error";
@@ -37,37 +38,63 @@ export function DonorContactDialog({
     const t1 = setTimeout(() => setStage("calling"), 600);
 
     try {
-      const data = await triggerDonorContact({
-        event: "donor.contact.triggered",
-        request_id: reqId,
-        donor: {
-          id: donor.donor_id,
-          name: donor.donor_name,
+      // 1. Fire n8n trigger (best-effort; don't block calendar on its failure)
+      let n8nData: ContactTriggerResponse | null = null;
+      try {
+        n8nData = await triggerDonorContact({
+          event: "donor.contact.triggered",
+          request_id: reqId,
+          donor: {
+            id: donor.donor_id,
+            name: donor.donor_name,
+            blood_group: donor.blood_group,
+            city: donor.city,
+            phone: donor.phone,
+          },
+          requested_at: new Date().toISOString(),
+          source: "sanjeevanix-web",
+        });
+      } catch (e) {
+        console.warn("n8n webhook failed:", e);
+      }
+
+      clearTimeout(t1);
+      setStage("confirmed");
+
+      // 2. Create the Google Calendar event on the Sanjeevani calendar
+      const cal = await scheduleDonationAppointment({
+        data: {
+          donor_name: donor.donor_name,
+          donor_id: donor.donor_id,
           blood_group: donor.blood_group,
           city: donor.city,
-          phone: donor.phone,
+          notes: `Triggered via /donors. Request ${reqId}.`,
         },
-        requested_at: new Date().toISOString(),
-        source: "sanjeevanix-web",
       });
-      clearTimeout(t1);
-      setResponse(data);
-      // Map upstream status to UI stage
-      const s = data.status ?? "triggered";
-      if (s === "scheduled" || data.appointment) setStage("scheduled");
-      else if (s === "confirmed" || data.donor_confirmation?.confirmed) setStage("confirmed");
-      else if (s === "declined") setStage("declined");
-      else if (s === "error") {
+
+      if (!cal.ok) {
         setStage("error");
-        setErrorMsg(data.message ?? "Workflow returned an error.");
-      } else {
-        // Workflow accepted but async — keep showing "calling"
-        setStage("calling");
+        setErrorMsg(cal.error ?? "Failed to create calendar event.");
+        return;
       }
+
+      setResponse({
+        status: "scheduled",
+        message: n8nData?.message,
+        appointment: {
+          starts_at: cal.starts_at,
+          ends_at: cal.ends_at,
+          location: cal.location,
+          calendar_event_id: cal.event_id,
+          calendar_link: cal.html_link,
+        },
+        donor_confirmation: { confirmed: true, confirmed_at: new Date().toISOString() },
+      });
+      setStage("scheduled");
     } catch (e) {
       clearTimeout(t1);
       setStage("error");
-      setErrorMsg(e instanceof Error ? e.message : "Could not reach n8n webhook.");
+      setErrorMsg(e instanceof Error ? e.message : "Something went wrong.");
     }
   };
 
