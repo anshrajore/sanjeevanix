@@ -74,13 +74,15 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const startCall = useCallback(async () => {
+    setError(null);
     const vapi = await ensureVapi();
     if (!vapi) {
-      setError("Voice AI is not configured. Set VITE_VAPI_PUBLIC_KEY in your environment.");
+      // ensureVapi already set a specific error (SDK load failure, etc.).
+      // Only set a generic fallback if nothing was captured.
+      setError((prev) => prev ?? "Could not initialize voice assistant. Please retry.");
       return;
     }
     try {
-      setError(null);
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not start voice call.");
