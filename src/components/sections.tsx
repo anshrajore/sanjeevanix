@@ -145,9 +145,12 @@ export function Hero() {
             Request Blood{" "}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <button className="glass rounded-xl px-6 py-3 font-medium hover:border-white/20 flex items-center gap-2">
+          <Link
+            to="/donor-dashboard"
+            className="glass rounded-xl px-6 py-3 font-medium hover:border-white/20 flex items-center gap-2"
+          >
             <Heart className="w-4 h-4" /> Become Donor
-          </button>
+          </Link>
           <VapiTalkButton className="glass-red rounded-xl px-6 py-3 font-medium flex items-center gap-2 hover:scale-105 transition-transform" />
           <button className="text-white/70 hover:text-white px-4 py-3 flex items-center gap-2 text-sm">
             <Play className="w-3.5 h-3.5" /> Watch Demo
