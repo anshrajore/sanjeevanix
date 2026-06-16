@@ -12,6 +12,7 @@ import {
   ImpactSection,
   FinalCTA,
 } from "@/components/sections";
+import { CityRiskDashboard } from "@/components/CityRiskDashboard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
