@@ -6,7 +6,7 @@ export const VAPI_SHARE_KEY =
   import.meta.env.VITE_VAPI_SHARE_KEY?.trim() || "46b36511-6c89-475f-ad76-9d87490f292d";
 
 export function getVapiPublicKey(): string | undefined {
-  return import.meta.env.VITE_VAPI_PUBLIC_KEY?.trim() || undefined;
+  return import.meta.env.VITE_VAPI_PUBLIC_KEY?.trim() || "a7dcd579-2f8d-4dcf-9fc5-d3630ce00a63";
 }
 
 export function isVapiConfigured(): boolean {
