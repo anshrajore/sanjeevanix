@@ -42,6 +42,7 @@ function Index() {
         <MarqueeStrip />
         <AISection />
         <DirectCommSection />
+        <CityRiskDashboard />
         <ProblemSolutionSection />
         <ThalassemiaSection />
         <CommandCenterPreview />
