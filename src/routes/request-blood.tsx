@@ -122,7 +122,22 @@ function RequestBloodPage() {
               Sanjeevani's AI will validate the request, score donor matches, and dispatch voice
               outreach in under three minutes.
             </p>
+            <button
+              type="button"
+              onClick={() => setEmergencyOpen(true)}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#E63946]/50 bg-[#E63946]/15 px-5 py-2.5 text-sm font-semibold text-[#FF4D6D] hover:bg-[#E63946]/25 transition"
+            >
+              <Siren className="w-4 h-4 animate-pulse" /> Emergency mode — notify donors now
+            </button>
           </motion.div>
+
+          <EmergencyRequestDialog
+            open={emergencyOpen}
+            onClose={() => setEmergencyOpen(false)}
+            defaultCity={form.city}
+            defaultGroup={form.blood_group}
+          />
+
 
           <form
             onSubmit={handleSubmit}
