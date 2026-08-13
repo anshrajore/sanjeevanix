@@ -14,7 +14,179 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      donor_eligibility: {
+        Row: {
+          answers: Json
+          created_at: string
+          deferral_reason: string | null
+          eligible: boolean
+          id: string
+          next_eligible_date: string | null
+          score: number
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          deferral_reason?: string | null
+          eligible?: boolean
+          id?: string
+          next_eligible_date?: string | null
+          score?: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          deferral_reason?: string | null
+          eligible?: boolean
+          id?: string
+          next_eligible_date?: string | null
+          score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      emergency_notifications: {
+        Row: {
+          channel: string
+          created_at: string
+          distance_km: number | null
+          donor_name: string
+          donor_ref: string
+          error: string | null
+          eta_minutes: number | null
+          id: string
+          masked_phone: string | null
+          match_score: number | null
+          provider_sid: string | null
+          request_id: string
+          status: string
+        }
+        Insert: {
+          channel?: string
+          created_at?: string
+          distance_km?: number | null
+          donor_name: string
+          donor_ref: string
+          error?: string | null
+          eta_minutes?: number | null
+          id?: string
+          masked_phone?: string | null
+          match_score?: number | null
+          provider_sid?: string | null
+          request_id: string
+          status?: string
+        }
+        Update: {
+          channel?: string
+          created_at?: string
+          distance_km?: number | null
+          donor_name?: string
+          donor_ref?: string
+          error?: string | null
+          eta_minutes?: number | null
+          id?: string
+          masked_phone?: string | null
+          match_score?: number | null
+          provider_sid?: string | null
+          request_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emergency_notifications_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      emergency_requests: {
+        Row: {
+          accepted_count: number
+          blood_group: string
+          city: string
+          contact_phone: string | null
+          created_at: string
+          created_by: string
+          eta_minutes: number | null
+          hospital: string | null
+          id: string
+          notified_count: number
+          patient_name: string
+          status: string
+          units_needed: number
+          updated_at: string
+          urgency: string
+        }
+        Insert: {
+          accepted_count?: number
+          blood_group: string
+          city: string
+          contact_phone?: string | null
+          created_at?: string
+          created_by: string
+          eta_minutes?: number | null
+          hospital?: string | null
+          id?: string
+          notified_count?: number
+          patient_name: string
+          status?: string
+          units_needed?: number
+          updated_at?: string
+          urgency?: string
+        }
+        Update: {
+          accepted_count?: number
+          blood_group?: string
+          city?: string
+          contact_phone?: string | null
+          created_at?: string
+          created_by?: string
+          eta_minutes?: number | null
+          hospital?: string | null
+          id?: string
+          notified_count?: number
+          patient_name?: string
+          status?: string
+          units_needed?: number
+          updated_at?: string
+          urgency?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          blood_group: string | null
+          city: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          blood_group?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          blood_group?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
