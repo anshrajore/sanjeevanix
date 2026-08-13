@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SubPage } from "@/components/SubPage";
 import { DonorTimeline } from "@/components/DonorTimeline";
+import { EligibilityForm } from "@/components/EligibilityForm";
+
 import { KpiCounter } from "@/components/KpiCounter";
 import { DONORS, donorBadges, synthDonations, cooldownStatus } from "@/lib/bloodbridge";
 import { downloadICS, googleCalendarUrl, outlookCalendarUrl, mapsUrl } from "@/lib/calendar";
