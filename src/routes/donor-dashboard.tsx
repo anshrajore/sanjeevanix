@@ -53,7 +53,10 @@ function DonorDashboard() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
+          <EligibilityForm />
+
           <DonorTimeline donor={donor} />
+
 
           <div className="glass rounded-2xl p-5">
             <div className="flex items-center justify-between mb-4">
