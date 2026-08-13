@@ -31,6 +31,9 @@ const initial: FormState = {
 };
 
 export const Route = createFileRoute("/request-blood")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    emergency: search.emergency === true || search.emergency === "true",
+  }),
   head: () => ({
     meta: [
       { title: "Request Blood · Sanjeevani X" },
@@ -38,16 +41,25 @@ export const Route = createFileRoute("/request-blood")({
         name: "description",
         content: "Submit a blood request to the Sanjeevani X AI coordination platform.",
       },
+      { property: "og:title", content: "Request Blood · Sanjeevani X" },
+      {
+        property: "og:description",
+        content:
+          "Submit a standard or emergency blood request and let Sanjeevani AI mobilise the nearest eligible donors.",
+      },
     ],
   }),
   component: RequestBloodPage,
 });
 
 function RequestBloodPage() {
+  const { emergency } = Route.useSearch();
+  const [emergencyOpen, setEmergencyOpen] = useState(emergency);
   const [form, setForm] = useState<FormState>(initial);
   const [location, setLocation] = useState<GeoPoint>(getCityCenter("Mumbai"));
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; msg: string; id?: string } | null>(null);
+
 
   const update = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
