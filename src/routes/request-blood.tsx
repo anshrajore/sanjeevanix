@@ -31,9 +31,10 @@ const initial: FormState = {
 };
 
 export const Route = createFileRoute("/request-blood")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    emergency: search.emergency === true || search.emergency === "true",
+  validateSearch: (search: Record<string, unknown>): { emergency?: boolean } => ({
+    emergency: search.emergency === true || search.emergency === "true" ? true : undefined,
   }),
+
   head: () => ({
     meta: [
       { title: "Request Blood · Sanjeevani X" },
