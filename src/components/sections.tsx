@@ -5,6 +5,8 @@ import { VapiMicOrb, VapiTalkButton } from "@/components/VapiTalkButton";
 import { useVapi } from "@/hooks/use-vapi";
 import {
   Mic,
+  Siren,
+
   ArrowRight,
   Play,
   Sparkles,
