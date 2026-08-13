@@ -5,6 +5,8 @@ import { VapiMicOrb, VapiTalkButton } from "@/components/VapiTalkButton";
 import { useVapi } from "@/hooks/use-vapi";
 import {
   Mic,
+  Siren,
+
   ArrowRight,
   Play,
   Sparkles,
@@ -152,9 +154,17 @@ export function Hero() {
             <Heart className="w-4 h-4" /> Become Donor
           </Link>
           <VapiTalkButton className="glass-red rounded-xl px-6 py-3 font-medium flex items-center gap-2 hover:scale-105 transition-transform" />
+          <Link
+            to="/request-blood"
+            search={{ emergency: true }}
+            className="rounded-xl px-6 py-3 font-semibold flex items-center gap-2 border border-[#E63946]/50 bg-[#E63946]/15 text-[#FF4D6D] hover:bg-[#E63946]/25 transition"
+          >
+            <Siren className="w-4 h-4 animate-pulse" /> Emergency Request
+          </Link>
           <button className="text-white/70 hover:text-white px-4 py-3 flex items-center gap-2 text-sm">
             <Play className="w-3.5 h-3.5" /> Watch Demo
           </button>
+
         </motion.div>
 
         {/* Stats */}

@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Droplet, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Droplet, CheckCircle2, AlertCircle, Loader2, Siren } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { LocationPicker } from "@/components/LocationPicker";
+import { EmergencyRequestDialog } from "@/components/EmergencyRequestDialog";
 import { submitBloodRequest, type BloodRequestInput } from "@/lib/blood-request";
 import { CITIES } from "@/lib/donor-matching";
 import { getCityCenter, type GeoPoint } from "@/lib/geo";
+
 
 type FormState = BloodRequestInput;
 
@@ -29,6 +31,10 @@ const initial: FormState = {
 };
 
 export const Route = createFileRoute("/request-blood")({
+  validateSearch: (search: Record<string, unknown>): { emergency?: boolean } => ({
+    emergency: search.emergency === true || search.emergency === "true" ? true : undefined,
+  }),
+
   head: () => ({
     meta: [
       { title: "Request Blood · Sanjeevani X" },
@@ -36,16 +42,26 @@ export const Route = createFileRoute("/request-blood")({
         name: "description",
         content: "Submit a blood request to the Sanjeevani X AI coordination platform.",
       },
+      { property: "og:title", content: "Request Blood · Sanjeevani X" },
+      {
+        property: "og:description",
+        content:
+          "Submit a standard or emergency blood request and let Sanjeevani AI mobilise the nearest eligible donors.",
+      },
     ],
   }),
   component: RequestBloodPage,
 });
 
 function RequestBloodPage() {
+  const { emergency } = Route.useSearch();
+  const [emergencyOpen, setEmergencyOpen] = useState(Boolean(emergency));
+
   const [form, setForm] = useState<FormState>(initial);
   const [location, setLocation] = useState<GeoPoint>(getCityCenter("Mumbai"));
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; msg: string; id?: string } | null>(null);
+
 
   const update = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -106,7 +122,22 @@ function RequestBloodPage() {
               Sanjeevani's AI will validate the request, score donor matches, and dispatch voice
               outreach in under three minutes.
             </p>
+            <button
+              type="button"
+              onClick={() => setEmergencyOpen(true)}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#E63946]/50 bg-[#E63946]/15 px-5 py-2.5 text-sm font-semibold text-[#FF4D6D] hover:bg-[#E63946]/25 transition"
+            >
+              <Siren className="w-4 h-4 animate-pulse" /> Emergency mode — notify donors now
+            </button>
           </motion.div>
+
+          <EmergencyRequestDialog
+            open={emergencyOpen}
+            onClose={() => setEmergencyOpen(false)}
+            defaultCity={form.city}
+            defaultGroup={form.blood_group}
+          />
+
 
           <form
             onSubmit={handleSubmit}

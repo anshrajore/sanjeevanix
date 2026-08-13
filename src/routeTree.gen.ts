@@ -23,6 +23,7 @@ import { Route as DigitalBloodTwinRouteImport } from './routes/digital-blood-twi
 import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as BloodBridgeRouteImport } from './routes/blood-bridge'
 import { Route as BloodBankRouteImport } from './routes/blood-bank'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiEngineRouteImport } from './routes/ai-engine'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -98,6 +99,11 @@ const BloodBankRoute = BloodBankRouteImport.update({
   path: '/blood-bank',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiEngineRoute = AiEngineRouteImport.update({
   id: '/ai-engine',
   path: '/ai-engine',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/auth': typeof AuthRoute
   '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/auth': typeof AuthRoute
   '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/ai-engine': typeof AiEngineRoute
+  '/auth': typeof AuthRoute
   '/blood-bank': typeof BloodBankRoute
   '/blood-bridge': typeof BloodBridgeRoute
   '/command-center': typeof CommandCenterRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/auth'
     | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/auth'
     | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/ai-engine'
+    | '/auth'
     | '/blood-bank'
     | '/blood-bridge'
     | '/command-center'
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AiEngineRoute: typeof AiEngineRoute
+  AuthRoute: typeof AuthRoute
   BloodBankRoute: typeof BloodBankRoute
   BloodBridgeRoute: typeof BloodBridgeRoute
   CommandCenterRoute: typeof CommandCenterRoute
@@ -364,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BloodBankRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-engine': {
       id: '/ai-engine'
       path: '/ai-engine'
@@ -399,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AiEngineRoute: AiEngineRoute,
+  AuthRoute: AuthRoute,
   BloodBankRoute: BloodBankRoute,
   BloodBridgeRoute: BloodBridgeRoute,
   CommandCenterRoute: CommandCenterRoute,

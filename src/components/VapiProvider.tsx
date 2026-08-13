@@ -10,15 +10,24 @@ import {
 
 import { VAPI_ASSISTANT_ID, getVapiPublicKey } from "@/lib/vapi-config";
 
+export type MicPermission = "unknown" | "prompt" | "granted" | "denied";
+
 type VapiContextValue = {
   isActive: boolean;
+  isConnecting: boolean;
   error: string | null;
+  /** True when the failure can be fixed by granting microphone access. */
+  needsMic: boolean;
+  micPermission: MicPermission;
   isConfigured: boolean;
   wakeListening: boolean;
   wakeSupported: boolean;
   startCall: () => Promise<void>;
   stopCall: () => void;
   toggleCall: () => void;
+  retry: () => void;
+  requestMicAccess: () => Promise<boolean>;
+  clearError: () => void;
   setWakeListening: (on: boolean) => void;
 };
 
@@ -36,21 +45,88 @@ function matchesWakeWord(transcript: string): boolean {
   return WAKE_PATTERNS.some((re) => re.test(transcript));
 }
 
+function isMicError(message: string): boolean {
+  return /permission|not-?allowed|denied|microphone|audio|NotFound|NotReadable|device/i.test(
+    message,
+  );
+}
+
 export function VapiProvider({ children }: { children: React.ReactNode }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const vapiRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recogRef = useRef<any>(null);
   const [isActive, setIsActive] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [needsMic, setNeedsMic] = useState(false);
+  const [micPermission, setMicPermission] = useState<MicPermission>("unknown");
   const [wakeListening, setWakeListeningState] = useState(false);
   const [wakeSupported, setWakeSupported] = useState(false);
   const configured = Boolean(getVapiPublicKey());
 
+  const fail = useCallback((message: string) => {
+    setError(message);
+    setNeedsMic(isMicError(message));
+    setIsConnecting(false);
+    setIsActive(false);
+  }, []);
+
+  const clearError = useCallback(() => {
+    setError(null);
+    setNeedsMic(false);
+  }, []);
+
+  // Track browser mic permission where the Permissions API is available.
+  useEffect(() => {
+    if (typeof navigator === "undefined" || !navigator.permissions?.query) return;
+    let status: PermissionStatus | null = null;
+    const onChange = () => {
+      if (status) setMicPermission(status.state as MicPermission);
+    };
+    navigator.permissions
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .query({ name: "microphone" as any })
+      .then((s) => {
+        status = s;
+        setMicPermission(s.state as MicPermission);
+        s.addEventListener("change", onChange);
+      })
+      .catch(() => setMicPermission("unknown"));
+    return () => status?.removeEventListener("change", onChange);
+  }, []);
+
+  const requestMicAccess = useCallback(async (): Promise<boolean> => {
+    if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+      fail("This browser can't access a microphone. Try Chrome, Edge or Safari.");
+      return false;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((t) => t.stop());
+      setMicPermission("granted");
+      clearError();
+      return true;
+    } catch (e) {
+      const name = e instanceof DOMException ? e.name : "";
+      setMicPermission(name === "NotAllowedError" ? "denied" : micPermission);
+      setNeedsMic(true);
+      setError(
+        name === "NotFoundError"
+          ? "No microphone found. Connect a mic or headset, then try again."
+          : "Microphone access is blocked. Allow the mic for this site in your browser's address bar, then retry.",
+      );
+      return false;
+    }
+  }, [clearError, fail, micPermission]);
+
   const ensureVapi = useCallback(async () => {
     if (typeof window === "undefined") return null;
     const publicKey = getVapiPublicKey();
-    if (!publicKey) return null;
+    if (!publicKey) {
+      fail("Voice AI key is missing. Set VITE_VAPI_PUBLIC_KEY to enable calls.");
+      return null;
+    }
     if (vapiRef.current) return vapiRef.current;
     try {
       const mod = await import("@vapi-ai/web");
@@ -58,36 +134,40 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       const vapi = new Vapi(publicKey);
       vapi.on("call-start", () => {
         setIsActive(true);
-        setError(null);
+        setIsConnecting(false);
+        clearError();
       });
-      vapi.on("call-end", () => setIsActive(false));
-      vapi.on("error", (e: { message?: string }) => {
-        setError(e?.message ?? "Voice call failed.");
+      vapi.on("call-end", () => {
         setIsActive(false);
+        setIsConnecting(false);
+      });
+      vapi.on("error", (e: { message?: string; error?: { message?: string } }) => {
+        fail(e?.message ?? e?.error?.message ?? "The voice call dropped. Please retry.");
       });
       vapiRef.current = vapi;
       return vapi;
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Voice SDK failed to load.");
+      fail(e instanceof Error ? e.message : "Voice engine failed to load. Check your connection.");
       return null;
     }
-  }, []);
+  }, [clearError, fail]);
 
   const startCall = useCallback(async () => {
-    setError(null);
+    clearError();
+    setIsConnecting(true);
+
+    const micOk = await requestMicAccess();
+    if (!micOk) return;
+
     const vapi = await ensureVapi();
-    if (!vapi) {
-      // ensureVapi already set a specific error (SDK load failure, etc.).
-      // Only set a generic fallback if nothing was captured.
-      setError((prev) => prev ?? "Could not initialize voice assistant. Please retry.");
-      return;
-    }
+    if (!vapi) return;
+
     try {
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not start voice call.");
+      fail(err instanceof Error ? err.message : "Could not start the voice call. Please retry.");
     }
-  }, [ensureVapi]);
+  }, [clearError, ensureVapi, fail, requestMicAccess]);
 
   const stopCall = useCallback(() => {
     try {
@@ -96,12 +176,18 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       /* noop */
     }
     setIsActive(false);
+    setIsConnecting(false);
   }, []);
 
   const toggleCall = useCallback(() => {
     if (isActive) stopCall();
     else void startCall();
   }, [isActive, startCall, stopCall]);
+
+  const retry = useCallback(() => {
+    clearError();
+    void startCall();
+  }, [clearError, startCall]);
 
   // --- Wake-word listener (Web Speech API) ---------------------------------
   useEffect(() => {
@@ -119,7 +205,7 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       const w = window as any;
       const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
       if (!SR) {
-        setError("Wake-word listening not supported in this browser. Try Chrome.");
+        setError("Wake-word listening isn't supported in this browser. Try Chrome.");
         return;
       }
       if (!on) {
@@ -152,7 +238,9 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
         };
         r.onerror = (e: { error?: string }) => {
           if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-            setError("Microphone access denied. Allow mic to enable wake-word.");
+            setMicPermission("denied");
+            setNeedsMic(true);
+            setError("Microphone access denied. Allow the mic to enable wake-word.");
             setWakeListeningState(false);
           }
         };
@@ -169,12 +257,12 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
         recogRef.current = r;
         r.start();
         setWakeListeningState(true);
-        setError(null);
+        clearError();
       } catch (e) {
         setError(e instanceof Error ? e.message : "Could not start wake-word listener.");
       }
     },
-    [startCall],
+    [clearError, startCall],
   );
 
   useEffect(() => {
@@ -197,16 +285,38 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo(
     () => ({
       isActive,
+      isConnecting,
       error,
+      needsMic,
+      micPermission,
       isConfigured: configured,
       wakeListening,
       wakeSupported,
       startCall,
       stopCall,
       toggleCall,
+      retry,
+      requestMicAccess,
+      clearError,
       setWakeListening,
     }),
-    [isActive, error, configured, wakeListening, wakeSupported, startCall, stopCall, toggleCall, setWakeListening],
+    [
+      isActive,
+      isConnecting,
+      error,
+      needsMic,
+      micPermission,
+      configured,
+      wakeListening,
+      wakeSupported,
+      startCall,
+      stopCall,
+      toggleCall,
+      retry,
+      requestMicAccess,
+      clearError,
+      setWakeListening,
+    ],
   );
 
   return <VapiContext.Provider value={value}>{children}</VapiContext.Provider>;

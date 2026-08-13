@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SubPage } from "@/components/SubPage";
 import { DonorTimeline } from "@/components/DonorTimeline";
+import { EligibilityForm } from "@/components/EligibilityForm";
+
 import { KpiCounter } from "@/components/KpiCounter";
 import { DONORS, donorBadges, synthDonations, cooldownStatus } from "@/lib/bloodbridge";
 import { downloadICS, googleCalendarUrl, outlookCalendarUrl, mapsUrl } from "@/lib/calendar";
@@ -53,7 +55,10 @@ function DonorDashboard() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
+          <EligibilityForm />
+
           <DonorTimeline donor={donor} />
+
 
           <div className="glass rounded-2xl p-5">
             <div className="flex items-center justify-between mb-4">
