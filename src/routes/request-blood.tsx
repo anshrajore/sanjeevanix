@@ -55,7 +55,8 @@ export const Route = createFileRoute("/request-blood")({
 
 function RequestBloodPage() {
   const { emergency } = Route.useSearch();
-  const [emergencyOpen, setEmergencyOpen] = useState(emergency);
+  const [emergencyOpen, setEmergencyOpen] = useState(Boolean(emergency));
+
   const [form, setForm] = useState<FormState>(initial);
   const [location, setLocation] = useState<GeoPoint>(getCityCenter("Mumbai"));
   const [submitting, setSubmitting] = useState(false);
