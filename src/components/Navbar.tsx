@@ -8,6 +8,7 @@ import { ROLE_META, type Role } from "@/lib/bloodbridge";
 const ROLE_LINKS: Record<Role, { to: string; label: string }[]> = {
   admin: [
     { to: "/admin", label: "Executive" },
+    { to: "/admin-console", label: "Admin Console" },
     { to: "/national-command-map", label: "National Map" },
     { to: "/command-center", label: "Command" },
     { to: "/requests", label: "Requests" },

@@ -3,7 +3,24 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
-import { Loader2, Lock, RefreshCw, ShieldCheck } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  ClipboardList,
+  Clock,
+  Loader2,
+  Lock,
+  Radio,
+  RefreshCw,
+  Send,
+  ShieldCheck,
+  Siren,
+  ThumbsDown,
+  ThumbsUp,
+  Timer,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 
 import { SubPage } from "@/components/SubPage";
 import { KpiCounter } from "@/components/KpiCounter";
@@ -182,20 +199,20 @@ function OverviewTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-        <KpiCounter label="Total requests" value={o.totalRequests} accent="#FF4D6D" />
-        <KpiCounter label="Open now" value={o.openRequests} accent="#FBBF24" live />
-        <KpiCounter label="Accepted" value={o.acceptedRequests} accent="#34D399" />
-        <KpiCounter label="Timed out" value={o.timedOutRequests} accent="#EF4444" />
-        <KpiCounter label="Acceptance" value={o.acceptanceRate} suffix="%" accent="#A78BFA" />
-        <KpiCounter label="Registered users" value={o.registeredUsers} accent="#22D3EE" />
+        <KpiCounter icon={Siren} label="Total requests" value={o.totalRequests} accent="#FF4D6D" />
+        <KpiCounter icon={Radio} label="Open now" value={o.openRequests} accent="#FBBF24" live />
+        <KpiCounter icon={CheckCircle2} label="Accepted" value={o.acceptedRequests} accent="#34D399" />
+        <KpiCounter icon={Clock} label="Timed out" value={o.timedOutRequests} accent="#EF4444" />
+        <KpiCounter icon={TrendingUp} label="Acceptance" value={o.acceptanceRate} suffix="%" accent="#A78BFA" />
+        <KpiCounter icon={Users} label="Registered users" value={o.registeredUsers} accent="#22D3EE" />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-        <KpiCounter label="Alerts sent" value={o.alertsSent} accent="#34D399" />
-        <KpiCounter label="Alerts failed" value={o.alertsFailed} accent="#EF4444" />
-        <KpiCounter label="Donor accepts" value={o.donorAccepts} accent="#34D399" />
-        <KpiCounter label="Donor declines" value={o.donorDeclines} accent="#FBBF24" />
-        <KpiCounter label="Avg ETA" value={o.avgEtaMinutes ?? 0} suffix="m" accent="#22D3EE" />
-        <KpiCounter label="Screenings" value={o.screenings} accent="#A78BFA" />
+        <KpiCounter icon={Send} label="Alerts sent" value={o.alertsSent} accent="#34D399" />
+        <KpiCounter icon={AlertTriangle} label="Alerts failed" value={o.alertsFailed} accent="#EF4444" />
+        <KpiCounter icon={ThumbsUp} label="Donor accepts" value={o.donorAccepts} accent="#34D399" />
+        <KpiCounter icon={ThumbsDown} label="Donor declines" value={o.donorDeclines} accent="#FBBF24" />
+        <KpiCounter icon={Timer} label="Avg ETA" value={o.avgEtaMinutes ?? 0} suffix="m" accent="#22D3EE" />
+        <KpiCounter icon={ClipboardList} label="Screenings" value={o.screenings} accent="#A78BFA" />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
