@@ -3,6 +3,8 @@ import { useState } from "react";
 import { SubPage } from "@/components/SubPage";
 import { DonorTimeline } from "@/components/DonorTimeline";
 import { EligibilityForm } from "@/components/EligibilityForm";
+import { EligibilityResultsSummary } from "@/components/EligibilityResultsSummary";
+
 
 import { KpiCounter } from "@/components/KpiCounter";
 import { DONORS, donorBadges, synthDonations, cooldownStatus } from "@/lib/bloodbridge";
