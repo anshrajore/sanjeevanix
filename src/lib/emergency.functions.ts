@@ -32,7 +32,7 @@ export const getEmergencyStatus = createServerFn({ method: "POST" })
     const { data: request, error } = await supabase
       .from("emergency_requests")
       .select(
-        "id, patient_name, blood_group, units_needed, city, hospital, status, eta_minutes, notified_count, accepted_count, created_at",
+        "id, patient_name, blood_group, units_needed, city, hospital, status, urgency, eta_minutes, notified_count, accepted_count, expires_at, resolution_note, created_at, updated_at",
       )
       .eq("id", data.requestId)
       .maybeSingle();
@@ -41,10 +41,37 @@ export const getEmergencyStatus = createServerFn({ method: "POST" })
 
     const { data: notifications, error: nErr } = await supabase
       .from("emergency_notifications")
-      .select("donor_ref, donor_name, masked_phone, status, error, distance_km, eta_minutes, match_score")
+      .select(
+        "id, donor_ref, donor_name, masked_phone, recipient_kind, status, error, response, responded_at, distance_km, eta_minutes, match_score, created_at",
+      )
       .eq("request_id", data.requestId)
       .order("created_at", { ascending: true });
     if (nErr) throw new Error(nErr.message);
 
     return { request, notifications: notifications ?? [] };
+  });
+
+/** Lists the signed-in user's own emergency requests, newest first. */
+export const listMyEmergencyRequests = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data, error } = await context.supabase
+      .from("emergency_requests")
+      .select(
+        "id, patient_name, blood_group, units_needed, city, hospital, status, eta_minutes, notified_count, accepted_count, expires_at, created_at",
+      )
+      .eq("created_by", context.userId)
+      .order("created_at", { ascending: false })
+      .limit(20);
+    if (error) throw new Error(error.message);
+    return data ?? [];
+  });
+
+/** Closes an expired request and notifies everyone involved. Owner-scoped by RLS. */
+export const expireEmergencyRequest = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ requestId: z.string().uuid() }).parse(input))
+  .handler(async ({ data, context }) => {
+    const { expireEmergency } = await import("./emergency.server");
+    return expireEmergency(context.supabase, data.requestId);
   });
