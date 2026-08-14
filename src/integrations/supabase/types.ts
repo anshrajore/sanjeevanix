@@ -47,6 +47,45 @@ export type Database = {
         }
         Relationships: []
       }
+      eligibility_audit: {
+        Row: {
+          answers: Json
+          created_at: string
+          deferral_reason: string | null
+          eligible: boolean
+          flags: Json
+          id: string
+          next_eligible_date: string | null
+          score: number
+          source: string
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          deferral_reason?: string | null
+          eligible?: boolean
+          flags?: Json
+          id?: string
+          next_eligible_date?: string | null
+          score?: number
+          source?: string
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          deferral_reason?: string | null
+          eligible?: boolean
+          flags?: Json
+          id?: string
+          next_eligible_date?: string | null
+          score?: number
+          source?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       emergency_notifications: {
         Row: {
           channel: string
@@ -60,7 +99,10 @@ export type Database = {
           masked_phone: string | null
           match_score: number | null
           provider_sid: string | null
+          recipient_kind: string
           request_id: string
+          responded_at: string | null
+          response: string | null
           status: string
         }
         Insert: {
@@ -75,7 +117,10 @@ export type Database = {
           masked_phone?: string | null
           match_score?: number | null
           provider_sid?: string | null
+          recipient_kind?: string
           request_id: string
+          responded_at?: string | null
+          response?: string | null
           status?: string
         }
         Update: {
@@ -90,7 +135,10 @@ export type Database = {
           masked_phone?: string | null
           match_score?: number | null
           provider_sid?: string | null
+          recipient_kind?: string
           request_id?: string
+          responded_at?: string | null
+          response?: string | null
           status?: string
         }
         Relationships: [
@@ -112,10 +160,12 @@ export type Database = {
           created_at: string
           created_by: string
           eta_minutes: number | null
+          expires_at: string
           hospital: string | null
           id: string
           notified_count: number
           patient_name: string
+          resolution_note: string | null
           status: string
           units_needed: number
           updated_at: string
@@ -129,10 +179,12 @@ export type Database = {
           created_at?: string
           created_by: string
           eta_minutes?: number | null
+          expires_at?: string
           hospital?: string | null
           id?: string
           notified_count?: number
           patient_name: string
+          resolution_note?: string | null
           status?: string
           units_needed?: number
           updated_at?: string
@@ -146,10 +198,12 @@ export type Database = {
           created_at?: string
           created_by?: string
           eta_minutes?: number | null
+          expires_at?: string
           hospital?: string | null
           id?: string
           notified_count?: number
           patient_name?: string
+          resolution_note?: string | null
           status?: string
           units_needed?: number
           updated_at?: string
@@ -187,15 +241,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "coordinator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -322,6 +403,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "coordinator", "user"],
+    },
   },
 } as const
