@@ -29,6 +29,7 @@ const saveSchema = z.object({
   score: z.number().int().min(0).max(100),
   deferralReason: z.string().max(300).nullable(),
   nextEligibleDate: z.string().max(20).nullable(),
+  source: z.string().trim().max(40).default("donor-dashboard"),
 });
 
 export const saveEligibility = createServerFn({ method: "POST" })
@@ -36,6 +37,8 @@ export const saveEligibility = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => saveSchema.parse(input))
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
+    const { riskFlags } = await import("./eligibility-flags");
+    const flags = riskFlags(data.answers);
 
     const { data: row, error } = await supabase
       .from("donor_eligibility")
@@ -52,6 +55,19 @@ export const saveEligibility = createServerFn({ method: "POST" })
 
     if (error) throw new Error(`Could not save your screening: ${error.message}`);
 
+    // Append-only audit trail: every submission is kept with its full answer set.
+    const { error: auditError } = await supabase.from("eligibility_audit").insert({
+      user_id: userId,
+      answers: data.answers,
+      flags,
+      eligible: data.eligible,
+      score: data.score,
+      deferral_reason: data.deferralReason,
+      next_eligible_date: data.nextEligibleDate,
+      source: data.source,
+    });
+    if (auditError) console.error("eligibility_audit insert failed", auditError.message);
+
     await supabase
       .from("profiles")
       .update({
@@ -62,7 +78,7 @@ export const saveEligibility = createServerFn({ method: "POST" })
       })
       .eq("id", userId);
 
-    return row;
+    return { ...row, flags };
   });
 
 export const getLatestEligibility = createServerFn({ method: "GET" })
@@ -79,4 +95,22 @@ export const getLatestEligibility = createServerFn({ method: "GET" })
 
     if (error) throw new Error(error.message);
     return data;
+  });
+
+/** Full append-only questionnaire history for the signed-in donor. */
+export const getEligibilityAudit = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabase, userId } = context;
+    const { data, error } = await supabase
+      .from("eligibility_audit")
+      .select(
+        "id, answers, flags, eligible, score, deferral_reason, next_eligible_date, source, created_at",
+      )
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(25);
+
+    if (error) throw new Error(error.message);
+    return data ?? [];
   });
