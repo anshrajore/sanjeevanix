@@ -2,39 +2,13 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Clock,
-  Loader2,
-  Lock,
-  Radio,
-  Siren,
-  X,
-} from "lucide-react";
+import { Clock, Loader2, Lock, Radio, Siren, X } from "lucide-react";
 
 import { useAuth } from "@/hooks/use-auth";
+import { EmergencyLivePanel } from "@/components/EmergencyLivePanel";
 import { dispatchEmergencyRequest } from "@/lib/emergency.functions";
 import { BLOOD_GROUPS, CITIES } from "@/lib/donor-matching";
-import { formatEta } from "@/lib/city-risk";
 
-type DonorOutcome = {
-  donorRef: string;
-  name: string;
-  maskedPhone: string | null;
-  status: string;
-  error: string | null;
-  distanceKm: number | null;
-  etaMinutes: number | null;
-  matchScore: number | null;
-};
-
-const STATUS_STYLE: Record<string, string> = {
-  sent: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  queued: "bg-white/5 text-white/50 border-white/10",
-  skipped: "bg-[#FFD166]/15 text-[#FFD166] border-[#FFD166]/30",
-  failed: "bg-[#E63946]/15 text-[#FF4D6D] border-[#E63946]/30",
-};
 
 export function EmergencyRequestDialog({
   open,
