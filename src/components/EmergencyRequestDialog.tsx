@@ -121,67 +121,11 @@ export function EmergencyRequestDialog({
           </div>
         ) : result ? (
           <div className="space-y-4">
-            <div className="grid grid-cols-3 gap-3">
-              <Stat label="Donors notified" value={`${result.notified}/${result.poolSize}`} />
-              <Stat
-                label="First donor ETA"
-                value={result.etaMinutes ? formatEta(result.etaMinutes) : "—"}
-              />
-              <Stat label="Search radius" value={`${result.radiusUsedKm} km`} />
-            </div>
-
-            <div className="flex items-center gap-2 text-xs">
-              {result.status === "notified" ? (
-                <span className="inline-flex items-center gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Pool alerted — awaiting donor
-                  confirmations
-                </span>
-              ) : result.status === "no_donors" ? (
-                <span className="inline-flex items-center gap-1.5 text-[#FFD166]">
-                  <AlertCircle className="w-3.5 h-3.5" /> No eligible donors matched. Widen the city
-                  or blood group.
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 text-[#FF4D6D]">
-                  <AlertCircle className="w-3.5 h-3.5" /> Messages could not be delivered — check
-                  the log below.
-                </span>
-              )}
-            </div>
-
-            <div className="rounded-xl border border-white/10 overflow-hidden">
-              <div className="grid grid-cols-12 text-[10px] uppercase tracking-wider text-white/40 px-3 py-2 border-b border-white/5">
-                <div className="col-span-5">Donor</div>
-                <div className="col-span-3">Distance / ETA</div>
-                <div className="col-span-2">Score</div>
-                <div className="col-span-2 text-right">Status</div>
-              </div>
-              <div className="divide-y divide-white/5 max-h-72 overflow-y-auto">
-                {result.donors.map((d) => (
-                  <div key={d.donorRef} className="grid grid-cols-12 items-center px-3 py-2.5 text-xs">
-                    <div className="col-span-5">
-                      <div className="text-white/85">{d.name}</div>
-                      <div className="text-[10px] text-white/35 font-mono">{d.maskedPhone}</div>
-                    </div>
-                    <div className="col-span-3 text-white/60">
-                      {d.distanceKm ?? "—"} km ·{" "}
-                      {d.etaMinutes ? formatEta(d.etaMinutes) : "—"}
-                    </div>
-                    <div className="col-span-2 font-mono text-[#FF4D6D]">{d.matchScore ?? "—"}</div>
-                    <div className="col-span-2 flex justify-end">
-                      <span
-                        title={d.error ?? undefined}
-                        className={`text-[10px] px-2 py-0.5 rounded-full border uppercase tracking-wider ${
-                          STATUS_STYLE[d.status] ?? STATUS_STYLE.queued
-                        }`}
-                      >
-                        {d.status}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <EmergencyLivePanel
+              requestId={result.requestId}
+              poolSize={result.poolSize}
+              radiusUsedKm={result.radiusUsedKm}
+            />
 
             <div className="flex flex-wrap gap-2">
               <button
@@ -200,6 +144,7 @@ export function EmergencyRequestDialog({
               </button>
             </div>
           </div>
+
         ) : (
           <form
             onSubmit={(e) => {
