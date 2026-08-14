@@ -46,7 +46,7 @@ export function EmergencyRequestDialog({
         etaMinutes: number | null;
         radiusUsedKm: number;
         expanded: boolean;
-        donors: DonorOutcome[];
+        expiresAt: string;
       }
     | undefined;
 
