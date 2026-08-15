@@ -130,12 +130,17 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     if (vapiRef.current) return vapiRef.current;
     try {
       const mod = await import("@vapi-ai/web");
+      type VapiConstructor = new (key: string) => {
+        on: (event: string, callback: (...args: any[]) => void) => void;
+        start: (assistantId: string) => Promise<unknown>;
+        stop: () => void;
+      };
       const candidate = mod.default as unknown;
-      const Vapi =
+      const Vapi: VapiConstructor | null =
         typeof candidate === "function"
-          ? candidate
+          ? (candidate as VapiConstructor)
           : typeof (candidate as { default?: unknown })?.default === "function"
-            ? (candidate as { default: new (key: string) => unknown }).default
+            ? (candidate as { default: VapiConstructor }).default
             : null;
       if (!Vapi) throw new Error("Voice engine loaded in an unsupported format. Refresh and retry.");
       const vapi = new Vapi(publicKey);
