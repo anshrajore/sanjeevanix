@@ -22,6 +22,11 @@ export type EmergencyInput = {
   city: string;
   hospital: string;
   contactPhone: string;
+  hospitalId: string;
+  hospitalContactPhone: string;
+  draftKey: string;
+  requesterChallengeId: string;
+  hospitalChallengeId: string;
   poolSize: number;
 };
 
@@ -88,6 +93,9 @@ export async function dispatchEmergency(
       city: input.city,
       hospital: input.hospital || null,
       contact_phone: input.contactPhone || null,
+      hospital_id: input.hospitalId || null,
+      hospital_contact_phone: input.hospitalContactPhone || null,
+      request_source: "emergency",
       urgency: "Critical",
       status: match.donors.length > 0 ? "dispatching" : "no_donors",
       eta_minutes: etaMinutes,
