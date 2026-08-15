@@ -1,97 +1,77 @@
-# SanjeevaniX 4.0 — Phase 1 Build Plan
+# Sanjeevani X — Voice, Emergency Operations & National Network
 
-Frontend-only showcase. Extends the existing demo role switcher and seeded JSON data — no Lovable Cloud, no real auth, no real VAPI/n8n/Twilio. All "real-time", "AI predictions", and "voice" surfaces are simulated visually (interval-driven state) so judges see the full experience.
+## Goal
+Fix Talk to AI first, then make every submitted emergency request visible and reviewable in one secure admin workflow with exports, advanced filters, notification recovery, lifecycle timelines, configurable alerts, realistic hospital mapping, and dual phone verification.
 
-## Scope (this phase)
+## 1. Repair and upgrade Talk to AI
+- Replace the fragile VAPI SDK loading path that produces `The superclass is not a constructor` with a browser-only, export-shape-safe adapter and clean instance re-creation after SDK errors.
+- Make every Talk to AI control call the same provider action directly; show distinct states for microphone permission, connecting, active, ended, provider rejection, and retry.
+- Upgrade wake mode to pause while a call is active, restart safely after a call, prevent duplicate recognizers/calls, and recognize common “Hey Sanjeevani” variations.
+- Keep the typed assistant available as a fallback, but never report a simulated voice call as successful.
 
-Four slices from your priority answer:
-1. Multi-role auth shell (5 roles) + 5 dashboards
-2. Patient live request tracker
-3. Donor dashboard + Google Calendar sync
-4. National Risk Map + Executive Admin KPIs
+## 2. Unify request creation and admin visibility
+- Move the normal blood request submission into the authenticated backend request workflow instead of leaving it only in browser storage/Google Sheet.
+- Keep Google Sheet sync as a secondary integration, not the source of truth; a sync failure will not hide a successfully created request.
+- Add a request type/source field so standard and emergency requests can be distinguished while both appear in Admin Console.
+- Invalidate/refetch admin request queries immediately and subscribe to live inserts/updates so newly submitted requests appear without waiting for the current polling interval.
+- Add explicit delivery states such as `delivery_failed` to filters and status rendering.
 
-Out of scope this phase (call out only): real Supabase Realtime, real VAPI calls, real Twilio SMS, real n8n, OpenClaw memory persistence, Blood Bank inventory writes, Blood Warriors case routing engine. Hooks/UI placeholders for these will exist but not be wired to live services.
+## 3. Request history and detailed timeline
+- Add an immutable `emergency_request_events` table for created, dispatched, searching, donor alerted, donor reply, accepted, ETA changed, fulfilled, cancelled, delivery failed, and timed out events.
+- Record events from dispatch, donor reply, admin status changes, ETA changes, notification retries, and timeout processing.
+- Render a vertical timeline/stepper in each request detail with timestamps, actor/channel, state, ETA, and failure reason.
+- Attach the requester’s latest eligibility/questionnaire audit summary and risk flags to the request detail when available.
 
-## 1. Role system — extend from 3 → 5
+## 4. Advanced Admin Console search
+- Add status, blood group, city, created-date range, request source/type, and risk-flag filters plus patient/hospital/request-ID search.
+- Apply filters server-side, sort newest first, paginate results, and provide reset/active-filter indicators.
+- Preserve strict admin authorization on every new server function; sensitive phone, donor reply, and questionnaire data never becomes public.
 
-`src/lib/bloodbridge.ts` and `src/hooks/use-role.ts`:
-- `Role = "admin" | "hospital" | "blood_bank" | "donor" | "patient"`
-- `RoleSwitcher` becomes a dropdown with 5 entries + per-role accent color
-- Each role pinned to a seeded identity (donor → `D001`, patient → first open request, hospital → `H001`, blood_bank → first hospital's inventory, admin → all)
-- `Navbar` shows role-scoped links + a "Switch role" pill
+## 5. CSV and PDF exports
+- Add per-request Export CSV and Export PDF actions.
+- Export request metadata, matching progress, ranked donor pool, masked contact data, donor replies, notification attempts/errors, complete lifecycle timeline, and linked questionnaire/risk audit.
+- Generate CSV in the browser from an admin-authorized export DTO; generate the printable PDF client-side from the same DTO to avoid adding a server runtime-incompatible PDF package.
+- Include request ID, export timestamp, and “confidential admin record” labeling.
 
-## 2. Five dashboards (new routes)
+## 6. Notification templates and resend operations
+- Add admin-only template management for SMS, email, WhatsApp, and push with event type, subject, body, enabled state, and safe placeholder preview.
+- Seed sensible templates for dispatch, donor alert, acceptance, ETA update, timeout, verification OTP, and delivery failure.
+- Add a delivery log with attempt number, provider message ID, error, retry timestamp, and admin actor.
+- In request detail, allow resending only failed/skipped notifications to a selected recipient/channel or retrying all failed notifications; every retry is audited.
 
-```
-src/routes/
-  admin.tsx                  (already exists — upgrade to Executive KPI grid)
-  hospital-dashboard.tsx     (NEW)
-  blood-bank.tsx             (NEW)
-  donor-dashboard.tsx        (NEW)
-  patient-dashboard.tsx      (NEW)
-```
+## 7. Admin-configurable alert rules
+- Add rules for “no donor accepted within X minutes,” delivery failure threshold, high-risk city shortage, critical blood group, request timeout approaching, and ETA breach.
+- Support severity, threshold/window, enabled state, recipient admins, and channels: in-app, SMS, email, and web push.
+- Evaluate immediate rules during request lifecycle writes and persist scheduled rule checks as auditable alert events; prevent duplicate alerts with idempotency keys and cooldowns.
+- Add an Admin Alerts inbox with unread counts, acknowledge/resolve actions, and links to affected requests.
+- Outbound channels degrade safely: in-app always works; SMS/email/push show “channel not configured” rather than pretending delivery. Browser push requires an explicit admin subscription.
 
-Each dashboard: glass cards, KPI strip, role-scoped data pulled from existing JSON (`donors.json`, `requests.json`, `hospitals.json`).
+## 8. Hospital network and realistic map
+- Replace the six-record map experience with two layers:
+  1. a curated India-wide hospital network with verified name, address, city/state, coordinates, switchboard phone, capabilities, and verification timestamp;
+  2. broader OpenStreetMap hospital discovery labeled “unverified” when phone/contact data is absent or not validated.
+- Add hospital search, city/state filters, marker clustering or bounded rendering, detail popovers, phone display, verification badge, directions link, and selected-hospital handoff into the request form.
+- Never claim “all hospitals” are verified; open-map records remain clearly separated from curated operational partners.
 
-## 3. Patient Live Request Tracker
+## 9. Dual phone OTP verification
+- Require OTP verification for the requester/coordinator number and the selected hospital contact before emergency dispatch.
+- Store only hashed OTP challenges, expiration, attempt count, verification time, phone purpose, and rate-limit metadata; never store plaintext OTPs.
+- Send OTP through the existing SMS connector, enforce expiry/attempt limits/resend cooldown, mask numbers in the UI/logs, and bind verification to the signed-in session and request draft.
+- A curated hospital’s registered number can be verified; unverified open-map hospitals require manual contact entry and verification.
 
-New component `LiveRequestTracker.tsx`:
-- 8-step visual progress bar (Created → Searching → Donors Found → Verification → Scheduled → In Progress → Blood Ready → Completed)
-- Auto-advances every 4s for demo (so judges see motion)
-- Shows assigned donor pool (primary 8 + backup 15), coordinator, hospital, expected arrival
-- Lives inside `patient-dashboard.tsx` + `thalassemia-care.tsx`
+## 10. Backend schema and security
+- Add tables for request events, notification templates/attempts, alert rules/events/subscriptions, hospital directory, and phone verification challenges using migrations with explicit grants, RLS, indexes, and admin policies.
+- Keep roles in `user_roles` and use `has_role`; no client-side admin trust.
+- Add narrow owner/admin policies and server functions; privileged connector usage stays server-side after role verification.
+- Run the database linter after migrations and resolve actionable security findings.
 
-## 4. Donor Dashboard + Calendar
+## 11. Validation
+- Reproduce and verify Talk to AI start/end/retry and wake-word behavior in a real browser, including denied microphone state.
+- Submit both a standard and emergency request and verify each appears live in Admin Console.
+- Verify filters, request timeline, CSV/PDF downloads, failed-notification resend, template edits, rule creation, alert inbox, hospital selection, and both OTP steps.
+- Check desktop and mobile layouts and confirm no sensitive unmasked contact data appears in non-admin views.
 
-`donor-dashboard.tsx`:
-- Profile card, trust score, donation reliability, availability toggle
-- Donor timeline (Registered → Verified → Matched → Scheduled → Completed → Recovery → Eligible Again) with cooldown countdown ("47 days remaining")
-- Upcoming appointment card with **Sync to Google Calendar / Apple / Outlook / .ics** buttons (already have `src/lib/calendar.ts`)
-- Donation history list + earned badges (reuse `donorBadges`)
-- "Hello Sanjeevani" floating voice assistant button (visual only, opens chat sheet)
-
-## 5. National Risk Map + Executive KPIs
-
-- `national-command-map.tsx` (NEW) — full-screen version of existing `RiskMap` with severity legend (Green/Yellow/Orange/Red/Dark Red), live counters in corner overlay, demand forecast slider
-- `admin.tsx` upgrade — Executive KPI grid: Total Donors, Active Requests, Patients Supported, Hospitals, Units Coordinated, Success Rate, Avg Fulfillment Time, AI Accuracy (mocked 94.2%), Donor Retention, Thalassemia Patients, Emergency Escalations, Lives Impacted. Live ticker. Animated counters.
-
-## 6. Sanjeevani AI floating assistant
-
-Bottom-right floating button on every page (`<SanjeevaniAssistant />` in `__root.tsx`):
-- Mic icon + chat icon
-- Opens a sheet with sample commands ("Find O- donor in Mumbai", "Show critical cases")
-- Returns scripted demo responses — no real LLM call this phase
-
-## Files touched
-
-NEW:
-- `src/routes/hospital-dashboard.tsx`
-- `src/routes/blood-bank.tsx`
-- `src/routes/donor-dashboard.tsx`
-- `src/routes/patient-dashboard.tsx`
-- `src/routes/national-command-map.tsx`
-- `src/components/LiveRequestTracker.tsx`
-- `src/components/DonorTimeline.tsx`
-- `src/components/KpiCounter.tsx`
-- `src/components/SanjeevaniAssistant.tsx`
-
-EDITED:
-- `src/lib/bloodbridge.ts` (extend Role union, per-role identities)
-- `src/hooks/use-role.ts` (5-role type)
-- `src/components/RoleSwitcher.tsx` (dropdown w/ 5 options)
-- `src/components/Navbar.tsx` (role-scoped nav)
-- `src/routes/__root.tsx` (mount floating assistant)
-- `src/routes/admin.tsx` (Executive KPI upgrade)
-
-## What you'll see when this ships
-
-- Role pill in navbar → switch between Admin / Hospital / Blood Bank / Donor / Patient
-- Each role lands on its own dashboard with role-relevant KPIs
-- Patient view shows the live progress bar animating through stages
-- Donor view shows cooldown countdown + working calendar sync buttons
-- `/national-command-map` is the wow page with heatmap + live counters
-- Floating Sanjeevani assistant on every page
-
-## Confirm before I build
-
-Reply "go" and I'll ship all of the above in one batch. If you want Lovable Cloud + real auth instead (which contradicts your demo-auth answer), say so and I'll re-plan.
+## Technical notes
+- The backend database becomes the source of truth; Google Sheet remains an optional mirror.
+- Automatic in-app alert evaluation is durable in the database. Timed outbound alert delivery will use a protected scheduled server endpoint; if the external scheduler/email sender is not connected, the UI will surface that configuration state without blocking core request handling.
+- “All hospitals” is implemented as a hybrid network because no trustworthy source guarantees complete, current names, coordinates, and phone numbers for every hospital in India.
