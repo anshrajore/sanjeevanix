@@ -6,6 +6,7 @@ import { Clock, Loader2, Lock, Radio, Siren, X } from "lucide-react";
 
 import { useAuth } from "@/hooks/use-auth";
 import { EmergencyLivePanel } from "@/components/EmergencyLivePanel";
+import { PhoneOtpField, type VerifiedPhone } from "@/components/PhoneOtpField";
 import { dispatchEmergencyRequest } from "@/lib/emergency.functions";
 import { BLOOD_GROUPS, CITIES } from "@/lib/donor-matching";
 
@@ -30,6 +31,9 @@ export function EmergencyRequestDialog({
   const [city, setCity] = useState(defaultCity);
   const [hospital, setHospital] = useState("");
   const [contactPhone, setContactPhone] = useState("");
+  const [hospitalContactPhone, setHospitalContactPhone] = useState("");
+  const [requesterVerification, setRequesterVerification] = useState<VerifiedPhone | null>(null);
+  const [hospitalVerification, setHospitalVerification] = useState<VerifiedPhone | null>(null);
 
   const mutation = useMutation({
     mutationFn: (payload: Parameters<typeof dispatch>[0]) => dispatch(payload),
@@ -131,6 +135,11 @@ export function EmergencyRequestDialog({
                   city,
                   hospital: hospital.trim(),
                   contactPhone: contactPhone.trim(),
+                  hospitalId: "",
+                  hospitalContactPhone: hospitalContactPhone.trim(),
+                  draftKey: requesterVerification?.draftKey ?? "",
+                  requesterChallengeId: requesterVerification?.challengeId ?? "",
+                  hospitalChallengeId: hospitalVerification?.challengeId ?? "",
                   poolSize: 8,
                 },
               } as Parameters<typeof dispatch>[0]);
@@ -197,6 +206,35 @@ export function EmergencyRequestDialog({
                   className={inputCls}
                 />
               </Field>
+              <Field label="Hospital phone">
+                <input
+                  maxLength={20}
+                  value={hospitalContactPhone}
+                  onChange={(e) => {
+                    setHospitalContactPhone(e.target.value);
+                    setHospitalVerification(null);
+                  }}
+                  placeholder="+91…"
+                  className={inputCls}
+                />
+              </Field>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3">
+              <PhoneOtpField
+                label="Verify requester phone"
+                phone={contactPhone}
+                purpose="requester"
+                draftKey={requesterVerification?.draftKey}
+                onVerified={setRequesterVerification}
+              />
+              <PhoneOtpField
+                label="Verify hospital phone"
+                phone={hospitalContactPhone}
+                purpose="hospital"
+                draftKey={requesterVerification?.draftKey}
+                onVerified={setHospitalVerification}
+              />
             </div>
 
             {mutation.isError && (
@@ -214,7 +252,7 @@ export function EmergencyRequestDialog({
               </p>
               <button
                 type="submit"
-                disabled={mutation.isPending}
+                disabled={mutation.isPending || !requesterVerification || !hospitalVerification || requesterVerification.draftKey !== hospitalVerification.draftKey}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#E63946] px-5 py-2.5 text-sm font-semibold disabled:opacity-50"
               >
                 {mutation.isPending ? (

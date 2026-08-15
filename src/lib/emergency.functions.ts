@@ -12,6 +12,11 @@ const dispatchSchema = z.object({
   city: z.string().trim().min(2).max(60),
   hospital: z.string().trim().max(120).default(""),
   contactPhone: z.string().trim().max(20).default(""),
+  hospitalId: z.string().trim().max(120).default(""),
+  hospitalContactPhone: z.string().trim().max(20).default(""),
+  draftKey: z.string().uuid(),
+  requesterChallengeId: z.string().uuid(),
+  hospitalChallengeId: z.string().uuid(),
   poolSize: z.number().int().min(1).max(12).default(8),
 });
 
@@ -19,6 +24,14 @@ export const dispatchEmergencyRequest = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => dispatchSchema.parse(input))
   .handler(async ({ data, context }) => {
+    const { assertVerifiedPhones } = await import("./phone-verification.server");
+    await assertVerifiedPhones(
+      context.supabase,
+      context.userId,
+      data.draftKey,
+      data.requesterChallengeId,
+      data.hospitalChallengeId,
+    );
     const { dispatchEmergency } = await import("./emergency.server");
     return dispatchEmergency(context.supabase, context.userId, data);
   });

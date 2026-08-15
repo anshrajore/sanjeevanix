@@ -130,7 +130,14 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     if (vapiRef.current) return vapiRef.current;
     try {
       const mod = await import("@vapi-ai/web");
-      const Vapi = mod.default;
+      const candidate = mod.default as unknown;
+      const Vapi =
+        typeof candidate === "function"
+          ? candidate
+          : typeof (candidate as { default?: unknown })?.default === "function"
+            ? (candidate as { default: new (key: string) => unknown }).default
+            : null;
+      if (!Vapi) throw new Error("Voice engine loaded in an unsupported format. Refresh and retry.");
       const vapi = new Vapi(publicKey);
       vapi.on("call-start", () => {
         setIsActive(true);
@@ -147,14 +154,26 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       vapiRef.current = vapi;
       return vapi;
     } catch (e) {
+      vapiRef.current = null;
       fail(e instanceof Error ? e.message : "Voice engine failed to load. Check your connection.");
       return null;
     }
   }, [clearError, fail]);
 
   const startCall = useCallback(async () => {
+    if (isConnecting || isActive) return;
     clearError();
     setIsConnecting(true);
+
+    if (recogRef.current) {
+      try {
+        recogRef.current.stop?.();
+      } catch {
+        /* noop */
+      }
+      recogRef.current = null;
+      setWakeListeningState(false);
+    }
 
     const micOk = await requestMicAccess();
     if (!micOk) return;
@@ -165,9 +184,15 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     try {
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
+      try {
+        vapi.stop?.();
+      } catch {
+        /* noop */
+      }
+      vapiRef.current = null;
       fail(err instanceof Error ? err.message : "Could not start the voice call. Please retry.");
     }
-  }, [clearError, ensureVapi, fail, requestMicAccess]);
+  }, [clearError, ensureVapi, fail, isActive, isConnecting, requestMicAccess]);
 
   const stopCall = useCallback(() => {
     try {
