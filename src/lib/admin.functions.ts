@@ -263,11 +263,13 @@ export const adminRetryNotification = createServerFn({ method: "POST" })
     if (error || !note) throw new Error(error?.message ?? "Notification not found.");
     if (note.status === "sent") throw new Error("This notification was already delivered.");
     const request = note.emergency_requests as Record<string, unknown>;
+    const requestId = typeof request.id === "string" ? request.id : null;
+    if (!requestId) throw new Error("The linked emergency request is invalid.");
     const phone = note.recipient_kind === "requester" ? String(request.contact_phone ?? "") : "";
     if (!phone) throw new Error("A retry destination is not available for this masked recipient.");
     const { sendMessage, toE164 } = await import("./emergency-notify.server");
-    const outcome = await sendMessage(toE164(phone), `SANJEEVANI X: Update for request ${request.id}. Status: ${request.status}.`, note.channel === "sms" ? "sms" : "whatsapp");
-    await admin.from("notification_attempts").insert({ request_id: request.id, notification_id: note.id, recipient_kind: note.recipient_kind, masked_recipient: note.masked_phone, channel: note.channel, status: outcome.status, provider_message_id: outcome.sid, error_message: outcome.error, initiated_by: context.userId });
+    const outcome = await sendMessage(toE164(phone), `SANJEEVANI X: Update for request ${requestId}. Status: ${String(request.status ?? "unknown")}.`, note.channel === "sms" ? "sms" : "whatsapp");
+    await admin.from("notification_attempts").insert({ request_id: requestId, notification_id: note.id, recipient_kind: note.recipient_kind, masked_recipient: note.masked_phone, channel: note.channel, status: outcome.status, provider_message_id: outcome.sid, error_message: outcome.error, initiated_by: context.userId });
     await admin.from("emergency_notifications").update({ status: outcome.status, provider_sid: outcome.sid, error: outcome.error }).eq("id", note.id);
     return outcome;
   });
