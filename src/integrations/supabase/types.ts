@@ -14,6 +14,162 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_alert_rules: {
+        Row: {
+          blood_group: string | null
+          channels: string[]
+          city: string | null
+          cooldown_minutes: number
+          created_at: string
+          created_by: string
+          enabled: boolean
+          id: string
+          name: string
+          recipient_user_ids: string[]
+          rule_type: string
+          severity: string
+          threshold_value: number
+          updated_at: string
+          updated_by: string | null
+          window_minutes: number
+        }
+        Insert: {
+          blood_group?: string | null
+          channels?: string[]
+          city?: string | null
+          cooldown_minutes?: number
+          created_at?: string
+          created_by: string
+          enabled?: boolean
+          id?: string
+          name: string
+          recipient_user_ids?: string[]
+          rule_type: string
+          severity?: string
+          threshold_value?: number
+          updated_at?: string
+          updated_by?: string | null
+          window_minutes?: number
+        }
+        Update: {
+          blood_group?: string | null
+          channels?: string[]
+          city?: string | null
+          cooldown_minutes?: number
+          created_at?: string
+          created_by?: string
+          enabled?: boolean
+          id?: string
+          name?: string
+          recipient_user_ids?: string[]
+          rule_type?: string
+          severity?: string
+          threshold_value?: number
+          updated_at?: string
+          updated_by?: string | null
+          window_minutes?: number
+        }
+        Relationships: []
+      }
+      admin_alerts: {
+        Row: {
+          acknowledged_at: string | null
+          channels: string[]
+          created_at: string
+          delivery_status: Json
+          id: string
+          idempotency_key: string
+          message: string
+          recipient_user_id: string | null
+          request_id: string | null
+          resolved_at: string | null
+          rule_id: string | null
+          severity: string
+          title: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          channels?: string[]
+          created_at?: string
+          delivery_status?: Json
+          id?: string
+          idempotency_key: string
+          message: string
+          recipient_user_id?: string | null
+          request_id?: string | null
+          resolved_at?: string | null
+          rule_id?: string | null
+          severity: string
+          title: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          channels?: string[]
+          created_at?: string
+          delivery_status?: Json
+          id?: string
+          idempotency_key?: string
+          message?: string
+          recipient_user_id?: string | null
+          request_id?: string | null
+          resolved_at?: string | null
+          rule_id?: string | null
+          severity?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_alerts_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "admin_alerts_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "admin_alert_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_push_subscriptions: {
+        Row: {
+          auth_key: string
+          created_at: string
+          enabled: boolean
+          endpoint: string
+          id: string
+          p256dh: string
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          auth_key: string
+          created_at?: string
+          enabled?: boolean
+          endpoint: string
+          id?: string
+          p256dh: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          auth_key?: string
+          created_at?: string
+          enabled?: boolean
+          endpoint?: string
+          id?: string
+          p256dh?: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       donor_eligibility: {
         Row: {
           answers: Json
@@ -151,6 +307,59 @@ export type Database = {
           },
         ]
       }
+      emergency_request_events: {
+        Row: {
+          actor_id: string | null
+          actor_kind: string
+          channel: string | null
+          created_at: string
+          detail: string | null
+          eta_minutes: number | null
+          event_type: string
+          id: string
+          metadata: Json
+          request_id: string
+          status: string | null
+          title: string
+        }
+        Insert: {
+          actor_id?: string | null
+          actor_kind?: string
+          channel?: string | null
+          created_at?: string
+          detail?: string | null
+          eta_minutes?: number | null
+          event_type: string
+          id?: string
+          metadata?: Json
+          request_id: string
+          status?: string | null
+          title: string
+        }
+        Update: {
+          actor_id?: string | null
+          actor_kind?: string
+          channel?: string | null
+          created_at?: string
+          detail?: string | null
+          eta_minutes?: number | null
+          event_type?: string
+          id?: string
+          metadata?: Json
+          request_id?: string
+          status?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emergency_request_events_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       emergency_requests: {
         Row: {
           accepted_count: number
@@ -162,10 +371,14 @@ export type Database = {
           eta_minutes: number | null
           expires_at: string
           hospital: string | null
+          hospital_contact_phone: string | null
+          hospital_id: string | null
           id: string
           notified_count: number
           patient_name: string
+          request_source: string
           resolution_note: string | null
+          risk_flags: Json
           status: string
           units_needed: number
           updated_at: string
@@ -181,10 +394,14 @@ export type Database = {
           eta_minutes?: number | null
           expires_at?: string
           hospital?: string | null
+          hospital_contact_phone?: string | null
+          hospital_id?: string | null
           id?: string
           notified_count?: number
           patient_name: string
+          request_source?: string
           resolution_note?: string | null
+          risk_flags?: Json
           status?: string
           units_needed?: number
           updated_at?: string
@@ -200,14 +417,253 @@ export type Database = {
           eta_minutes?: number | null
           expires_at?: string
           hospital?: string | null
+          hospital_contact_phone?: string | null
+          hospital_id?: string | null
           id?: string
           notified_count?: number
           patient_name?: string
+          request_source?: string
           resolution_note?: string | null
+          risk_flags?: Json
           status?: string
           units_needed?: number
           updated_at?: string
           urgency?: string
+        }
+        Relationships: []
+      }
+      hospital_directory: {
+        Row: {
+          active: boolean
+          address: string | null
+          blood_bank_available: boolean
+          capabilities: string[]
+          city: string
+          country: string
+          created_at: string
+          emergency_phone: string | null
+          external_id: string | null
+          id: string
+          latitude: number
+          longitude: number
+          name: string
+          phone: string | null
+          source: string
+          source_url: string | null
+          state: string
+          updated_at: string
+          verification_status: string
+          verified_at: string | null
+        }
+        Insert: {
+          active?: boolean
+          address?: string | null
+          blood_bank_available?: boolean
+          capabilities?: string[]
+          city: string
+          country?: string
+          created_at?: string
+          emergency_phone?: string | null
+          external_id?: string | null
+          id?: string
+          latitude: number
+          longitude: number
+          name: string
+          phone?: string | null
+          source?: string
+          source_url?: string | null
+          state: string
+          updated_at?: string
+          verification_status?: string
+          verified_at?: string | null
+        }
+        Update: {
+          active?: boolean
+          address?: string | null
+          blood_bank_available?: boolean
+          capabilities?: string[]
+          city?: string
+          country?: string
+          created_at?: string
+          emergency_phone?: string | null
+          external_id?: string | null
+          id?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          phone?: string | null
+          source?: string
+          source_url?: string | null
+          state?: string
+          updated_at?: string
+          verification_status?: string
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
+      notification_attempts: {
+        Row: {
+          attempt_number: number
+          channel: string
+          created_at: string
+          error_message: string | null
+          id: string
+          initiated_by: string | null
+          masked_recipient: string | null
+          metadata: Json
+          notification_id: string | null
+          provider_message_id: string | null
+          recipient_kind: string
+          request_id: string | null
+          status: string
+          template_id: string | null
+        }
+        Insert: {
+          attempt_number?: number
+          channel: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          initiated_by?: string | null
+          masked_recipient?: string | null
+          metadata?: Json
+          notification_id?: string | null
+          provider_message_id?: string | null
+          recipient_kind: string
+          request_id?: string | null
+          status?: string
+          template_id?: string | null
+        }
+        Update: {
+          attempt_number?: number
+          channel?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          initiated_by?: string | null
+          masked_recipient?: string | null
+          metadata?: Json
+          notification_id?: string | null
+          provider_message_id?: string | null
+          recipient_kind?: string
+          request_id?: string | null
+          status?: string
+          template_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_attempts_notification_id_fkey"
+            columns: ["notification_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_notifications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notification_attempts_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notification_attempts_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "notification_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_templates: {
+        Row: {
+          body: string
+          channel: string
+          created_at: string
+          created_by: string | null
+          enabled: boolean
+          event_type: string
+          id: string
+          name: string
+          subject: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          body: string
+          channel: string
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          event_type: string
+          id?: string
+          name: string
+          subject?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          body?: string
+          channel?: string
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          event_type?: string
+          id?: string
+          name?: string
+          subject?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      phone_verification_challenges: {
+        Row: {
+          attempts: number
+          consumed_at: string | null
+          created_at: string
+          draft_key: string
+          expires_at: string
+          id: string
+          masked_phone: string
+          max_attempts: number
+          otp_hash: string
+          phone_hash: string
+          purpose: string
+          resend_available_at: string
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          attempts?: number
+          consumed_at?: string | null
+          created_at?: string
+          draft_key: string
+          expires_at: string
+          id?: string
+          masked_phone: string
+          max_attempts?: number
+          otp_hash: string
+          phone_hash: string
+          purpose: string
+          resend_available_at: string
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          attempts?: number
+          consumed_at?: string | null
+          created_at?: string
+          draft_key?: string
+          expires_at?: string
+          id?: string
+          masked_phone?: string
+          max_attempts?: number
+          otp_hash?: string
+          phone_hash?: string
+          purpose?: string
+          resend_available_at?: string
+          user_id?: string
+          verified_at?: string | null
         }
         Relationships: []
       }
