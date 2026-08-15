@@ -61,8 +61,14 @@ export const adminListRequests = createServerFn({ method: "POST" })
       .object({
         status: z.string().trim().max(30).default("all"),
         city: z.string().trim().max(60).default("all"),
+        bloodGroup: z.string().trim().max(3).default("all"),
+        source: z.string().trim().max(30).default("all"),
+        riskFlag: z.string().trim().max(60).default("all"),
+        from: z.string().trim().max(40).default(""),
+        to: z.string().trim().max(40).default(""),
         search: z.string().trim().max(80).default(""),
         limit: z.number().int().min(1).max(200).default(60),
+        offset: z.number().int().min(0).default(0),
       })
       .parse(input ?? {}),
   )
@@ -188,4 +194,80 @@ export const adminSetRole = createServerFn({ method: "POST" })
       if (error) throw new Error(error.message);
     }
     return { ok: true };
+  });
+
+export const adminListTemplates = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { adminTemplates } = await import("./admin.server");
+    return adminTemplates(await adminClient());
+  });
+
+export const adminSaveTemplate = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), name: z.string().trim().min(2).max(80), subject: z.string().trim().max(160).default(""), body: z.string().trim().min(2).max(4000), enabled: z.boolean() }).parse(input))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const { error } = await (await adminClient()).from("notification_templates").update({ name: data.name, subject: data.subject || null, body: data.body, enabled: data.enabled, updated_by: context.userId }).eq("id", data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
+export const adminListAlertRules = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { adminAlertRules } = await import("./admin.server");
+    return adminAlertRules(await adminClient());
+  });
+
+export const adminSaveAlertRule = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ id: z.string().uuid().optional(), name: z.string().trim().min(2).max(100), ruleType: z.enum(["no_acceptance", "delivery_failures", "city_shortage", "critical_blood_group", "timeout_approaching", "eta_breach"]), severity: z.enum(["medium", "high", "critical"]), thresholdValue: z.number().min(0).max(10000), windowMinutes: z.number().int().min(1).max(1440), channels: z.array(z.enum(["in_app", "sms", "email", "push"])).min(1), enabled: z.boolean() }).parse(input))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const admin = await adminClient();
+    const row = { name: data.name, rule_type: data.ruleType, severity: data.severity, threshold_value: data.thresholdValue, window_minutes: data.windowMinutes, channels: data.channels, enabled: data.enabled, created_by: context.userId, updated_by: context.userId };
+    const result = data.id ? await admin.from("admin_alert_rules").update(row).eq("id", data.id) : await admin.from("admin_alert_rules").insert(row);
+    if (result.error) throw new Error(result.error.message);
+    return { ok: true };
+  });
+
+export const adminListAlerts = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { adminAlerts } = await import("./admin.server");
+    return adminAlerts(await adminClient());
+  });
+
+export const adminUpdateAlert = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ id: z.string().uuid(), action: z.enum(["acknowledge", "resolve"]) }).parse(input))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const patch = data.action === "acknowledge" ? { acknowledged_at: new Date().toISOString() } : { resolved_at: new Date().toISOString() };
+    const { error } = await (await adminClient()).from("admin_alerts").update(patch).eq("id", data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
+export const adminRetryNotification = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ notificationId: z.string().uuid() }).parse(input))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const admin = await adminClient();
+    const { data: note, error } = await admin.from("emergency_notifications").select("*, emergency_requests(*)").eq("id", data.notificationId).single();
+    if (error || !note) throw new Error(error?.message ?? "Notification not found.");
+    if (note.status === "sent") throw new Error("This notification was already delivered.");
+    const request = note.emergency_requests as Record<string, unknown>;
+    const phone = note.recipient_kind === "requester" ? String(request.contact_phone ?? "") : "";
+    if (!phone) throw new Error("A retry destination is not available for this masked recipient.");
+    const { sendMessage, toE164 } = await import("./emergency-notify.server");
+    const outcome = await sendMessage(toE164(phone), `SANJEEVANI X: Update for request ${request.id}. Status: ${request.status}.`, note.channel === "sms" ? "sms" : "whatsapp");
+    await admin.from("notification_attempts").insert({ request_id: request.id, notification_id: note.id, recipient_kind: note.recipient_kind, masked_recipient: note.masked_phone, channel: note.channel, status: outcome.status, provider_message_id: outcome.sid, error_message: outcome.error, initiated_by: context.userId });
+    await admin.from("emergency_notifications").update({ status: outcome.status, provider_sid: outcome.sid, error: outcome.error }).eq("id", note.id);
+    return outcome;
   });

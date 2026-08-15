@@ -3,12 +3,18 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 export type AdminRequestFilter = {
   status: string;
   city: string;
+  bloodGroup: string;
+  source: string;
+  riskFlag: string;
+  from: string;
+  to: string;
   search: string;
   limit: number;
+  offset: number;
 };
 
 const REQUEST_LIST_FIELDS =
-  "id, created_by, patient_name, blood_group, units_needed, city, hospital, contact_phone, urgency, status, eta_minutes, notified_count, accepted_count, expires_at, resolution_note, created_at, updated_at";
+  "id, created_by, patient_name, blood_group, units_needed, city, hospital, hospital_id, hospital_contact_phone, contact_phone, urgency, status, request_source, risk_flags, eta_minutes, notified_count, accepted_count, expires_at, resolution_note, created_at, updated_at";
 
 /** Every emergency request across the platform, newest first. */
 export async function adminRequests(admin: SupabaseClient, filter: AdminRequestFilter) {
@@ -16,13 +22,18 @@ export async function adminRequests(admin: SupabaseClient, filter: AdminRequestF
     .from("emergency_requests")
     .select(REQUEST_LIST_FIELDS)
     .order("created_at", { ascending: false })
-    .limit(filter.limit);
+    .range(filter.offset, filter.offset + filter.limit - 1);
 
   if (filter.status !== "all") query = query.eq("status", filter.status);
   if (filter.city !== "all") query = query.eq("city", filter.city);
+  if (filter.bloodGroup !== "all") query = query.eq("blood_group", filter.bloodGroup);
+  if (filter.source !== "all") query = query.eq("request_source", filter.source);
+  if (filter.riskFlag !== "all") query = query.contains("risk_flags", [filter.riskFlag]);
+  if (filter.from) query = query.gte("created_at", filter.from);
+  if (filter.to) query = query.lte("created_at", filter.to);
   if (filter.search.trim()) {
     const s = `%${filter.search.trim()}%`;
-    query = query.or(`patient_name.ilike.${s},hospital.ilike.${s},city.ilike.${s}`);
+    query = query.or(`id::text.ilike.${s},patient_name.ilike.${s},hospital.ilike.${s},city.ilike.${s}`);
   }
 
   const { data, error } = await query;
@@ -39,7 +50,7 @@ export async function adminRequestDetail(admin: SupabaseClient, requestId: strin
   if (error) throw new Error(error.message);
   if (!request) return null;
 
-  const [{ data: notifications }, { data: requester }] = await Promise.all([
+  const [{ data: notifications }, { data: requester }, { data: events }, { data: screening }] = await Promise.all([
     admin
       .from("emergency_notifications")
       .select(
@@ -52,9 +63,39 @@ export async function adminRequestDetail(admin: SupabaseClient, requestId: strin
       .select("id, full_name, phone, city, blood_group")
       .eq("id", request.created_by)
       .maybeSingle(),
+    admin
+      .from("emergency_request_events")
+      .select("id, event_type, title, detail, actor_kind, channel, status, eta_minutes, metadata, created_at")
+      .eq("request_id", requestId)
+      .order("created_at", { ascending: true }),
+    admin
+      .from("eligibility_audit")
+      .select("id, answers, flags, eligible, score, deferral_reason, next_eligible_date, source, created_at")
+      .eq("user_id", request.created_by)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
-  return { request, notifications: notifications ?? [], requester: requester ?? null };
+  return { request, notifications: notifications ?? [], requester: requester ?? null, events: events ?? [], screening: screening ?? null };
+}
+
+export async function adminTemplates(admin: SupabaseClient) {
+  const { data, error } = await admin.from("notification_templates").select("*").order("event_type");
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function adminAlertRules(admin: SupabaseClient) {
+  const { data, error } = await admin.from("admin_alert_rules").select("*").order("created_at");
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function adminAlerts(admin: SupabaseClient) {
+  const { data, error } = await admin.from("admin_alerts").select("*").order("created_at", { ascending: false }).limit(100);
+  if (error) throw new Error(error.message);
+  return data ?? [];
 }
 
 /** Platform-wide operational metrics for the admin console. */
