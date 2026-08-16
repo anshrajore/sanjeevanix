@@ -834,3 +834,419 @@ function ErrorBox({ error }: { error: unknown }) {
     </p>
   );
 }
+
+const RULE_TYPES = [
+  "no_acceptance",
+  "delivery_failures",
+  "city_shortage",
+  "critical_blood_group",
+  "timeout_approaching",
+  "eta_breach",
+] as const;
+const SEVERITIES = ["medium", "high", "critical"] as const;
+const CHANNELS = ["in_app", "sms", "email", "push"] as const;
+
+type RuleDraft = {
+  id?: string;
+  name: string;
+  ruleType: (typeof RULE_TYPES)[number];
+  severity: (typeof SEVERITIES)[number];
+  thresholdValue: number;
+  windowMinutes: number;
+  channels: Array<(typeof CHANNELS)[number]>;
+  enabled: boolean;
+};
+
+const NEW_RULE: RuleDraft = {
+  name: "",
+  ruleType: "no_acceptance",
+  severity: "high",
+  thresholdValue: 1,
+  windowMinutes: 20,
+  channels: ["in_app"],
+  enabled: true,
+};
+
+function AlertsTab() {
+  const listRules = useServerFn(adminListAlertRules);
+  const saveRule = useServerFn(adminSaveAlertRule);
+  const listAlerts = useServerFn(adminListAlerts);
+  const updateAlert = useServerFn(adminUpdateAlert);
+  const queryClient = useQueryClient();
+  const [draft, setDraft] = useState<RuleDraft>(NEW_RULE);
+
+  const rules = useQuery({ queryKey: ["admin-alert-rules"], queryFn: () => listRules() });
+  const alerts = useQuery({
+    queryKey: ["admin-alerts"],
+    queryFn: () => listAlerts(),
+    refetchInterval: 30_000,
+  });
+
+  const save = useMutation({
+    mutationFn: (value: RuleDraft) => saveRule({ data: value }),
+    onSuccess: () => {
+      setDraft(NEW_RULE);
+      void queryClient.invalidateQueries({ queryKey: ["admin-alert-rules"] });
+    },
+  });
+
+  const act = useMutation({
+    mutationFn: (value: { id: string; action: "acknowledge" | "resolve" }) =>
+      updateAlert({ data: value }),
+    onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["admin-alerts"] }),
+  });
+
+  const unread = (alerts.data ?? []).filter((a) => !a.acknowledged_at && !a.resolved_at).length;
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="glass rounded-2xl p-5 space-y-3">
+        <div className="text-xs font-mono uppercase tracking-wider text-white/40">
+          {draft.id ? "Edit alert rule" : "New alert rule"}
+        </div>
+        <Field label="Rule name">
+          <input
+            value={draft.name}
+            onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+            placeholder="No donor accepted within 20 minutes"
+            className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+          />
+        </Field>
+        <div className="grid grid-cols-2 gap-2">
+          <Field label="Trigger">
+            <Choice
+              value={draft.ruleType}
+              onChange={(v) => setDraft({ ...draft, ruleType: v as RuleDraft["ruleType"] })}
+              options={[...RULE_TYPES]}
+            />
+          </Field>
+          <Field label="Severity">
+            <Choice
+              value={draft.severity}
+              onChange={(v) => setDraft({ ...draft, severity: v as RuleDraft["severity"] })}
+              options={[...SEVERITIES]}
+            />
+          </Field>
+          <Field label="Threshold">
+            <input
+              type="number"
+              min={0}
+              value={draft.thresholdValue}
+              onChange={(e) => setDraft({ ...draft, thresholdValue: Number(e.target.value) })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+          <Field label="Window (minutes)">
+            <input
+              type="number"
+              min={1}
+              value={draft.windowMinutes}
+              onChange={(e) => setDraft({ ...draft, windowMinutes: Number(e.target.value) })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+        </div>
+        <div>
+          <span className="text-[10px] uppercase tracking-wider text-white/35">Channels</span>
+          <div className="flex flex-wrap gap-2 mt-1.5">
+            {CHANNELS.map((channel) => {
+              const on = draft.channels.includes(channel);
+              return (
+                <button
+                  key={channel}
+                  type="button"
+                  onClick={() =>
+                    setDraft({
+                      ...draft,
+                      channels: on
+                        ? draft.channels.filter((c) => c !== channel)
+                        : [...draft.channels, channel],
+                    })
+                  }
+                  className={`text-[11px] rounded-lg px-2.5 py-1.5 border ${
+                    on
+                      ? "bg-[#FF4D6D]/15 border-[#FF4D6D]/40 text-white"
+                      : "bg-white/5 border-white/10 text-white/50"
+                  }`}
+                >
+                  {channel}
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-[10px] text-white/35 mt-1.5">
+            In-app always delivers. SMS, email and push only deliver when that channel is
+            configured; otherwise the alert is recorded as “channel not configured”.
+          </p>
+        </div>
+        <label className="flex items-center gap-2 text-[11px] text-white/60">
+          <input
+            type="checkbox"
+            checked={draft.enabled}
+            onChange={(e) => setDraft({ ...draft, enabled: e.target.checked })}
+          />
+          Rule enabled
+        </label>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            disabled={save.isPending || draft.name.trim().length < 2 || draft.channels.length === 0}
+            onClick={() => save.mutate(draft)}
+            className="inline-flex items-center gap-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#E63946] px-3 py-2 disabled:opacity-40"
+          >
+            {save.isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Bell className="w-3.5 h-3.5" />}
+            {draft.id ? "Update rule" : "Create rule"}
+          </button>
+          {draft.id && (
+            <button
+              type="button"
+              onClick={() => setDraft(NEW_RULE)}
+              className="text-xs rounded-xl border border-white/10 bg-white/5 px-3 py-2"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+        {save.isError && <ErrorBox error={save.error} />}
+
+        <div className="pt-2 border-t border-white/5">
+          <div className="text-xs font-mono uppercase tracking-wider text-white/40 mb-2">
+            Configured rules
+          </div>
+          {rules.isLoading ? (
+            <Loading />
+          ) : (
+            <div className="divide-y divide-white/5">
+              {(rules.data ?? []).map((rule) => (
+                <button
+                  key={rule.id}
+                  type="button"
+                  onClick={() =>
+                    setDraft({
+                      id: rule.id,
+                      name: rule.name,
+                      ruleType: rule.rule_type as RuleDraft["ruleType"],
+                      severity: rule.severity as RuleDraft["severity"],
+                      thresholdValue: Number(rule.threshold_value),
+                      windowMinutes: rule.window_minutes,
+                      channels: (rule.channels ?? ["in_app"]) as RuleDraft["channels"],
+                      enabled: rule.enabled,
+                    })
+                  }
+                  className="w-full text-left py-2 text-xs hover:bg-white/[0.03]"
+                >
+                  <div className="text-white/85">{rule.name}</div>
+                  <div className="text-[10px] text-white/40">
+                    {rule.rule_type} · {rule.severity} · {rule.threshold_value} in{" "}
+                    {rule.window_minutes}m · {(rule.channels ?? []).join(", ")} ·{" "}
+                    {rule.enabled ? "enabled" : "disabled"}
+                  </div>
+                </button>
+              ))}
+              {(rules.data ?? []).length === 0 && <Empty>No alert rules yet.</Empty>}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="glass rounded-2xl p-5">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-xs font-mono uppercase tracking-wider text-white/40">
+            Alert inbox
+          </div>
+          <span className="text-[11px] text-[#FF4D6D]">{unread} unread</span>
+        </div>
+        {alerts.isLoading ? (
+          <Loading />
+        ) : alerts.isError ? (
+          <ErrorBox error={alerts.error} />
+        ) : (
+          <div className="divide-y divide-white/5 max-h-[560px] overflow-y-auto">
+            {(alerts.data ?? []).map((alert) => (
+              <div key={alert.id} className="py-2.5 text-xs">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="text-white/85 flex items-center gap-1.5">
+                      <AlertTriangle
+                        className={`w-3.5 h-3.5 ${
+                          alert.severity === "critical" ? "text-[#FF4D6D]" : "text-amber-400"
+                        }`}
+                      />
+                      {alert.title}
+                    </div>
+                    <p className="text-[11px] text-white/50 mt-0.5">{alert.message}</p>
+                    <div className="text-[10px] text-white/35 mt-1">
+                      {new Date(alert.created_at).toLocaleString("en-IN")} ·{" "}
+                      {(alert.channels ?? []).join(", ")}
+                      {alert.resolved_at
+                        ? " · resolved"
+                        : alert.acknowledged_at
+                          ? " · acknowledged"
+                          : ""}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    {!alert.acknowledged_at && !alert.resolved_at && (
+                      <button
+                        type="button"
+                        onClick={() => act.mutate({ id: alert.id, action: "acknowledge" })}
+                        className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[10px]"
+                      >
+                        Acknowledge
+                      </button>
+                    )}
+                    {!alert.resolved_at && (
+                      <button
+                        type="button"
+                        onClick={() => act.mutate({ id: alert.id, action: "resolve" })}
+                        className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[10px]"
+                      >
+                        Resolve
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {(alerts.data ?? []).length === 0 && <Empty>No alerts raised yet.</Empty>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TemplatesTab() {
+  const listTemplates = useServerFn(adminListTemplates);
+  const saveTemplate = useServerFn(adminSaveTemplate);
+  const queryClient = useQueryClient();
+  const [editing, setEditing] = useState<{
+    id: string;
+    name: string;
+    subject: string;
+    body: string;
+    enabled: boolean;
+  } | null>(null);
+
+  const templates = useQuery({ queryKey: ["admin-templates"], queryFn: () => listTemplates() });
+  const save = useMutation({
+    mutationFn: (value: NonNullable<typeof editing>) => saveTemplate({ data: value }),
+    onSuccess: () => {
+      setEditing(null);
+      void queryClient.invalidateQueries({ queryKey: ["admin-templates"] });
+    },
+  });
+
+  if (templates.isLoading) return <Loading />;
+  if (templates.isError) return <ErrorBox error={templates.error} />;
+
+  const preview = (body: string) =>
+    body
+      .replace(/\{\{patient_name\}\}/g, "Asha Verma")
+      .replace(/\{\{blood_group\}\}/g, "O-")
+      .replace(/\{\{hospital\}\}/g, "AIIMS Delhi")
+      .replace(/\{\{city\}\}/g, "New Delhi")
+      .replace(/\{\{eta_minutes\}\}/g, "18")
+      .replace(/\{\{otp\}\}/g, "482913");
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="rounded-2xl border border-white/10 divide-y divide-white/5">
+        {(templates.data ?? []).map((template) => (
+          <button
+            key={template.id}
+            type="button"
+            onClick={() =>
+              setEditing({
+                id: template.id,
+                name: template.name,
+                subject: template.subject ?? "",
+                body: template.body,
+                enabled: template.enabled,
+              })
+            }
+            className={`w-full text-left px-3 py-2.5 text-xs hover:bg-white/[0.03] ${
+              editing?.id === template.id ? "bg-white/[0.05]" : ""
+            }`}
+          >
+            <div className="text-white/85">{template.name}</div>
+            <div className="text-[10px] text-white/40">
+              {template.event_type} · {template.channel} ·{" "}
+              {template.enabled ? "enabled" : "disabled"}
+            </div>
+          </button>
+        ))}
+        {(templates.data ?? []).length === 0 && <Empty>No templates seeded.</Empty>}
+      </div>
+
+      <div className="glass rounded-2xl p-5">
+        {!editing ? (
+          <Empty>Select a template to edit its wording and delivery state.</Empty>
+        ) : (
+          <div className="space-y-3">
+            <Field label="Template name">
+              <input
+                value={editing.name}
+                onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+              />
+            </Field>
+            <Field label="Subject (email only)">
+              <input
+                value={editing.subject}
+                onChange={(e) => setEditing({ ...editing, subject: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+              />
+            </Field>
+            <Field label="Body">
+              <textarea
+                rows={7}
+                value={editing.body}
+                onChange={(e) => setEditing({ ...editing, body: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs font-mono"
+              />
+            </Field>
+            <p className="text-[10px] text-white/35">
+              Placeholders: {"{{patient_name}} {{blood_group}} {{hospital}} {{city}}"}{" "}
+              {"{{eta_minutes}} {{otp}}"}
+            </p>
+            <div className="rounded-xl border border-white/10 bg-black/30 p-3 text-[11px] text-white/70 whitespace-pre-wrap">
+              {preview(editing.body)}
+            </div>
+            <label className="flex items-center gap-2 text-[11px] text-white/60">
+              <input
+                type="checkbox"
+                checked={editing.enabled}
+                onChange={(e) => setEditing({ ...editing, enabled: e.target.checked })}
+              />
+              Template enabled
+            </label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={save.isPending}
+                onClick={() => save.mutate(editing)}
+                className="inline-flex items-center gap-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#E63946] px-3 py-2 disabled:opacity-40"
+              >
+                {save.isPending ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                )}
+                Save template
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditing(null)}
+                className="text-xs rounded-xl border border-white/10 bg-white/5 px-3 py-2"
+              >
+                Close
+              </button>
+            </div>
+            {save.isError && <ErrorBox error={save.error} />}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
