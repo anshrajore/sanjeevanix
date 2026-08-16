@@ -200,6 +200,8 @@ function AdminConsole() {
 
       {tab === "Overview" && <OverviewTab />}
       {tab === "Requests" && <RequestsTab />}
+      {tab === "Alerts" && <AlertsTab />}
+      {tab === "Templates" && <TemplatesTab />}
       {tab === "Screenings" && <ScreeningsTab />}
       {tab === "Operators" && <OperatorsTab myId={me.data.userId} />}
     </SubPage>
