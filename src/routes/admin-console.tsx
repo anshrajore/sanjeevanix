@@ -5,9 +5,12 @@ import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import {
   AlertTriangle,
+  Bell,
   CheckCircle2,
   ClipboardList,
   Clock,
+  Download,
+  FileText,
   Loader2,
   Lock,
   Radio,
@@ -24,15 +27,24 @@ import {
 
 import { SubPage } from "@/components/SubPage";
 import { KpiCounter } from "@/components/KpiCounter";
+import { RequestTimeline } from "@/components/RequestTimeline";
 import { useAuth } from "@/hooks/use-auth";
+import { exportRequestCsv, exportRequestPdf } from "@/lib/admin-export";
 import {
   adminGetOverview,
   adminGetRequest,
+  adminListAlertRules,
+  adminListAlerts,
   adminListRequests,
   adminListScreenings,
+  adminListTemplates,
   adminListUsers,
   adminRecordDonorResponse,
+  adminRetryNotification,
+  adminSaveAlertRule,
+  adminSaveTemplate,
   adminSetRole,
+  adminUpdateAlert,
   adminUpdateRequest,
   claimFirstAdmin,
   getMyAccess,
@@ -59,7 +71,14 @@ export const Route = createFileRoute("/admin-console")({
   component: AdminConsole,
 });
 
-const TABS = ["Overview", "Requests", "Screenings", "Operators"] as const;
+const TABS = [
+  "Overview",
+  "Requests",
+  "Alerts",
+  "Templates",
+  "Screenings",
+  "Operators",
+] as const;
 type Tab = (typeof TABS)[number];
 
 const STATUSES = [
