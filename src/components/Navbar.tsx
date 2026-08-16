@@ -14,13 +14,14 @@ const ROLE_LINKS: Record<Role, { to: string; label: string }[]> = {
     { to: "/requests", label: "Requests" },
     { to: "/donors", label: "Directory" },
     { to: "/risk-map", label: "Risk Map" },
+    { to: "/hospital-network", label: "Hospitals" },
   ],
   hospital: [
     { to: "/hospital-dashboard", label: "Hospital" },
     { to: "/requests", label: "Requests" },
     { to: "/command-center", label: "Command" },
     { to: "/donors", label: "Directory" },
-    { to: "/risk-map", label: "Risk Map" },
+    { to: "/hospital-network", label: "Hospitals" },
   ],
   blood_bank: [
     { to: "/blood-bank", label: "Inventory" },

@@ -16,6 +16,7 @@ import { Route as RequestBloodRouteImport } from './routes/request-blood'
 import { Route as PatientDashboardRouteImport } from './routes/patient-dashboard'
 import { Route as NationalCommandMapRouteImport } from './routes/national-command-map'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as HospitalNetworkRouteImport } from './routes/hospital-network'
 import { Route as HospitalDashboardRouteImport } from './routes/hospital-dashboard'
 import { Route as DonorsRouteImport } from './routes/donors'
 import { Route as DonorDashboardRouteImport } from './routes/donor-dashboard'
@@ -63,6 +64,11 @@ const NationalCommandMapRoute = NationalCommandMapRouteImport.update({
 const ImpactRoute = ImpactRouteImport.update({
   id: '/impact',
   path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HospitalNetworkRoute = HospitalNetworkRouteImport.update({
+  id: '/hospital-network',
+  path: '/hospital-network',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HospitalDashboardRoute = HospitalDashboardRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
   '/hospital-dashboard': typeof HospitalDashboardRoute
+  '/hospital-network': typeof HospitalNetworkRoute
   '/impact': typeof ImpactRoute
   '/national-command-map': typeof NationalCommandMapRoute
   '/patient-dashboard': typeof PatientDashboardRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
   '/hospital-dashboard': typeof HospitalDashboardRoute
+  '/hospital-network': typeof HospitalNetworkRoute
   '/impact': typeof ImpactRoute
   '/national-command-map': typeof NationalCommandMapRoute
   '/patient-dashboard': typeof PatientDashboardRoute
@@ -189,6 +197,7 @@ export interface FileRoutesById {
   '/donor-dashboard': typeof DonorDashboardRoute
   '/donors': typeof DonorsRoute
   '/hospital-dashboard': typeof HospitalDashboardRoute
+  '/hospital-network': typeof HospitalNetworkRoute
   '/impact': typeof ImpactRoute
   '/national-command-map': typeof NationalCommandMapRoute
   '/patient-dashboard': typeof PatientDashboardRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/donor-dashboard'
     | '/donors'
     | '/hospital-dashboard'
+    | '/hospital-network'
     | '/impact'
     | '/national-command-map'
     | '/patient-dashboard'
@@ -235,6 +245,7 @@ export interface FileRouteTypes {
     | '/donor-dashboard'
     | '/donors'
     | '/hospital-dashboard'
+    | '/hospital-network'
     | '/impact'
     | '/national-command-map'
     | '/patient-dashboard'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/donor-dashboard'
     | '/donors'
     | '/hospital-dashboard'
+    | '/hospital-network'
     | '/impact'
     | '/national-command-map'
     | '/patient-dashboard'
@@ -280,6 +292,7 @@ export interface RootRouteChildren {
   DonorDashboardRoute: typeof DonorDashboardRoute
   DonorsRoute: typeof DonorsRoute
   HospitalDashboardRoute: typeof HospitalDashboardRoute
+  HospitalNetworkRoute: typeof HospitalNetworkRoute
   ImpactRoute: typeof ImpactRoute
   NationalCommandMapRoute: typeof NationalCommandMapRoute
   PatientDashboardRoute: typeof PatientDashboardRoute
@@ -339,6 +352,13 @@ declare module '@tanstack/react-router' {
       path: '/impact'
       fullPath: '/impact'
       preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hospital-network': {
+      id: '/hospital-network'
+      path: '/hospital-network'
+      fullPath: '/hospital-network'
+      preLoaderRoute: typeof HospitalNetworkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hospital-dashboard': {
@@ -448,6 +468,7 @@ const rootRouteChildren: RootRouteChildren = {
   DonorDashboardRoute: DonorDashboardRoute,
   DonorsRoute: DonorsRoute,
   HospitalDashboardRoute: HospitalDashboardRoute,
+  HospitalNetworkRoute: HospitalNetworkRoute,
   ImpactRoute: ImpactRoute,
   NationalCommandMapRoute: NationalCommandMapRoute,
   PatientDashboardRoute: PatientDashboardRoute,

@@ -5,9 +5,12 @@ import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import {
   AlertTriangle,
+  Bell,
   CheckCircle2,
   ClipboardList,
   Clock,
+  Download,
+  FileText,
   Loader2,
   Lock,
   Radio,
@@ -24,15 +27,24 @@ import {
 
 import { SubPage } from "@/components/SubPage";
 import { KpiCounter } from "@/components/KpiCounter";
+import { RequestTimeline } from "@/components/RequestTimeline";
 import { useAuth } from "@/hooks/use-auth";
+import { exportRequestCsv, exportRequestPdf } from "@/lib/admin-export";
 import {
   adminGetOverview,
   adminGetRequest,
+  adminListAlertRules,
+  adminListAlerts,
   adminListRequests,
   adminListScreenings,
+  adminListTemplates,
   adminListUsers,
   adminRecordDonorResponse,
+  adminRetryNotification,
+  adminSaveAlertRule,
+  adminSaveTemplate,
   adminSetRole,
+  adminUpdateAlert,
   adminUpdateRequest,
   claimFirstAdmin,
   getMyAccess,
@@ -59,7 +71,14 @@ export const Route = createFileRoute("/admin-console")({
   component: AdminConsole,
 });
 
-const TABS = ["Overview", "Requests", "Screenings", "Operators"] as const;
+const TABS = [
+  "Overview",
+  "Requests",
+  "Alerts",
+  "Templates",
+  "Screenings",
+  "Operators",
+] as const;
 type Tab = (typeof TABS)[number];
 
 const STATUSES = [
@@ -181,6 +200,8 @@ function AdminConsole() {
 
       {tab === "Overview" && <OverviewTab />}
       {tab === "Requests" && <RequestsTab />}
+      {tab === "Alerts" && <AlertsTab />}
+      {tab === "Templates" && <TemplatesTab />}
       {tab === "Screenings" && <ScreeningsTab />}
       {tab === "Operators" && <OperatorsTab myId={me.data.userId} />}
     </SubPage>
@@ -243,20 +264,63 @@ function OverviewTab() {
   );
 }
 
+const BLOOD_GROUPS = ["all", "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"] as const;
+const SOURCES = ["all", "standard", "emergency"] as const;
+const RISK_FLAGS = [
+  "all",
+  "recent_donation",
+  "low_weight",
+  "age_out_of_range",
+  "medication",
+  "infection_risk",
+  "pregnancy",
+] as const;
+const PAGE_SIZE = 40;
+
+const EMPTY_FILTERS = {
+  status: "all",
+  city: "all",
+  bloodGroup: "all",
+  source: "all",
+  riskFlag: "all",
+  from: "",
+  to: "",
+  search: "",
+};
+
 function RequestsTab() {
   const list = useServerFn(adminListRequests);
   const detail = useServerFn(adminGetRequest);
   const record = useServerFn(adminRecordDonorResponse);
   const update = useServerFn(adminUpdateRequest);
+  const retry = useServerFn(adminRetryNotification);
   const queryClient = useQueryClient();
 
-  const [status, setStatus] = useState<string>("all");
-  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const [page, setPage] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
 
+  const set = (patch: Partial<typeof EMPTY_FILTERS>) => {
+    setFilters((prev) => ({ ...prev, ...patch }));
+    setPage(0);
+  };
+
+  const activeCount = Object.entries(filters).filter(
+    ([key, value]) => value !== EMPTY_FILTERS[key as keyof typeof EMPTY_FILTERS],
+  ).length;
+
   const requests = useQuery({
-    queryKey: ["admin-requests", status, search],
-    queryFn: () => list({ data: { status, city: "all", search, limit: 60 } }),
+    queryKey: ["admin-requests", filters, page],
+    queryFn: () =>
+      list({
+        data: {
+          ...filters,
+          from: filters.from ? new Date(filters.from).toISOString() : "",
+          to: filters.to ? new Date(`${filters.to}T23:59:59`).toISOString() : "",
+          limit: PAGE_SIZE,
+          offset: page * PAGE_SIZE,
+        },
+      }),
     refetchInterval: 20_000,
   });
 
@@ -269,7 +333,7 @@ function RequestsTab() {
 
   const invalidate = () => {
     void queryClient.invalidateQueries({ queryKey: ["admin-request", selected] });
-    void queryClient.invalidateQueries({ queryKey: ["admin-requests", status, search] });
+    void queryClient.invalidateQueries({ queryKey: ["admin-requests"] });
   };
 
   const respond = useMutation({
@@ -284,34 +348,119 @@ function RequestsTab() {
     onSuccess: invalidate,
   });
 
+  const retryMutation = useMutation({
+    mutationFn: (notificationId: string) => retry({ data: { notificationId } }),
+    onSuccess: invalidate,
+  });
+
+  const cities = Array.from(new Set((requests.data ?? []).map((r) => r.city))).sort();
+  const exportDetail = () => {
+    const data = selectedQuery.data;
+    if (!data) throw new Error("Open a request first.");
+    return {
+      request: data.request as unknown as Record<string, unknown>,
+      notifications: data.notifications as unknown as Array<Record<string, unknown>>,
+      events: data.events as unknown as Array<Record<string, unknown>>,
+      screening: data.screening as unknown as Record<string, unknown> | null,
+    };
+  };
+
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
-        >
-          {STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search patient, hospital, city…"
-          className="flex-1 min-w-[200px] rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
-        />
-        <button
-          type="button"
-          onClick={() => void requests.refetch()}
-          className="inline-flex items-center gap-1.5 text-xs rounded-xl border border-white/10 bg-white/5 px-3 py-2"
-        >
-          <RefreshCw className={`w-3.5 h-3.5 ${requests.isFetching ? "animate-spin" : ""}`} />
-          Refresh
-        </button>
+      <div className="glass rounded-2xl p-4 space-y-3">
+        <div className="grid gap-2 md:grid-cols-3 lg:grid-cols-6">
+          <Field label="Status">
+            <Choice value={filters.status} onChange={(v) => set({ status: v })} options={[...STATUSES]} />
+          </Field>
+          <Field label="Blood group">
+            <Choice
+              value={filters.bloodGroup}
+              onChange={(v) => set({ bloodGroup: v })}
+              options={[...BLOOD_GROUPS]}
+            />
+          </Field>
+          <Field label="City">
+            <Choice
+              value={filters.city}
+              onChange={(v) => set({ city: v })}
+              options={["all", ...cities]}
+            />
+          </Field>
+          <Field label="Source">
+            <Choice value={filters.source} onChange={(v) => set({ source: v })} options={[...SOURCES]} />
+          </Field>
+          <Field label="Risk flag">
+            <Choice
+              value={filters.riskFlag}
+              onChange={(v) => set({ riskFlag: v })}
+              options={[...RISK_FLAGS]}
+            />
+          </Field>
+          <Field label="Search">
+            <input
+              value={filters.search}
+              onChange={(e) => set({ search: e.target.value })}
+              placeholder="Patient, hospital, request ID…"
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+          <Field label="From date">
+            <input
+              type="date"
+              value={filters.from}
+              onChange={(e) => set({ from: e.target.value })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+          <Field label="To date">
+            <input
+              type="date"
+              value={filters.to}
+              onChange={(e) => set({ to: e.target.value })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 text-[11px] text-white/45">
+          <span>
+            {activeCount > 0 ? `${activeCount} filter${activeCount > 1 ? "s" : ""} active` : "No filters applied"}
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              setFilters(EMPTY_FILTERS);
+              setPage(0);
+            }}
+            className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5"
+          >
+            Reset
+          </button>
+          <button
+            type="button"
+            onClick={() => void requests.refetch()}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${requests.isFetching ? "animate-spin" : ""}`} />
+            Refresh
+          </button>
+          <span className="ml-auto font-mono">Page {page + 1}</span>
+          <button
+            type="button"
+            disabled={page === 0}
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
+            className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 disabled:opacity-40"
+          >
+            Prev
+          </button>
+          <button
+            type="button"
+            disabled={(requests.data ?? []).length < PAGE_SIZE}
+            onClick={() => setPage((p) => p + 1)}
+            className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 disabled:opacity-40"
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       {requests.isLoading ? (
@@ -340,7 +489,7 @@ function RequestsTab() {
                 <div className="col-span-3">
                   <div className="text-white/85">{r.patient_name}</div>
                   <div className="text-[10px] text-white/35">
-                    {new Date(r.created_at).toLocaleString("en-IN")}
+                    {new Date(r.created_at).toLocaleString("en-IN")} · {r.request_source}
                   </div>
                 </div>
                 <div className="col-span-2 font-mono text-[#FF4D6D]">
@@ -382,6 +531,20 @@ function RequestsTab() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => exportRequestCsv(exportDetail())}
+                    className="inline-flex items-center gap-1.5 text-xs rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 px-3 py-1.5"
+                  >
+                    <Download className="w-3.5 h-3.5" /> CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => exportRequestPdf(exportDetail())}
+                    className="inline-flex items-center gap-1.5 text-xs rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 px-3 py-1.5"
+                  >
+                    <FileText className="w-3.5 h-3.5" /> PDF
+                  </button>
                   {(["accepted", "fulfilled", "cancelled"] as const).map((s) => (
                     <button
                       key={s}
@@ -402,58 +565,132 @@ function RequestsTab() {
                 </div>
               </div>
 
-              <div className="divide-y divide-white/5">
-                {selectedQuery.data.notifications.map((n) => (
-                  <div key={n.id} className="flex flex-wrap items-center justify-between gap-3 py-2 text-xs">
-                    <div>
-                      <div className="text-white/85">
-                        {n.donor_name}{" "}
-                        <span className="text-white/35 font-mono">{n.masked_phone}</span>
-                      </div>
-                      <div className="text-[10px] text-white/40">
-                        {n.recipient_kind} · {n.channel} · {n.status}
-                        {n.error ? ` · ${n.error}` : ""}
-                        {n.eta_minutes ? ` · ETA ${n.eta_minutes}m` : ""}
-                      </div>
-                    </div>
-                    {n.recipient_kind === "donor" && (
-                      <div className="flex items-center gap-2">
-                        {n.response ? (
-                          <span
-                            className={
-                              n.response === "accepted" ? "text-emerald-400" : "text-white/45"
-                            }
-                          >
-                            {n.response}
-                          </span>
-                        ) : (
-                          (["accepted", "declined"] as const).map((r) => (
+              <div className="grid lg:grid-cols-2 gap-5">
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-white/40 mb-3">
+                    Lifecycle timeline
+                  </div>
+                  <RequestTimeline events={selectedQuery.data.events} />
+                </div>
+
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-white/40 mb-2">
+                    Matching, delivery and donor replies
+                  </div>
+                  <div className="divide-y divide-white/5">
+                    {selectedQuery.data.notifications.map((n) => (
+                      <div
+                        key={n.id}
+                        className="flex flex-wrap items-center justify-between gap-3 py-2 text-xs"
+                      >
+                        <div>
+                          <div className="text-white/85">
+                            {n.donor_name}{" "}
+                            <span className="text-white/35 font-mono">{n.masked_phone}</span>
+                          </div>
+                          <div className="text-[10px] text-white/40">
+                            {n.recipient_kind} · {n.channel} · {n.status}
+                            {n.error ? ` · ${n.error}` : ""}
+                            {n.eta_minutes ? ` · ETA ${n.eta_minutes}m` : ""}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {n.status !== "sent" && (
                             <button
-                              key={r}
                               type="button"
-                              disabled={respond.isPending}
-                              onClick={() =>
-                                respond.mutate({ notificationId: n.id, response: r })
-                              }
-                              className="rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 px-2.5 py-1"
+                              disabled={retryMutation.isPending}
+                              onClick={() => retryMutation.mutate(n.id)}
+                              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 px-2.5 py-1"
                             >
-                              Log {r}
+                              <Send className="w-3 h-3" /> Resend
                             </button>
-                          ))
-                        )}
+                          )}
+                          {n.recipient_kind === "donor" &&
+                            (n.response ? (
+                              <span
+                                className={
+                                  n.response === "accepted" ? "text-emerald-400" : "text-white/45"
+                                }
+                              >
+                                {n.response}
+                              </span>
+                            ) : (
+                              (["accepted", "declined"] as const).map((r) => (
+                                <button
+                                  key={r}
+                                  type="button"
+                                  disabled={respond.isPending}
+                                  onClick={() => respond.mutate({ notificationId: n.id, response: r })}
+                                  className="rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 px-2.5 py-1"
+                                >
+                                  Log {r}
+                                </button>
+                              ))
+                            ))}
+                        </div>
                       </div>
+                    ))}
+                    {selectedQuery.data.notifications.length === 0 && (
+                      <Empty>No notifications dispatched for this request.</Empty>
                     )}
                   </div>
-                ))}
+
+                  {selectedQuery.data.screening && (
+                    <div className="mt-4 rounded-xl border border-white/10 p-3 text-[11px] text-white/60">
+                      <div className="text-white/80 mb-1">Latest screening audit</div>
+                      Eligible: {String(selectedQuery.data.screening.eligible)} · score{" "}
+                      {selectedQuery.data.screening.score}
+                      {selectedQuery.data.screening.deferral_reason
+                        ? ` · ${selectedQuery.data.screening.deferral_reason}`
+                        : ""}
+                    </div>
+                  )}
+                </div>
               </div>
-              {(respond.isError || setStatusMutation.isError) && (
-                <ErrorBox error={respond.error ?? setStatusMutation.error} />
+
+              {(respond.isError || setStatusMutation.isError || retryMutation.isError) && (
+                <ErrorBox
+                  error={respond.error ?? setStatusMutation.error ?? retryMutation.error}
+                />
               )}
             </div>
           )}
         </div>
       )}
     </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="space-y-1 block">
+      <span className="text-[10px] uppercase tracking-wider text-white/35">{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function Choice({
+  value,
+  onChange,
+  options,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+}) {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+    >
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
   );
 }
 
@@ -595,5 +832,421 @@ function ErrorBox({ error }: { error: unknown }) {
     <p className="text-xs text-[#FF4D6D]">
       {error instanceof Error ? error.message : "Something went wrong."}
     </p>
+  );
+}
+
+const RULE_TYPES = [
+  "no_acceptance",
+  "delivery_failures",
+  "city_shortage",
+  "critical_blood_group",
+  "timeout_approaching",
+  "eta_breach",
+] as const;
+const SEVERITIES = ["medium", "high", "critical"] as const;
+const CHANNELS = ["in_app", "sms", "email", "push"] as const;
+
+type RuleDraft = {
+  id?: string;
+  name: string;
+  ruleType: (typeof RULE_TYPES)[number];
+  severity: (typeof SEVERITIES)[number];
+  thresholdValue: number;
+  windowMinutes: number;
+  channels: Array<(typeof CHANNELS)[number]>;
+  enabled: boolean;
+};
+
+const NEW_RULE: RuleDraft = {
+  name: "",
+  ruleType: "no_acceptance",
+  severity: "high",
+  thresholdValue: 1,
+  windowMinutes: 20,
+  channels: ["in_app"],
+  enabled: true,
+};
+
+function AlertsTab() {
+  const listRules = useServerFn(adminListAlertRules);
+  const saveRule = useServerFn(adminSaveAlertRule);
+  const listAlerts = useServerFn(adminListAlerts);
+  const updateAlert = useServerFn(adminUpdateAlert);
+  const queryClient = useQueryClient();
+  const [draft, setDraft] = useState<RuleDraft>(NEW_RULE);
+
+  const rules = useQuery({ queryKey: ["admin-alert-rules"], queryFn: () => listRules() });
+  const alerts = useQuery({
+    queryKey: ["admin-alerts"],
+    queryFn: () => listAlerts(),
+    refetchInterval: 30_000,
+  });
+
+  const save = useMutation({
+    mutationFn: (value: RuleDraft) => saveRule({ data: value }),
+    onSuccess: () => {
+      setDraft(NEW_RULE);
+      void queryClient.invalidateQueries({ queryKey: ["admin-alert-rules"] });
+    },
+  });
+
+  const act = useMutation({
+    mutationFn: (value: { id: string; action: "acknowledge" | "resolve" }) =>
+      updateAlert({ data: value }),
+    onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["admin-alerts"] }),
+  });
+
+  const unread = (alerts.data ?? []).filter((a) => !a.acknowledged_at && !a.resolved_at).length;
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="glass rounded-2xl p-5 space-y-3">
+        <div className="text-xs font-mono uppercase tracking-wider text-white/40">
+          {draft.id ? "Edit alert rule" : "New alert rule"}
+        </div>
+        <Field label="Rule name">
+          <input
+            value={draft.name}
+            onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+            placeholder="No donor accepted within 20 minutes"
+            className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+          />
+        </Field>
+        <div className="grid grid-cols-2 gap-2">
+          <Field label="Trigger">
+            <Choice
+              value={draft.ruleType}
+              onChange={(v) => setDraft({ ...draft, ruleType: v as RuleDraft["ruleType"] })}
+              options={[...RULE_TYPES]}
+            />
+          </Field>
+          <Field label="Severity">
+            <Choice
+              value={draft.severity}
+              onChange={(v) => setDraft({ ...draft, severity: v as RuleDraft["severity"] })}
+              options={[...SEVERITIES]}
+            />
+          </Field>
+          <Field label="Threshold">
+            <input
+              type="number"
+              min={0}
+              value={draft.thresholdValue}
+              onChange={(e) => setDraft({ ...draft, thresholdValue: Number(e.target.value) })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+          <Field label="Window (minutes)">
+            <input
+              type="number"
+              min={1}
+              value={draft.windowMinutes}
+              onChange={(e) => setDraft({ ...draft, windowMinutes: Number(e.target.value) })}
+              className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+            />
+          </Field>
+        </div>
+        <div>
+          <span className="text-[10px] uppercase tracking-wider text-white/35">Channels</span>
+          <div className="flex flex-wrap gap-2 mt-1.5">
+            {CHANNELS.map((channel) => {
+              const on = draft.channels.includes(channel);
+              return (
+                <button
+                  key={channel}
+                  type="button"
+                  onClick={() =>
+                    setDraft({
+                      ...draft,
+                      channels: on
+                        ? draft.channels.filter((c) => c !== channel)
+                        : [...draft.channels, channel],
+                    })
+                  }
+                  className={`text-[11px] rounded-lg px-2.5 py-1.5 border ${
+                    on
+                      ? "bg-[#FF4D6D]/15 border-[#FF4D6D]/40 text-white"
+                      : "bg-white/5 border-white/10 text-white/50"
+                  }`}
+                >
+                  {channel}
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-[10px] text-white/35 mt-1.5">
+            In-app always delivers. SMS, email and push only deliver when that channel is
+            configured; otherwise the alert is recorded as “channel not configured”.
+          </p>
+        </div>
+        <label className="flex items-center gap-2 text-[11px] text-white/60">
+          <input
+            type="checkbox"
+            checked={draft.enabled}
+            onChange={(e) => setDraft({ ...draft, enabled: e.target.checked })}
+          />
+          Rule enabled
+        </label>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            disabled={save.isPending || draft.name.trim().length < 2 || draft.channels.length === 0}
+            onClick={() => save.mutate(draft)}
+            className="inline-flex items-center gap-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#E63946] px-3 py-2 disabled:opacity-40"
+          >
+            {save.isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Bell className="w-3.5 h-3.5" />}
+            {draft.id ? "Update rule" : "Create rule"}
+          </button>
+          {draft.id && (
+            <button
+              type="button"
+              onClick={() => setDraft(NEW_RULE)}
+              className="text-xs rounded-xl border border-white/10 bg-white/5 px-3 py-2"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+        {save.isError && <ErrorBox error={save.error} />}
+
+        <div className="pt-2 border-t border-white/5">
+          <div className="text-xs font-mono uppercase tracking-wider text-white/40 mb-2">
+            Configured rules
+          </div>
+          {rules.isLoading ? (
+            <Loading />
+          ) : (
+            <div className="divide-y divide-white/5">
+              {(rules.data ?? []).map((rule) => (
+                <button
+                  key={rule.id}
+                  type="button"
+                  onClick={() =>
+                    setDraft({
+                      id: rule.id,
+                      name: rule.name,
+                      ruleType: rule.rule_type as RuleDraft["ruleType"],
+                      severity: rule.severity as RuleDraft["severity"],
+                      thresholdValue: Number(rule.threshold_value),
+                      windowMinutes: rule.window_minutes,
+                      channels: (rule.channels ?? ["in_app"]) as RuleDraft["channels"],
+                      enabled: rule.enabled,
+                    })
+                  }
+                  className="w-full text-left py-2 text-xs hover:bg-white/[0.03]"
+                >
+                  <div className="text-white/85">{rule.name}</div>
+                  <div className="text-[10px] text-white/40">
+                    {rule.rule_type} · {rule.severity} · {rule.threshold_value} in{" "}
+                    {rule.window_minutes}m · {(rule.channels ?? []).join(", ")} ·{" "}
+                    {rule.enabled ? "enabled" : "disabled"}
+                  </div>
+                </button>
+              ))}
+              {(rules.data ?? []).length === 0 && <Empty>No alert rules yet.</Empty>}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="glass rounded-2xl p-5">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-xs font-mono uppercase tracking-wider text-white/40">
+            Alert inbox
+          </div>
+          <span className="text-[11px] text-[#FF4D6D]">{unread} unread</span>
+        </div>
+        {alerts.isLoading ? (
+          <Loading />
+        ) : alerts.isError ? (
+          <ErrorBox error={alerts.error} />
+        ) : (
+          <div className="divide-y divide-white/5 max-h-[560px] overflow-y-auto">
+            {(alerts.data ?? []).map((alert) => (
+              <div key={alert.id} className="py-2.5 text-xs">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="text-white/85 flex items-center gap-1.5">
+                      <AlertTriangle
+                        className={`w-3.5 h-3.5 ${
+                          alert.severity === "critical" ? "text-[#FF4D6D]" : "text-amber-400"
+                        }`}
+                      />
+                      {alert.title}
+                    </div>
+                    <p className="text-[11px] text-white/50 mt-0.5">{alert.message}</p>
+                    <div className="text-[10px] text-white/35 mt-1">
+                      {new Date(alert.created_at).toLocaleString("en-IN")} ·{" "}
+                      {(alert.channels ?? []).join(", ")}
+                      {alert.resolved_at
+                        ? " · resolved"
+                        : alert.acknowledged_at
+                          ? " · acknowledged"
+                          : ""}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    {!alert.acknowledged_at && !alert.resolved_at && (
+                      <button
+                        type="button"
+                        onClick={() => act.mutate({ id: alert.id, action: "acknowledge" })}
+                        className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[10px]"
+                      >
+                        Acknowledge
+                      </button>
+                    )}
+                    {!alert.resolved_at && (
+                      <button
+                        type="button"
+                        onClick={() => act.mutate({ id: alert.id, action: "resolve" })}
+                        className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[10px]"
+                      >
+                        Resolve
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {(alerts.data ?? []).length === 0 && <Empty>No alerts raised yet.</Empty>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TemplatesTab() {
+  const listTemplates = useServerFn(adminListTemplates);
+  const saveTemplate = useServerFn(adminSaveTemplate);
+  const queryClient = useQueryClient();
+  const [editing, setEditing] = useState<{
+    id: string;
+    name: string;
+    subject: string;
+    body: string;
+    enabled: boolean;
+  } | null>(null);
+
+  const templates = useQuery({ queryKey: ["admin-templates"], queryFn: () => listTemplates() });
+  const save = useMutation({
+    mutationFn: (value: NonNullable<typeof editing>) => saveTemplate({ data: value }),
+    onSuccess: () => {
+      setEditing(null);
+      void queryClient.invalidateQueries({ queryKey: ["admin-templates"] });
+    },
+  });
+
+  if (templates.isLoading) return <Loading />;
+  if (templates.isError) return <ErrorBox error={templates.error} />;
+
+  const preview = (body: string) =>
+    body
+      .replace(/\{\{patient_name\}\}/g, "Asha Verma")
+      .replace(/\{\{blood_group\}\}/g, "O-")
+      .replace(/\{\{hospital\}\}/g, "AIIMS Delhi")
+      .replace(/\{\{city\}\}/g, "New Delhi")
+      .replace(/\{\{eta_minutes\}\}/g, "18")
+      .replace(/\{\{otp\}\}/g, "482913");
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="rounded-2xl border border-white/10 divide-y divide-white/5">
+        {(templates.data ?? []).map((template) => (
+          <button
+            key={template.id}
+            type="button"
+            onClick={() =>
+              setEditing({
+                id: template.id,
+                name: template.name,
+                subject: template.subject ?? "",
+                body: template.body,
+                enabled: template.enabled,
+              })
+            }
+            className={`w-full text-left px-3 py-2.5 text-xs hover:bg-white/[0.03] ${
+              editing?.id === template.id ? "bg-white/[0.05]" : ""
+            }`}
+          >
+            <div className="text-white/85">{template.name}</div>
+            <div className="text-[10px] text-white/40">
+              {template.event_type} · {template.channel} ·{" "}
+              {template.enabled ? "enabled" : "disabled"}
+            </div>
+          </button>
+        ))}
+        {(templates.data ?? []).length === 0 && <Empty>No templates seeded.</Empty>}
+      </div>
+
+      <div className="glass rounded-2xl p-5">
+        {!editing ? (
+          <Empty>Select a template to edit its wording and delivery state.</Empty>
+        ) : (
+          <div className="space-y-3">
+            <Field label="Template name">
+              <input
+                value={editing.name}
+                onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+              />
+            </Field>
+            <Field label="Subject (email only)">
+              <input
+                value={editing.subject}
+                onChange={(e) => setEditing({ ...editing, subject: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs"
+              />
+            </Field>
+            <Field label="Body">
+              <textarea
+                rows={7}
+                value={editing.body}
+                onChange={(e) => setEditing({ ...editing, body: e.target.value })}
+                className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs font-mono"
+              />
+            </Field>
+            <p className="text-[10px] text-white/35">
+              Placeholders: {"{{patient_name}} {{blood_group}} {{hospital}} {{city}}"}{" "}
+              {"{{eta_minutes}} {{otp}}"}
+            </p>
+            <div className="rounded-xl border border-white/10 bg-black/30 p-3 text-[11px] text-white/70 whitespace-pre-wrap">
+              {preview(editing.body)}
+            </div>
+            <label className="flex items-center gap-2 text-[11px] text-white/60">
+              <input
+                type="checkbox"
+                checked={editing.enabled}
+                onChange={(e) => setEditing({ ...editing, enabled: e.target.checked })}
+              />
+              Template enabled
+            </label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={save.isPending}
+                onClick={() => save.mutate(editing)}
+                className="inline-flex items-center gap-1.5 text-xs rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#E63946] px-3 py-2 disabled:opacity-40"
+              >
+                {save.isPending ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                )}
+                Save template
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditing(null)}
+                className="text-xs rounded-xl border border-white/10 bg-white/5 px-3 py-2"
+              >
+                Close
+              </button>
+            </div>
+            {save.isError && <ErrorBox error={save.error} />}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
