@@ -120,50 +120,22 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     }
   }, [clearError, fail, micPermission]);
 
-  const ensureVapi = useCallback(async () => {
-    if (typeof window === "undefined") return null;
-    const publicKey = getVapiPublicKey();
-    if (!publicKey) {
-      fail("Voice AI key is missing. Set VITE_VAPI_PUBLIC_KEY to enable calls.");
-      return null;
-    }
-    if (vapiRef.current) return vapiRef.current;
+  /** Tears down any previous instance so every attempt starts from scratch. */
+  const disposeVapi = useCallback(() => {
+    const instance = vapiRef.current;
+    vapiRef.current = null;
+    if (!instance) return;
     try {
-      const mod = await import("@vapi-ai/web");
-      type VapiConstructor = new (key: string) => {
-        on: (event: string, callback: (...args: any[]) => void) => void;
-        start: (assistantId: string) => Promise<unknown>;
-        stop: () => void;
-      };
-      const candidate = mod.default as unknown;
-      const Vapi: VapiConstructor | null =
-        typeof candidate === "function"
-          ? (candidate as VapiConstructor)
-          : typeof (candidate as { default?: unknown })?.default === "function"
-            ? (candidate as { default: VapiConstructor }).default
-            : null;
-      if (!Vapi) throw new Error("Voice engine loaded in an unsupported format. Refresh and retry.");
-      const vapi = new Vapi(publicKey);
-      vapi.on("call-start", () => {
-        setIsActive(true);
-        setIsConnecting(false);
-        clearError();
-      });
-      vapi.on("call-end", () => {
-        setIsActive(false);
-        setIsConnecting(false);
-      });
-      vapi.on("error", (e: { message?: string; error?: { message?: string } }) => {
-        fail(e?.message ?? e?.error?.message ?? "The voice call dropped. Please retry.");
-      });
-      vapiRef.current = vapi;
-      return vapi;
-    } catch (e) {
-      vapiRef.current = null;
-      fail(e instanceof Error ? e.message : "Voice engine failed to load. Check your connection.");
-      return null;
+      instance.stop?.();
+    } catch {
+      /* noop */
     }
-  }, [clearError, fail]);
+    try {
+      instance.removeAllListeners?.();
+    } catch {
+      /* noop */
+    }
+  }, []);
 
   const startCall = useCallback(async () => {
     if (isConnecting || isActive) return;
@@ -180,34 +152,74 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       setWakeListeningState(false);
     }
 
+    const publicKey = getVapiPublicKey();
+    if (!publicKey) {
+      fail("Voice AI key is missing. Set VITE_VAPI_PUBLIC_KEY to enable calls.");
+      return;
+    }
+
     const micOk = await requestMicAccess();
     if (!micOk) return;
 
-    const vapi = await ensureVapi();
-    if (!vapi) return;
+    // A fresh instance per attempt: reusing a stopped/errored instance is why
+    // calls previously worked only once.
+    disposeVapi();
+
+    let vapi;
+    try {
+      const { createVapiInstance } = await import("@/lib/vapi-loader");
+      vapi = await createVapiInstance(publicKey);
+    } catch (e) {
+      fail(e instanceof Error ? e.message : "Voice engine failed to load.");
+      return;
+    }
+
+    vapi.on("call-start", () => {
+      setIsActive(true);
+      setIsConnecting(false);
+      clearError();
+    });
+    vapi.on("call-end", () => {
+      setIsActive(false);
+      setIsConnecting(false);
+      disposeVapi();
+    });
+    vapi.on("error", (e: unknown) => {
+      const detail =
+        typeof e === "string"
+          ? e
+          : ((e as { message?: string })?.message ??
+            (e as { error?: { message?: string } })?.error?.message ??
+            (e as { errorMsg?: string })?.errorMsg ??
+            (() => {
+              try {
+                return JSON.stringify(e);
+              } catch {
+                return "";
+              }
+            })());
+      disposeVapi();
+      fail(detail || "The voice call dropped. Please retry.");
+    });
+    vapiRef.current = vapi;
 
     try {
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
-      try {
-        vapi.stop?.();
-      } catch {
-        /* noop */
-      }
-      vapiRef.current = null;
-      fail(err instanceof Error ? err.message : "Could not start the voice call. Please retry.");
+      disposeVapi();
+      fail(
+        err instanceof Error
+          ? `Could not start the voice call — ${err.message}`
+          : "Could not start the voice call. Please retry.",
+      );
     }
-  }, [clearError, ensureVapi, fail, isActive, isConnecting, requestMicAccess]);
+  }, [clearError, disposeVapi, fail, isActive, isConnecting, requestMicAccess]);
 
   const stopCall = useCallback(() => {
-    try {
-      vapiRef.current?.stop?.();
-    } catch {
-      /* noop */
-    }
+    disposeVapi();
     setIsActive(false);
     setIsConnecting(false);
-  }, []);
+  }, [disposeVapi]);
 
   const toggleCall = useCallback(() => {
     if (isActive) stopCall();
