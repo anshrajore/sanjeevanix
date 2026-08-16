@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    optimizeDeps: {
+      // Pre-bundle the voice SDK together with its event-emitter dependency so
+      // its base class resolves to a real constructor in the browser.
+      include: ["@vapi-ai/web", "events"],
+    },
+  },
 });
