@@ -9,8 +9,48 @@ import {
 } from "react";
 
 import { VAPI_ASSISTANT_ID, getVapiPublicKey } from "@/lib/vapi-config";
+import {
+  addTranscript,
+  getAttempt,
+  logStage,
+  markActive,
+  markEnded,
+  markFailed,
+  startAttempt,
+} from "@/lib/vapi-diagnostics";
+import { logVoiceCall } from "@/lib/voice-log.functions";
 
 export type MicPermission = "unknown" | "prompt" | "granted" | "denied";
+export type CallTrigger = "button" | "wake-word" | "retry";
+
+/** Persists a finished attempt (transcript + failure reason) for admin audit. */
+async function persistAttempt(attemptId: string) {
+  const attempt = getAttempt(attemptId);
+  if (!attempt) return;
+  try {
+    await logVoiceCall({
+      data: {
+        assistantId: VAPI_ASSISTANT_ID,
+        outcome: attempt.status,
+        startedAt: new Date(attempt.startedAt).toISOString(),
+        endedAt: new Date(attempt.endedAt ?? Date.now()).toISOString(),
+        durationSeconds: Math.round(((attempt.endedAt ?? Date.now()) - attempt.startedAt) / 1000),
+        errorMessage: attempt.error ?? "",
+        fallbackReason: attempt.fallbackReason ?? "",
+        transcript: attempt.transcript,
+        metadata: {
+          trigger: attempt.trigger,
+          loaderSource: attempt.loaderSource,
+          micPermission: attempt.micPermission,
+          stages: attempt.stages,
+          stack: attempt.stack,
+        },
+      },
+    });
+  } catch {
+    /* logging must never break a call */
+  }
+}
 
 type VapiContextValue = {
   isActive: boolean;
@@ -137,10 +177,14 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const startCall = useCallback(async () => {
+  const startCall = useCallback(async (trigger: CallTrigger = "button") => {
     if (isConnecting || isActive) return;
     clearError();
     setIsConnecting(true);
+
+    const attemptId = startAttempt(trigger, micPermission);
+    attemptRef.current = attemptId;
+
 
     if (recogRef.current) {
       try {
@@ -154,12 +198,20 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
 
     const publicKey = getVapiPublicKey();
     if (!publicKey) {
-      fail("Voice AI key is missing. Set VITE_VAPI_PUBLIC_KEY to enable calls.");
+      const message = "Voice AI key is missing. Set VITE_VAPI_PUBLIC_KEY to enable calls.";
+      logStage(attemptId, "public key", false, message);
+      markFailed(attemptId, null, message);
+      fail(message);
       return;
     }
+    logStage(attemptId, "public key", true, `${publicKey.slice(0, 8)}…`);
 
     const micOk = await requestMicAccess();
-    if (!micOk) return;
+    logStage(attemptId, "microphone", micOk, micOk ? "granted" : "blocked or unavailable");
+    if (!micOk) {
+      markFailed(attemptId, null, "Microphone access was not granted.");
+      return;
+    }
 
     // A fresh instance per attempt: reusing a stopped/errored instance is why
     // calls previously worked only once.
@@ -168,21 +220,37 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     let vapi;
     try {
       const { createVapiInstance } = await import("@/lib/vapi-loader");
-      vapi = await createVapiInstance(publicKey);
+      const loaded = await createVapiInstance(publicKey, (label, ok, detail) =>
+        logStage(attemptId, label, ok, detail),
+      );
+      vapi = loaded.instance;
     } catch (e) {
+      markFailed(attemptId, e, e instanceof Error ? e.message : "Voice engine failed to load.");
       fail(e instanceof Error ? e.message : "Voice engine failed to load.");
+      void persistAttempt(attemptId);
       return;
     }
 
     vapi.on("call-start", () => {
+      logStage(attemptId, "call-start", true);
+      markActive(attemptId);
       setIsActive(true);
       setIsConnecting(false);
       clearError();
     });
     vapi.on("call-end", () => {
+      logStage(attemptId, "call-end", true);
+      markEnded(attemptId);
       setIsActive(false);
       setIsConnecting(false);
       disposeVapi();
+      void persistAttempt(attemptId);
+    });
+    vapi.on("message", (msg: unknown) => {
+      const m = msg as { type?: string; role?: string; transcript?: string; transcriptType?: string };
+      if (m?.type === "transcript" && m.transcript && m.transcriptType !== "partial") {
+        addTranscript(attemptId, m.role ?? "unknown", m.transcript);
+      }
     });
     vapi.on("error", (e: unknown) => {
       const detail =
@@ -199,7 +267,9 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
               }
             })());
       disposeVapi();
+      markFailed(attemptId, e, detail || "The voice call dropped. Please retry.");
       fail(detail || "The voice call dropped. Please retry.");
+      void persistAttempt(attemptId);
     });
     vapiRef.current = vapi;
 
@@ -207,13 +277,15 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
       await vapi.start(VAPI_ASSISTANT_ID);
     } catch (err) {
       disposeVapi();
-      fail(
+      const message =
         err instanceof Error
           ? `Could not start the voice call — ${err.message}`
-          : "Could not start the voice call. Please retry.",
-      );
+          : "Could not start the voice call. Please retry.";
+      markFailed(attemptId, err, message);
+      fail(message);
+      void persistAttempt(attemptId);
     }
-  }, [clearError, disposeVapi, fail, isActive, isConnecting, requestMicAccess]);
+  }, [clearError, disposeVapi, fail, isActive, isConnecting, micPermission, requestMicAccess]);
 
   const stopCall = useCallback(() => {
     disposeVapi();
