@@ -50,8 +50,7 @@ export function getVapiAttempts(): VapiAttempt[] {
 
 export function startAttempt(trigger: VapiAttempt["trigger"], micPermission: string): string {
   const id = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-  attempts = [
-    {
+  const fresh: VapiAttempt = {
       id,
       startedAt: Date.now(),
       endedAt: null,
