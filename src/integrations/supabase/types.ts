@@ -718,6 +718,62 @@ export type Database = {
         }
         Relationships: []
       }
+      voice_call_logs: {
+        Row: {
+          assistant_id: string | null
+          created_at: string
+          duration_seconds: number | null
+          ended_at: string | null
+          error_message: string | null
+          fallback_reason: string | null
+          id: string
+          metadata: Json
+          outcome: string
+          request_id: string | null
+          started_at: string
+          transcript: Json
+          user_id: string | null
+        }
+        Insert: {
+          assistant_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          ended_at?: string | null
+          error_message?: string | null
+          fallback_reason?: string | null
+          id?: string
+          metadata?: Json
+          outcome?: string
+          request_id?: string | null
+          started_at?: string
+          transcript?: Json
+          user_id?: string | null
+        }
+        Update: {
+          assistant_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          ended_at?: string | null
+          error_message?: string | null
+          fallback_reason?: string | null
+          id?: string
+          metadata?: Json
+          outcome?: string
+          request_id?: string | null
+          started_at?: string
+          transcript?: Json
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voice_call_logs_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
