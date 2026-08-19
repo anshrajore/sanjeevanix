@@ -62,10 +62,9 @@ export function startAttempt(trigger: VapiAttempt["trigger"], micPermission: str
       stack: null,
       micPermission,
       stages: [],
-      transcript: [],
-    },
-    ...attempts,
-  ].slice(0, MAX_ATTEMPTS);
+    transcript: [],
+  };
+  attempts = [fresh, ...attempts].slice(0, MAX_ATTEMPTS);
   emit();
   return id;
 }
