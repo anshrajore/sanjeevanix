@@ -9,8 +9,48 @@ import {
 } from "react";
 
 import { VAPI_ASSISTANT_ID, getVapiPublicKey } from "@/lib/vapi-config";
+import {
+  addTranscript,
+  getAttempt,
+  logStage,
+  markActive,
+  markEnded,
+  markFailed,
+  startAttempt,
+} from "@/lib/vapi-diagnostics";
+import { logVoiceCall } from "@/lib/voice-log.functions";
 
 export type MicPermission = "unknown" | "prompt" | "granted" | "denied";
+export type CallTrigger = "button" | "wake-word" | "retry";
+
+/** Persists a finished attempt (transcript + failure reason) for admin audit. */
+async function persistAttempt(attemptId: string) {
+  const attempt = getAttempt(attemptId);
+  if (!attempt) return;
+  try {
+    await logVoiceCall({
+      data: {
+        assistantId: VAPI_ASSISTANT_ID,
+        outcome: attempt.status,
+        startedAt: new Date(attempt.startedAt).toISOString(),
+        endedAt: new Date(attempt.endedAt ?? Date.now()).toISOString(),
+        durationSeconds: Math.round(((attempt.endedAt ?? Date.now()) - attempt.startedAt) / 1000),
+        errorMessage: attempt.error ?? "",
+        fallbackReason: attempt.fallbackReason ?? "",
+        transcript: attempt.transcript,
+        metadata: {
+          trigger: attempt.trigger,
+          loaderSource: attempt.loaderSource,
+          micPermission: attempt.micPermission,
+          stages: attempt.stages,
+          stack: attempt.stack,
+        },
+      },
+    });
+  } catch {
+    /* logging must never break a call */
+  }
+}
 
 type VapiContextValue = {
   isActive: boolean;
