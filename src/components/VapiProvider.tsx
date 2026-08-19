@@ -137,10 +137,14 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const startCall = useCallback(async () => {
+  const startCall = useCallback(async (trigger: CallTrigger = "button") => {
     if (isConnecting || isActive) return;
     clearError();
     setIsConnecting(true);
+
+    const attemptId = startAttempt(trigger, micPermission);
+    attemptRef.current = attemptId;
+
 
     if (recogRef.current) {
       try {
