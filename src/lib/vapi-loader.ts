@@ -7,6 +7,9 @@
  * module is evaluated or instantiated. We therefore try several module shapes
  * and, if the local build cannot be instantiated at all, fall back to the
  * pre-bundled ESM build served from a CDN.
+ *
+ * Every stage is reported through `onStage` so the diagnostics panel can show
+ * exactly which source was used and why an earlier one was rejected.
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -20,7 +23,12 @@ export type VapiInstance = {
 
 type VapiCtor = new (key: string) => VapiInstance;
 
-const CDN_URL = "https://esm.sh/@vapi-ai/web@2.5.2?bundle&target=es2020";
+export type StageReporter = (label: string, ok: boolean, detail?: string) => void;
+
+const CDN_URLS = [
+  "https://esm.sh/@vapi-ai/web@2.5.2?bundle&target=es2020",
+  "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm",
+];
 
 /** Pull a real constructor out of whatever shape the module exposes. */
 function pickCtor(mod: unknown): VapiCtor | null {
@@ -42,16 +50,24 @@ function describe(error: unknown): string {
   return typeof error === "string" ? error : "unknown error";
 }
 
+export type LoadResult = { instance: VapiInstance; source: string; problems: string[] };
+
 /**
- * Creates a live VAPI instance. Throws an Error whose message names the real
- * underlying failure so it can be shown to the operator.
+ * Creates a live VAPI instance, trying the bundled SDK first and CDN builds
+ * afterwards. Throws an Error whose message names every real failure.
  */
-export async function createVapiInstance(publicKey: string): Promise<VapiInstance> {
+export async function createVapiInstance(
+  publicKey: string,
+  onStage: StageReporter = () => {},
+): Promise<LoadResult> {
   const problems: string[] = [];
 
   const loaders: Array<{ label: string; load: () => Promise<unknown> }> = [
     { label: "bundled SDK", load: () => import("@vapi-ai/web") },
-    { label: "CDN SDK", load: () => import(/* @vite-ignore */ CDN_URL) },
+    ...CDN_URLS.map((url, index) => ({
+      label: `CDN SDK ${index + 1}`,
+      load: () => import(/* @vite-ignore */ url),
+    })),
   ];
 
   for (const loader of loaders) {
@@ -59,18 +75,25 @@ export async function createVapiInstance(publicKey: string): Promise<VapiInstanc
       const mod = await loader.load();
       const Ctor = pickCtor(mod);
       if (!Ctor) {
-        problems.push(`${loader.label}: no usable constructor export`);
+        const detail = "no usable constructor export";
+        problems.push(`${loader.label}: ${detail}`);
+        onStage(loader.label, false, detail);
         continue;
       }
       // Instantiating is what actually trips the bad superclass, so do it here.
       const instance = new Ctor(publicKey);
       if (typeof instance?.start !== "function") {
-        problems.push(`${loader.label}: instance is missing start()`);
+        const detail = "instance is missing start()";
+        problems.push(`${loader.label}: ${detail}`);
+        onStage(loader.label, false, detail);
         continue;
       }
-      return instance;
+      onStage(loader.label, true, "constructor instantiated");
+      return { instance, source: loader.label, problems };
     } catch (error) {
-      problems.push(`${loader.label}: ${describe(error)}`);
+      const detail = describe(error);
+      problems.push(`${loader.label}: ${detail}`);
+      onStage(loader.label, false, detail);
     }
   }
 
