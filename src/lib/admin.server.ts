@@ -188,3 +188,181 @@ export async function adminUsers(admin: SupabaseClient) {
 
   return (profiles ?? []).map((p) => ({ ...p, roles: roleMap.get(p.id) ?? [] }));
 }
+
+/* ------------------------------------------------------------------ */
+/* Analytics                                                          */
+/* ------------------------------------------------------------------ */
+
+function dayKey(iso: string) {
+  return iso.slice(0, 10);
+}
+
+/** Rich analytics aggregates for the admin analytics dashboard. */
+export async function adminAnalytics(admin: SupabaseClient, days: number) {
+  const since = new Date(Date.now() - days * 86_400_000).toISOString();
+
+  const [requests, notifications, screenings, events, hospitals, voice] = await Promise.all([
+    admin
+      .from("emergency_requests")
+      .select(
+        "id, status, city, blood_group, urgency, units_needed, accepted_count, notified_count, eta_minutes, request_source, created_at, updated_at",
+      )
+      .gte("created_at", since)
+      .order("created_at", { ascending: true })
+      .limit(2000),
+    admin
+      .from("emergency_notifications")
+      .select("status, channel, response, recipient_kind, created_at, responded_at, match_score, distance_km")
+      .gte("created_at", since)
+      .limit(5000),
+    admin
+      .from("eligibility_audit")
+      .select("eligible, score, deferral_reason, created_at")
+      .gte("created_at", since)
+      .limit(3000),
+    admin
+      .from("emergency_request_events")
+      .select("request_id, event_type, created_at")
+      .gte("created_at", since)
+      .limit(5000),
+    admin.from("hospital_directory").select("city, state, country, blood_bank_available, verification_status").eq("active", true).limit(2000),
+    admin.from("voice_call_logs").select("outcome, duration_seconds, created_at").gte("created_at", since).limit(2000),
+  ]);
+
+  const reqRows = requests.data ?? [];
+  const noteRows = notifications.data ?? [];
+  const donorNotes = noteRows.filter((n) => n.recipient_kind === "donor");
+  const scrRows = screenings.data ?? [];
+  const eventRows = events.data ?? [];
+  const voiceRows = voice.data ?? [];
+
+  // Daily time series
+  const series = new Map<string, { day: string; requests: number; accepted: number; notifications: number; screenings: number }>();
+  const ensure = (day: string) => {
+    if (!series.has(day)) series.set(day, { day, requests: 0, accepted: 0, notifications: 0, screenings: 0 });
+    return series.get(day)!;
+  };
+  for (let i = days - 1; i >= 0; i -= 1) ensure(new Date(Date.now() - i * 86_400_000).toISOString().slice(0, 10));
+  for (const r of reqRows) {
+    const bucket = ensure(dayKey(r.created_at));
+    bucket.requests += 1;
+    if ((r.accepted_count ?? 0) > 0) bucket.accepted += 1;
+  }
+  for (const n of noteRows) ensure(dayKey(n.created_at)).notifications += 1;
+  for (const s of scrRows) ensure(dayKey(s.created_at)).screenings += 1;
+
+  // Distributions
+  const tally = <T extends string>(rows: Array<Record<string, unknown>>, key: string) => {
+    const out: Record<string, number> = {};
+    for (const row of rows) {
+      const value = String(row[key] ?? "unknown") as T;
+      out[value] = (out[value] ?? 0) + 1;
+    }
+    return Object.entries(out)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
+  };
+
+  // Channel delivery performance
+  const channelMap = new Map<string, { channel: string; sent: number; failed: number; accepted: number; declined: number }>();
+  for (const n of donorNotes) {
+    const channel = String(n.channel ?? "unknown");
+    const row = channelMap.get(channel) ?? { channel, sent: 0, failed: 0, accepted: 0, declined: 0 };
+    if (n.status === "sent" || n.status === "delivered") row.sent += 1;
+    if (n.status === "failed" || n.status === "skipped") row.failed += 1;
+    if (n.response === "accepted") row.accepted += 1;
+    if (n.response === "declined") row.declined += 1;
+    channelMap.set(channel, row);
+  }
+
+  // Donor response latency (minutes)
+  const latencies = donorNotes
+    .filter((n) => n.responded_at)
+    .map((n) => (new Date(n.responded_at as string).getTime() - new Date(n.created_at).getTime()) / 60_000)
+    .filter((m) => m >= 0 && m < 24 * 60);
+  const avgResponseMinutes = latencies.length
+    ? Math.round((latencies.reduce((a, b) => a + b, 0) / latencies.length) * 10) / 10
+    : null;
+
+  // Time to first acceptance per request (minutes)
+  const firstEvent = new Map<string, number>();
+  for (const e of eventRows) {
+    if (e.event_type !== "donor_accepted") continue;
+    const ts = new Date(e.created_at).getTime();
+    const prev = firstEvent.get(e.request_id);
+    if (prev == null || ts < prev) firstEvent.set(e.request_id, ts);
+  }
+  const fulfilTimes: number[] = [];
+  for (const r of reqRows) {
+    const accepted = firstEvent.get(r.id);
+    if (accepted) fulfilTimes.push((accepted - new Date(r.created_at).getTime()) / 60_000);
+  }
+  const avgTimeToAcceptMinutes = fulfilTimes.length
+    ? Math.round((fulfilTimes.reduce((a, b) => a + b, 0) / fulfilTimes.length) * 10) / 10
+    : null;
+
+  // City demand vs hospital supply coverage
+  const cityDemand: Record<string, number> = {};
+  for (const r of reqRows) cityDemand[r.city] = (cityDemand[r.city] ?? 0) + (r.units_needed ?? 1);
+  const cityBanks: Record<string, number> = {};
+  for (const h of hospitals.data ?? []) {
+    if (h.blood_bank_available) cityBanks[h.city] = (cityBanks[h.city] ?? 0) + 1;
+  }
+  const cityCoverage = Object.entries(cityDemand)
+    .map(([city, units]) => ({ city, units, bloodBanks: cityBanks[city] ?? 0, pressure: Math.round((units / Math.max(1, cityBanks[city] ?? 0)) * 10) / 10 }))
+    .sort((a, b) => b.pressure - a.pressure)
+    .slice(0, 12);
+
+  const accepted = reqRows.filter((r) => (r.accepted_count ?? 0) > 0).length;
+  const notified = donorNotes.length;
+  const deliverySent = donorNotes.filter((n) => n.status === "sent" || n.status === "delivered").length;
+
+  return {
+    windowDays: days,
+    series: [...series.values()].sort((a, b) => a.day.localeCompare(b.day)),
+    byStatus: tally(reqRows, "status"),
+    byGroup: tally(reqRows, "blood_group"),
+    byUrgency: tally(reqRows, "urgency"),
+    bySource: tally(reqRows, "request_source"),
+    byCity: tally(reqRows, "city").slice(0, 10),
+    channels: [...channelMap.values()],
+    funnel: [
+      { stage: "Requests", value: reqRows.length },
+      { stage: "Donors notified", value: notified },
+      { stage: "Delivered", value: deliverySent },
+      { stage: "Donor accepted", value: donorNotes.filter((n) => n.response === "accepted").length },
+      { stage: "Fulfilled", value: reqRows.filter((r) => r.status === "fulfilled").length },
+    ],
+    screening: {
+      total: scrRows.length,
+      eligible: scrRows.filter((s) => s.eligible).length,
+      avgScore: scrRows.length ? Math.round(scrRows.reduce((a, b) => a + b.score, 0) / scrRows.length) : null,
+      deferrals: tally(scrRows.filter((s) => !s.eligible), "deferral_reason").slice(0, 8),
+    },
+    voice: {
+      total: voiceRows.length,
+      byOutcome: tally(voiceRows, "outcome"),
+      avgDurationSeconds: voiceRows.length
+        ? Math.round(voiceRows.reduce((a, b) => a + (b.duration_seconds ?? 0), 0) / voiceRows.length)
+        : null,
+    },
+    network: {
+      hospitals: (hospitals.data ?? []).length,
+      bloodBanks: (hospitals.data ?? []).filter((h) => h.blood_bank_available).length,
+      verified: (hospitals.data ?? []).filter((h) => h.verification_status === "verified").length,
+      countries: new Set((hospitals.data ?? []).map((h) => h.country)).size,
+      cities: new Set((hospitals.data ?? []).map((h) => h.city)).size,
+    },
+    kpis: {
+      totalRequests: reqRows.length,
+      acceptanceRate: reqRows.length ? Math.round((accepted / reqRows.length) * 100) : 0,
+      deliveryRate: notified ? Math.round((deliverySent / notified) * 100) : 0,
+      avgResponseMinutes,
+      avgTimeToAcceptMinutes,
+      avgUnits: reqRows.length
+        ? Math.round((reqRows.reduce((a, b) => a + (b.units_needed ?? 0), 0) / reqRows.length) * 10) / 10
+        : 0,
+    },
+    cityCoverage,
+  };
+}
