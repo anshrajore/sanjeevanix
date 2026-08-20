@@ -448,6 +448,7 @@ export type Database = {
           longitude: number
           name: string
           phone: string | null
+          pincode: string | null
           source: string
           source_url: string | null
           state: string
@@ -470,6 +471,7 @@ export type Database = {
           longitude: number
           name: string
           phone?: string | null
+          pincode?: string | null
           source?: string
           source_url?: string | null
           state: string
@@ -492,6 +494,7 @@ export type Database = {
           longitude?: number
           name?: string
           phone?: string | null
+          pincode?: string | null
           source?: string
           source_url?: string | null
           state?: string
