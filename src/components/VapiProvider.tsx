@@ -96,6 +96,7 @@ export function VapiProvider({ children }: { children: React.ReactNode }) {
   const vapiRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recogRef = useRef<any>(null);
+  const attemptRef = useRef<string | null>(null);
   const [isActive, setIsActive] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
