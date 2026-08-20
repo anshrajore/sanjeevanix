@@ -273,3 +273,14 @@ export const adminRetryNotification = createServerFn({ method: "POST" })
     await admin.from("emergency_notifications").update({ status: outcome.status, provider_sid: outcome.sid, error: outcome.error }).eq("id", note.id);
     return outcome;
   });
+
+export const adminGetAnalytics = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) =>
+    z.object({ days: z.number().int().min(1).max(180).default(30) }).parse(input ?? {}),
+  )
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const { adminAnalytics } = await import("./admin.server");
+    return adminAnalytics(await adminClient(), data.days);
+  });
